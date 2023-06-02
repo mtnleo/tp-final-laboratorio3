@@ -1,27 +1,42 @@
 package Aerolinea;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Vuelo {
-    private String numero; // N° de vuelo
+    ////////////////////////////////////////////
+    // ATRIBUTOS ----------------------------
+    ////////////////////////////////////////////
+
+    private String codigoVuelo; // N° de vuelo
+
     private Aeropuerto origen;
     private Aeropuerto destino;
-    private double km;
     private Avion avion;
-    private LocalDateTime salida;
+
+    private double distanciaKm;
     private double duracion;
+
+    private LocalDateTime salida;
     private LocalDateTime llegada; // Se calcula automáticamente
-    private HashMap <String, Pasaje> pasajes; // La clave es el n° de pasaje
+
+    private EstadoVuelo estadoVuelo;
+
+    private LinkedList<Pasaje> pasajes;
+
+    ////////////////////////////////////////////
+    // CONSTRUCTORES ----------------------------
+    ////////////////////////////////////////////
 
     public Vuelo() {
     }
 
     // Constructor por copia
     public Vuelo(Vuelo vuelo) {
-        this.numero = vuelo.numero;
+        this.codigoVuelo = vuelo.codigoVuelo;
         this.origen = vuelo.origen;
         this.destino = vuelo.destino;
-        this.km = vuelo.km;
+        this.distanciaKm = vuelo.distanciaKm;
         this.avion = vuelo.avion;
         this.salida = vuelo.salida;
         this.duracion = vuelo.duracion;
@@ -31,23 +46,23 @@ public class Vuelo {
 
     // Inicializa la lista de pasajes vacía
     public Vuelo(String numero, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, double duracion) {
-        this.numero = numero;
+        this.codigoVuelo = numero;
         this.origen = origen;
         this.destino = destino;
-        this.km = km;
+        this.distanciaKm = distanciaKm;
         this.avion = avion;
         this.salida = salida;
         this.duracion = duracion;
         this.llegada = calcularLlegada();
-        this.pasajes = new HashMap <String, Pasaje> ();
+        this.pasajes = new LinkedList<Pasaje> ();
     }
 
     // Recibe la lista de pasajes por parámetro
-    public Vuelo(String numero, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, double duracion, HashMap <String, Pasaje> pasajes) {
-        this.numero = numero;
+    public Vuelo(String numero, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, double duracion, LinkedList <Pasaje> pasajes) {
+        this.codigoVuelo = numero;
         this.origen = origen;
         this.destino = destino;
-        this.km = km;
+        this.distanciaKm = km;
         this.avion = avion;
         this.salida = salida;
         this.duracion = duracion;
@@ -55,7 +70,12 @@ public class Vuelo {
         this.pasajes = pasajes;
     }
 
+    ////////////////////////////////////////////
+    // METODOS --------------------------------------
+    ////////////////////////////////////////////
+
     private LocalDateTime calcularLlegada() {
+
         // Habría que retornar la salida + la duración.
         return this.llegada;
     }
@@ -63,10 +83,10 @@ public class Vuelo {
     @Override
     public String toString() {
         return "Vuelo{" +
-                "numero='" + numero + '\'' +
+                "numero='" + distanciaKm + '\'' +
                 ", origen=" + origen +
                 ", destino=" + destino +
-                ", km=" + km +
+                ", km=" + distanciaKm +
                 ", avion=" + avion +
                 ", salida=" + salida +
                 ", duracion=" + duracion +
@@ -75,12 +95,16 @@ public class Vuelo {
                 '}';
     }
 
+    ////////////////////////////////////////////
+    /// GETTERS & SETTERS ----------------------
+    ////////////////////////////////////////////
+
     public String getNumero() {
-        return numero;
+        return codigoVuelo;
     }
 
     public void setNumero(String numero) {
-        this.numero = numero;
+        this.codigoVuelo = numero;
     }
 
     public Aeropuerto getOrigen() {
@@ -100,11 +124,11 @@ public class Vuelo {
     }
 
     public double getKm() {
-        return km;
+        return distanciaKm;
     }
 
     public void setKm(double km) {
-        this.km = km;
+        this.distanciaKm = km;
     }
 
     public Avion getAvion() {
@@ -139,11 +163,19 @@ public class Vuelo {
         this.llegada = llegada;
     }
 
-    public HashMap<String, Pasaje> getPasajes() {
-        return pasajes;
+    public void setEnHorario() {
+        this.estadoVuelo = EstadoVuelo.EN_HORARIO;
     }
 
-    public void setPasajes(HashMap<String, Pasaje> pasajes) {
-        this.pasajes = pasajes;
+    public void setDemorado() {
+        this.estadoVuelo = EstadoVuelo.DEMORADO;
+    }
+
+    public void setCancelado() {
+        this.estadoVuelo = EstadoVuelo.CANCELADO;
+    }
+
+    public String getEstadoVuelo() {
+        return estadoVuelo.getDescripcion();
     }
 }
