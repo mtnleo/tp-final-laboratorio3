@@ -1,10 +1,18 @@
 package Aerolinea;
 
 public class Avion {
+    ////////////////////////////////////////////
+    // ATRIBUTOS ----------------------------
+    ////////////////////////////////////////////
+
     private String id; // Id único del avión concreto
     private String tipo;
     private double distancia;
     private int cantidadPasajeros;
+
+    ////////////////////////////////////////////
+    // CONSTRUCTORES ----------------------------
+    ////////////////////////////////////////////
 
     public Avion() {
     }
@@ -23,15 +31,9 @@ public class Avion {
         this.cantidadPasajeros = cantidadPasajeros;
     }
 
-    @Override
-    public String toString() {
-        return "Avion{" +
-                "id='" + id + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", distancia=" + distancia +
-                ", cantidadPasajeros=" + cantidadPasajeros +
-                '}';
-    }
+    ////////////////////////////////////////////
+    // GETTERS AND SETTERS ---------------------
+    ////////////////////////////////////////////
 
     public String getId() {
         return id;
@@ -64,4 +66,19 @@ public class Avion {
     public void setCantidadPasajeros(int cantidadPasajeros) {
         this.cantidadPasajeros = cantidadPasajeros;
     }
+
+    ////////////////////////////////////////////
+    // METODOS ---- ----------------------------
+    ////////////////////////////////////////////
+
+    @Override
+    public String toString() {
+        return "Avion{" +
+                "id='" + id + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", distancia=" + distancia +
+                ", cantidadPasajeros=" + cantidadPasajeros +
+                '}';
+    }
+
 }

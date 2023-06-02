@@ -1,46 +1,52 @@
 package Aerolinea;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Pasaje {
-    private String numero;
+    ////////////////////////////////////////////
+    // ATRIBUTOS ----------------------------
+    ////////////////////////////////////////////
+
     private Vuelo vuelo;
+    private LocalDateTime fecha;
     private Cliente cliente;
-    private char grupo;
+    private Character grupo; //???
+    private double precio;
+    private String equipaje; // ¿¿puede ser un enum??
+    private String numeroPassaje;
+    private int numeroAsiento;
+
+    ////////////////////////////////////////////
+    // CONSTRUCTORES  -------------------------
+    ////////////////////////////////////////////
 
     public Pasaje() {
     }
 
     public Pasaje(Pasaje pasaje) {
-        this.numero = pasaje.numero;
+        this.numeroPassaje = pasaje.numeroPassaje;
         this.vuelo = pasaje.vuelo;
         this.cliente = pasaje.cliente;
         this.grupo = pasaje.grupo;
+        this.precio = pasaje.precio;
+        this.equipaje = pasaje.equipaje;
+        this.numeroAsiento = pasaje.numeroAsiento;
+
     }
 
-    public Pasaje(String numero, Vuelo vuelo, Cliente cliente, char grupo) {
-        this.numero = UUID.randomUUID().toString().replaceAll("-", "");
+    public Pasaje(String numero, Vuelo vuelo, Cliente cliente, char grupo, double precio, String equipaje, int numeroAsiento) {
+        this.numeroPassaje = UUID.randomUUID().toString().replaceAll("-", "");
         this.vuelo = vuelo;
         this.cliente = cliente;
         this.grupo = grupo;
+        this.precio = precio;
+        this.equipaje = equipaje;
+        this.numeroAsiento = numeroAsiento;
     }
 
-    @Override
-    public String toString() {
-        return "Pasaje{" +
-                "numero='" + numero + '\'' +
-                ", vuelo=" + vuelo +
-                ", cliente=" + cliente +
-                ", grupo=" + grupo +
-                '}';
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+    ////////////////////////////////////////////
+    // GETTERS AND SETTERS  --------------------
+    ////////////////////////////////////////////
 
     public Vuelo getVuelo() {
         return vuelo;
@@ -65,4 +71,55 @@ public class Pasaje {
     public void setGrupo(char grupo) {
         this.grupo = grupo;
     }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getEquipaje() {
+        return equipaje;
+    }
+
+    public void setEquipaje(String equipaje) {
+        this.equipaje = equipaje;
+    }
+
+    public String getNumeroPassaje() {
+        return numeroPassaje;
+    }
+
+    public void setNumeroPassaje(String numeroPassaje) {
+        this.numeroPassaje = numeroPassaje;
+    }
+
+    public int getNumeroAsiento() {
+        return numeroAsiento;
+    }
+
+    public void setNumeroAsiento(int numeroAsiento) {
+        this.numeroAsiento = numeroAsiento;
+    }
+
+    ////////////////////////////////////////////
+    // METODOS  --------------------------------
+    ////////////////////////////////////////////
+
+    @Override
+    public String toString() {
+        return "Pasaje{" +
+                "vuelo=" + vuelo +
+                ", fecha=" + fecha +
+                ", cliente=" + cliente +
+                ", grupo=" + grupo +
+                ", precio=" + precio +
+                ", equipaje='" + equipaje + '\'' +
+                ", numeroPassaje='" + numeroPassaje + '\'' +
+                ", numeroAsiento=" + numeroAsiento +
+                '}';
+    }
+
 }

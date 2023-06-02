@@ -1,13 +1,23 @@
 package Aerolinea;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 
 public class Cliente {
+    ////////////////////////////////////////////
+    // ATRIBUTOS ----------------------------
+    ////////////////////////////////////////////
+
     protected String nombre;
     protected String apellido;
     protected String pasaporte;
     protected String nombreDeUsuario;
     protected String contrasena;
-    protected HashMap <String, Pasaje> pasajes;
+    protected LinkedList<Pasaje> pasajes;
+
+    ////////////////////////////////////////////
+    // CONSTRUCTORES ----------------------------
+    ////////////////////////////////////////////
 
     public Cliente() {
     }
@@ -23,25 +33,19 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
         this.pasaporte = pasaporte;
-        this.pasajes = new HashMap <String, Pasaje> ();
+        this.pasajes = new LinkedList<Pasaje>();
     }
 
-    public Cliente(String nombre, String apellido, String pasaporte, HashMap <String, Pasaje> pasajes) {
+    public Cliente(String nombre, String apellido, String pasaporte, LinkedList <Pasaje> pasajes) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.pasaporte = pasaporte;
         this.pasajes = pasajes;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", pasaporte='" + pasaporte + '\'' +
-                ", pasajes=" + pasajes +
-                '}';
-    }
+    ////////////////////////////////////////////
+    // GETTERS AND SETTERS --------------------
+    ////////////////////////////////////////////
 
     public String getNombre() {
         return nombre;
@@ -67,11 +71,26 @@ public class Cliente {
         this.pasaporte = pasaporte;
     }
 
-    public HashMap<String, Pasaje> getPasajes() {
-        return pasajes;
+
+    ////////////////////////////////////////////
+    // METODOS ----------------------------
+    ////////////////////////////////////////////
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", pasaporte='" + pasaporte + '\'' +
+                ", pasajes=" + pasajes +
+                '}';
     }
 
-    public void setPasajes(HashMap<String, Pasaje> pasajes) {
-        this.pasajes = pasajes;
+    public void mostrarPasajes() {
+        for (Pasaje pas: pasajes) {
+            System.out.println(pas.toString());
+        }
     }
+
+
 }

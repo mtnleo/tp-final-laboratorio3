@@ -1,9 +1,17 @@
 package Aerolinea;
 
 public class Aeropuerto {
+    ////////////////////////////////////////////
+    // ATRIBUTOS ----------------------------
+    ////////////////////////////////////////////
+
     private String codigo;
     private String ciudad;
     private String pais;
+
+    ////////////////////////////////////////////
+    // CONSTRUCTORES ----------------------------
+    ////////////////////////////////////////////
 
     public Aeropuerto() {
     }
@@ -16,20 +24,14 @@ public class Aeropuerto {
     }
 
     public Aeropuerto(String codigo, String ciudad, String pais) {
-
         this.codigo = codigo;
         this.ciudad = ciudad;
         this.pais = pais;
     }
 
-    @Override
-    public String toString() {
-        return "Aeropuerto{" +
-                "codigo='" + codigo + '\'' +
-                ", ciudad='" + ciudad + '\'' +
-                ", pais='" + pais + '\'' +
-                '}';
-    }
+    ////////////////////////////////////////////
+    // GETTERS AND SETTERS ---------------------
+    ////////////////////////////////////////////
 
     public String getCodigo() {
         return codigo;
@@ -53,5 +55,18 @@ public class Aeropuerto {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    ////////////////////////////////////////////
+    // METODOS ----------------------------
+    ////////////////////////////////////////////
+
+    @Override
+    public String toString() {
+        return "Aeropuerto{" +
+                "codigo='" + codigo + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", pais='" + pais + '\'' +
+                '}';
     }
 }
