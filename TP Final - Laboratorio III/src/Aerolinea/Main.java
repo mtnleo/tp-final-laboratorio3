@@ -17,6 +17,10 @@ public class Main {
                 case 1:
                     System.out.println("Ejercicio 1.");
 
+                    Aerolinea a1 = new Aerolinea();
+                    a1.addVuelosHC();
+                    a1.mostrarVuelos();
+
                     break;
 
                 case 2:

@@ -6,9 +6,10 @@ public class Avion {
     ////////////////////////////////////////////
 
     private String id; // Id único del avión concreto
-    private String tipo;
-    private double distancia;
-    private int cantidadPasajeros;
+    private String nombre; // nombre y modelo
+    private String tipo; // tipo de avion
+    private double distancia; // distancia que cubre en un solo tanque
+    private int cantidadPasajeros; //cantidad de pasajeros que soporta
 
     ////////////////////////////////////////////
     // CONSTRUCTORES ----------------------------
@@ -19,13 +20,15 @@ public class Avion {
 
     public Avion(Avion avion) {
         this.id = avion.id;
+        this.nombre = avion.nombre;
         this.tipo = avion.tipo;
         this.distancia = avion.distancia;
         this.cantidadPasajeros = avion.cantidadPasajeros;
     }
 
-    public Avion(String id, String tipo, double distancia, int cantidadPasajeros) {
+    public Avion(String id, String nombre, String tipo, double distancia, int cantidadPasajeros) {
         this.id = id;
+        this.nombre = nombre;
         this.tipo = tipo;
         this.distancia = distancia;
         this.cantidadPasajeros = cantidadPasajeros;

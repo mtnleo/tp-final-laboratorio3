@@ -31,10 +31,10 @@ public class Pasaje {
         this.precio = pasaje.precio;
         this.equipaje = pasaje.equipaje;
         this.numeroAsiento = pasaje.numeroAsiento;
-
+        this.fecha = pasaje.fecha;
     }
 
-    public Pasaje(String numero, Vuelo vuelo, Cliente cliente, char grupo, double precio, String equipaje, int numeroAsiento) {
+    public Pasaje(String numero, Vuelo vuelo, Cliente cliente, char grupo, double precio, String equipaje, int numeroAsiento, LocalDateTime fecha) {
         this.numeroPassaje = UUID.randomUUID().toString().replaceAll("-", "");
         this.vuelo = vuelo;
         this.cliente = cliente;
@@ -42,6 +42,7 @@ public class Pasaje {
         this.precio = precio;
         this.equipaje = equipaje;
         this.numeroAsiento = numeroAsiento;
+        this.fecha = fecha;
     }
 
     ////////////////////////////////////////////

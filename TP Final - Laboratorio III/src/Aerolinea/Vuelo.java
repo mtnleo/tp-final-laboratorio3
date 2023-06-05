@@ -53,7 +53,7 @@ public class Vuelo {
         this.avion = avion;
         this.salida = salida;
         this.duracion = duracion;
-        this.llegada = calcularLlegada();
+        this.llegada = calcularLlegada(salida, duracion);
         this.pasajes = new LinkedList<Pasaje> ();
     }
 
@@ -66,7 +66,7 @@ public class Vuelo {
         this.avion = avion;
         this.salida = salida;
         this.duracion = duracion;
-        this.llegada = calcularLlegada();
+        this.llegada = calcularLlegada(salida, duracion);
         this.pasajes = pasajes;
     }
 
@@ -74,10 +74,20 @@ public class Vuelo {
     // METODOS --------------------------------------
     ////////////////////////////////////////////
 
-    private LocalDateTime calcularLlegada() {
+    private int[] getHorasMinutosFromDouble(double num) { //obtengo horas y minutos de un double
+        int[] resultado = new int[2];
+        resultado[0] = (int)(Math.floor(num));
+        double minutes = (num - Math.floor(num)) * 60;
+        resultado[1] = (int)(Math.floor(minutes));
 
-        // Habría que retornar la salida + la duración.
-        return this.llegada;
+        return resultado;
+    }
+
+    private LocalDateTime calcularLlegada(LocalDateTime salida, double duracion) {
+        int[] horario = getHorasMinutosFromDouble(duracion);
+        salida = salida.plusHours(horario[0]);
+        salida = salida.plusMinutes(horario[1]);
+        return salida;
     }
 
     @Override
