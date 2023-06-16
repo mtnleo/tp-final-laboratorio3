@@ -1,5 +1,9 @@
 package Aerolinea;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -120,5 +124,60 @@ public class Aerolinea {
         for (Aeropuerto aep: aeropuertos) {
             System.out.println(aep.toString());
         }
+    }
+
+    // JSON'S
+
+    public void cargarJson(String pathname) {
+        File file = new File(pathname);
+
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+
+            Gson gson = new GsonBuilder() // El Gson builder para poder cargar el LocalDateTime que rompe el archivo
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                    .create();
+
+            gson.toJson(this, Aerolinea.class, bufferedWriter);
+
+            bufferedWriter.close();
+        }
+        catch (IOException e) {
+            System.out.println("|X| ERROR CARGANDO AEROLINEA A JSON |X|");
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static Aerolinea leerJson(String pathname) {
+        Aerolinea aerolinea = null;
+        File file = new File(pathname);
+        if (file.exists()) {
+            if (file.canRead()) {
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+
+                    Gson gson = new GsonBuilder() // El Gson builder para poder leer el LocalDateTime que rompe el archivo
+                            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                            .create();
+
+                    aerolinea = gson.fromJson(bufferedReader, Aerolinea.class);
+
+                    bufferedReader.close();
+                }
+                catch (IOException e) {
+                    System.out.println("|X| ERROR E/S LEYENDO EL JSON |X|");
+                    System.out.println(e.getMessage());
+                }
+            }
+            else {
+                System.out.println("|X| ERROR LEYENDO EL JSON, NO TIENE PERMISOS |X|");
+            }
+        }
+        else {
+            System.out.println("|X| ERROR LEYENDO EL JSON, NO EXISTE EL ARCHIVO |X|");
+        }
+
+        return aerolinea;
     }
 }

@@ -10,6 +10,8 @@ public class Vuelo {
 
     private String codigoVuelo; // N° de vuelo
 
+    private double precio;
+
     private Aeropuerto origen;
     private Aeropuerto destino;
     private Avion avion;
@@ -34,6 +36,7 @@ public class Vuelo {
     // Constructor por copia
     public Vuelo(Vuelo vuelo) {
         this.codigoVuelo = vuelo.codigoVuelo;
+        this.precio = vuelo.precio;
         this.origen = vuelo.origen;
         this.destino = vuelo.destino;
         this.distanciaKm = vuelo.distanciaKm;
@@ -41,25 +44,14 @@ public class Vuelo {
         this.salida = vuelo.salida;
         this.duracion = vuelo.duracion;
         this.llegada = vuelo.llegada;
+        this.estadoVuelo = vuelo.estadoVuelo;
         this.pasajes = vuelo.pasajes;
     }
 
     // Inicializa la lista de pasajes vacía
-    public Vuelo(String numero, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, double duracion) {
+    public Vuelo(String numero, double precio, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, double duracion) {
         this.codigoVuelo = numero;
-        this.origen = origen;
-        this.destino = destino;
-        this.distanciaKm = distanciaKm;
-        this.avion = avion;
-        this.salida = salida;
-        this.duracion = duracion;
-        this.llegada = calcularLlegada(salida, duracion);
-        this.pasajes = new LinkedList<Pasaje> ();
-    }
-
-    // Recibe la lista de pasajes por parámetro
-    public Vuelo(String numero, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, double duracion, LinkedList <Pasaje> pasajes) {
-        this.codigoVuelo = numero;
+        this.precio = precio;
         this.origen = origen;
         this.destino = destino;
         this.distanciaKm = km;
@@ -67,11 +59,43 @@ public class Vuelo {
         this.salida = salida;
         this.duracion = duracion;
         this.llegada = calcularLlegada(salida, duracion);
+        this.estadoVuelo = EstadoVuelo.EN_HORARIO;
+        this.pasajes = new LinkedList<Pasaje> ();
+    }
+
+    // Recibe la lista de pasajes por parámetro
+    public Vuelo(String numero, double precio, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, double duracion, LinkedList <Pasaje> pasajes) {
+        this.codigoVuelo = numero;
+        this.precio = precio;
+        this.origen = origen;
+        this.destino = destino;
+        this.distanciaKm = km;
+        this.avion = avion;
+        this.salida = salida;
+        this.duracion = duracion;
+        this.estadoVuelo = EstadoVuelo.EN_HORARIO;
+        this.llegada = calcularLlegada(salida, duracion);
         this.pasajes = pasajes;
     }
 
+    // Puede establecer la llegada (para que funcione JSON)
+    public Vuelo(String numero, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, LocalDateTime llegada, double duracion, LinkedList <Pasaje> pasajes) {
+        this.codigoVuelo = numero;
+        this.origen = origen;
+        this.destino = destino;
+        this.distanciaKm = km;
+        this.avion = avion;
+        this.salida = salida;
+        this.duracion = duracion;
+        this.estadoVuelo = EstadoVuelo.EN_HORARIO;
+        this.llegada = llegada;
+        this.pasajes = pasajes;
+    }
+
+
+
     ////////////////////////////////////////////
-    // METODOS --------------------------------------
+    // METODOS ---------------------------------
     ////////////////////////////////////////////
 
     private int[] getHorasMinutosFromDouble(double num) { //obtengo horas y minutos de un double
@@ -108,6 +132,7 @@ public class Vuelo {
     ////////////////////////////////////////////
     /// GETTERS & SETTERS ----------------------
     ////////////////////////////////////////////
+
 
     public String getNumero() {
         return codigoVuelo;
