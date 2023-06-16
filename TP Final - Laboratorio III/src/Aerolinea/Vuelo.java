@@ -7,11 +7,9 @@ public class Vuelo {
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
-
     private String codigoVuelo; // N° de vuelo
 
     private double precio;
-
     private Aeropuerto origen;
     private Aeropuerto destino;
     private Avion avion;
@@ -133,15 +131,6 @@ public class Vuelo {
     /// GETTERS & SETTERS ----------------------
     ////////////////////////////////////////////
 
-
-    public String getNumero() {
-        return codigoVuelo;
-    }
-
-    public void setNumero(String numero) {
-        this.codigoVuelo = numero;
-    }
-
     public Aeropuerto getOrigen() {
         return origen;
     }
@@ -156,14 +145,6 @@ public class Vuelo {
 
     public void setDestino(Aeropuerto destino) {
         this.destino = destino;
-    }
-
-    public double getKm() {
-        return distanciaKm;
-    }
-
-    public void setKm(double km) {
-        this.distanciaKm = km;
     }
 
     public Avion getAvion() {
@@ -213,4 +194,22 @@ public class Vuelo {
     public String getEstadoVuelo() {
         return estadoVuelo.getDescripcion();
     }
+
+    public String getCodigoVuelo() {
+        return codigoVuelo;
+    }
+
+    public void setCodigoVuelo(String codigoVuelo) {
+        this.codigoVuelo = codigoVuelo;
+    }
+
+    
+    public double getDistanciaKm() {
+        return distanciaKm;
+    }
+
+    public void setDistanciaKm(double distanciaKm) {
+        this.distanciaKm = distanciaKm;
+    }
+
 }
