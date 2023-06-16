@@ -27,22 +27,23 @@ public class Main {
 
                 switch (opcionVuelos) {
                     case 1:
-                        aerolinea.agregarVuelo();
-                                break;
-                            case 2:
-                                aerolinea.modificarVuelo();
-                                break;
-                            case 3:
-                                aerolinea.eliminarVuelo();
-                                break;
-                            case 4:
-                                aerolinea.mostrarVuelos();
-                                break;
-                            default:
-                                System.out.println("Opción inválida");
-                                break;
-                        }
+                        Vuelo vuelo1 = aerolinea.cargarVueloPorTeclado();
+                        aerolinea.agregarVuelo(vuelo1);
                         break;
+                    case 2:
+                        aerolinea.modificarVuelo();
+                        break;
+                    case 3:
+                        aerolinea.eliminarVuelo();
+                        break;
+                    case 4:
+                        aerolinea.mostrarVuelos();
+                        break;
+                    default:
+                        System.out.println("Opción inválida");
+                        break;
+                    }
+                    break;
 
                     case 2:
                         System.out.println("Seleccione una opción:");
