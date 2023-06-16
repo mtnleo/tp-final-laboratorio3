@@ -7,9 +7,7 @@ public class Vuelo {
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
-
     private String codigoVuelo; // N° de vuelo
-
     private Aeropuerto origen;
     private Aeropuerto destino;
     private Avion avion;
@@ -187,5 +185,45 @@ public class Vuelo {
 
     public String getEstadoVuelo() {
         return estadoVuelo.getDescripcion();
+    }
+
+    public String getCodigoVuelo() {
+        return codigoVuelo;
+    }
+
+    public void setCodigoVuelo(String codigoVuelo) {
+        this.codigoVuelo = codigoVuelo;
+    }
+
+    public void setOrigen(Aerolinea.Aeropuerto origen) {
+        this.origen = origen;
+    }
+
+    public void setDestino(Aerolinea.Aeropuerto destino) {
+        this.destino = destino;
+    }
+
+    public void setAvion(Aerolinea.Avion avion) {
+        this.avion = avion;
+    }
+
+    public double getDistanciaKm() {
+        return distanciaKm;
+    }
+
+    public void setDistanciaKm(double distanciaKm) {
+        this.distanciaKm = distanciaKm;
+    }
+
+    public void setEstadoVuelo(Aerolinea.EstadoVuelo estadoVuelo) {
+        this.estadoVuelo = estadoVuelo;
+    }
+
+    public LinkedList<Aerolinea.Pasaje> getPasajes() {
+        return pasajes;
+    }
+
+    public void setPasajes(LinkedList<Aerolinea.Pasaje> pasajes) {
+        this.pasajes = pasajes;
     }
 }

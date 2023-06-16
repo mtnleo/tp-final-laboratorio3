@@ -70,6 +70,13 @@ public class Avion {
         this.cantidadPasajeros = cantidadPasajeros;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     ////////////////////////////////////////////
     // METODOS ---- ----------------------------
     ////////////////////////////////////////////
