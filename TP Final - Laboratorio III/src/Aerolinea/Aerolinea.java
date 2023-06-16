@@ -7,7 +7,7 @@ public class Aerolinea {
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
-
+///buenas
     private final HashMap<String, LinkedList<Vuelo>> vuelos; // Tree map -> K: Destino | V: LinkedList<Vuelo> (Ordenado segun precio)
     private final HashSet<Cliente> clientes;
     private final ArrayList<Avion> aviones;
