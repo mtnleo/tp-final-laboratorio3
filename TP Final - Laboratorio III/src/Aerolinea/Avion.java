@@ -1,5 +1,4 @@
 package Aerolinea;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.File;
@@ -12,7 +11,6 @@ public class Avion {
 
     private String id; // Id único del avión concreto
     private String nombre; // nombre y modelo
-    private String tipo; // tipo de avion
     private double distancia; // distancia que cubre en un solo tanque
     private int cantidadPasajeros; //cantidad de pasajeros que soporta
 
@@ -26,15 +24,13 @@ public class Avion {
     public Avion(Avion avion) {
         this.id = avion.id;
         this.nombre = avion.nombre;
-        this.tipo = avion.tipo;
         this.distancia = avion.distancia;
         this.cantidadPasajeros = avion.cantidadPasajeros;
     }
 
-    public Avion(String id, String nombre, String tipo, double distancia, int cantidadPasajeros) {
+    public Avion(String id, String nombre, double distancia, int cantidadPasajeros) {
         this.id = id;
         this.nombre = nombre;
-        this.tipo = tipo;
         this.distancia = distancia;
         this.cantidadPasajeros = cantidadPasajeros;
     }
@@ -49,14 +45,6 @@ public class Avion {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public double getDistancia() {
@@ -82,6 +70,7 @@ public class Avion {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     ////////////////////////////////////////////
     // METODOS ---- ----------------------------
     ////////////////////////////////////////////
@@ -105,10 +94,8 @@ public class Avion {
     public String toString() {
         return "Avion{" +
                 "id='" + id + '\'' +
-                ", tipo='" + tipo + '\'' +
                 ", distancia=" + distancia +
                 ", cantidadPasajeros=" + cantidadPasajeros +
                 '}';
     }
-
 }

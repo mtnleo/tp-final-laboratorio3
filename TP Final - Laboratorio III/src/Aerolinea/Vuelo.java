@@ -8,7 +8,6 @@ public class Vuelo {
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
     private String codigoVuelo; // N° de vuelo
-
     private double precio;
     private Aeropuerto origen;
     private Aeropuerto destino;
@@ -202,7 +201,6 @@ public class Vuelo {
     public void setCodigoVuelo(String codigoVuelo) {
         this.codigoVuelo = codigoVuelo;
     }
-
     
     public double getDistanciaKm() {
         return distanciaKm;
@@ -212,4 +210,11 @@ public class Vuelo {
         this.distanciaKm = distanciaKm;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }
