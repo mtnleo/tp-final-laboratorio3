@@ -71,6 +71,9 @@ public class Cliente {
         this.pasaporte = pasaporte;
     }
 
+    public String getNombreDeUsuario() {
+        return nombreDeUsuario;
+    }
 
     ////////////////////////////////////////////
     // METODOS ----------------------------

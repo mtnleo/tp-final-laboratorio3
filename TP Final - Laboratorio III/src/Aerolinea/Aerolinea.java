@@ -1,6 +1,8 @@
 package Aerolinea;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -383,12 +385,12 @@ public class Aerolinea {
         try {
             for (Aeropuerto aux : aeropuertos) {
                 if (aux.equals(aeropuerto)) {
-                    throw new YaExisteAeropuertoException();
+                    throw new AeropuertoExistenteException();
                 }
             }
             aeropuertos.add(aeropuerto);
-        } catch (YaExisteAeropuertoException e) {
-            e.printStackTrace();
+        } catch (AeropuertoExistenteException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -456,12 +458,11 @@ public class Aerolinea {
             }
             clientes.add(cliente);
         } catch (ClienteExistenteException e) {
-            e.printStackTrace();
-
+            System.out.println(e.getMessage());
         }
     }
 
-    public void eliminarCliente(String pasaporte) throws ClienteNoEncontradoException {
+    public void eliminarCliente(String pasaporte) {
         Cliente clienteAEliminar = null;
         for (Cliente cliente : clientes) {
             if (cliente.getPasaporte().equals(pasaporte)) {
@@ -469,10 +470,16 @@ public class Aerolinea {
                 break;
             }
         }
-        if (clienteAEliminar == null) {
-            throw new ClienteNoEncontradoException();
+        try {
+            if (clienteAEliminar == null) {
+                throw new ClienteInexistenteException();
+            }
+            clientes.remove(clienteAEliminar);
+        } catch (ClienteInexistenteException e) {
+            System.out.println(e.getMessage());
         }
-        clientes.remove(clienteAEliminar);
+
+
     }
 
     public void modificarCliente(String nombreDeUsuario) {

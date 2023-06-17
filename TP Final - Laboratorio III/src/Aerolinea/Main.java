@@ -1,4 +1,5 @@
 package Aerolinea;
+
 import java.util.Scanner;
 
 public class Main {
@@ -124,15 +125,6 @@ public class Main {
                         break;
                 }
                 break;
-
-//            case 6:
-//                System.out.println("Cargar JSON prueba");
-//                Aerolinea aJson = new Aerolinea();
-//                aJson.addVuelosHC();
-//                aJson.cargarJson("Aerolinea.json");
-//                System.out.println("Leer de JSON prueba");
-//                Aerolinea aLeerJson = Aerolinea.leerJson("Aerolinea.json");
-//                aLeerJson.mostrarVuelos();
 
             default:
                 System.out.println("ERROR: OPCIÓN INVÁLIDA");
