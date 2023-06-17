@@ -182,6 +182,7 @@ public class Aerolinea {
             System.out.println("6. Estado del vuelo");
             System.out.print("Seleccione el campo a modificar: ");
             int opcion = scan.nextInt();
+            scan.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -289,32 +290,61 @@ public class Aerolinea {
         }
     }
 
-    public void agregarAvion() {
+    public void agregarAvionesTeclado() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("AGREGAR AVION");
-        System.out.print("ID: ");
-        String id = scan.nextLine();
-        Avion avion = buscarAvion(id);
+        char continuar = 's';
 
-        if (avion == null) {
-            avion = cargarAvionPorTeclado(id);
-            aviones.add(avion);
-            System.out.println("AVIÓN AGREGADO CON ÉXITO");
-        } else {
-            System.out.println("ERROR: EL ID INGRESADO YA EXISTE");
+        while (continuar == 's') {
+            boolean avionExistente = true;
+
+            while (avionExistente) {
+                System.out.print("ID: ");
+                String id = scan.nextLine();
+                Avion avion = buscarAvion(id);
+                if (avion != null) {
+                    System.out.println("El avion ya existe, intente de nuevo cargando uno diferente");
+                }
+                else {
+                    avionExistente = false;
+                    avion = cargarAvionPorTeclado(id);
+                    agregarAvion(avion);
+                }
+            }
+
+                System.out.println("Quiere seguir ingresando aviones? 's'/'n'");
+                continuar = scan.nextLine().charAt(0);
+            }
         }
-    }
+
 
     private Avion cargarAvionPorTeclado(String id) {
+
         Scanner scan = new Scanner(System.in);
         System.out.print("Nombre: ");
         String nombre = scan.nextLine();
         System.out.print("Distancia: ");
         double distancia = scan.nextDouble();
+        scan.nextLine();
         System.out.print("Cantidad de pasajeros: ");
-        int cantidad = scan.nextInt();
+        int cantidad = scan.nextInt(); //////// CHEQUEAR QUE NO SE ROMPA ESTA MIERDA SI PONES UN STRING EN EL INT ************************************
+        scan.nextLine();
 
         return new Avion(id, nombre, distancia, cantidad);
+    }
+
+    public void agregarAvion(Avion avion) {
+        try {
+            if (buscarAvion(avion.getId()) == null) {
+                aviones.add(avion);
+                System.out.println("AVIÓN AGREGADO CON ÉXITO");
+            }
+            else {
+                throw new AvionExistenteException();
+            }
+
+        } catch (AvionExistenteException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void modificarAvion() {
@@ -330,6 +360,7 @@ public class Aerolinea {
             System.out.println("3. Cantidad de pasajeros");
             System.out.print("Seleccione el campo a modificar: ");
             int opcion = scan.nextInt();
+            scan.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -341,12 +372,14 @@ public class Aerolinea {
                 case 2:
                     System.out.print("Nueva distancia: ");
                     double distancia = scan.nextDouble();
+                    scan.nextLine();
                     avion.setDistancia(distancia);
                     break;
 
                 case 3:
                     System.out.print("Nueva cantidad de pasajeros: ");
                     int cantidad = scan.nextInt();
+                    scan.nextLine();
                     avion.setCantidadPasajeros(cantidad);
                     break;
 
@@ -361,17 +394,19 @@ public class Aerolinea {
         }
     }
 
-    public void eliminarAvion() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("ID del avión: ");
-        String id = scan.nextLine();
+    public void eliminarAvion(String id) {
         Avion avion = buscarAvion(id);
 
-        if (avion != null) {
-            aviones.remove(avion);
-            System.out.println("AVIÓN ELIMINADO CON ÉXITO");
-        } else {
-            System.out.println("ERROR: AVIÓN NO ENCONTRADO");
+        try {
+            if (avion != null) {
+                aviones.remove(avion);
+                System.out.println("AVIÓN ELIMINADO CON ÉXITO");
+            }
+            else {
+                throw new AvionInexistenteException();
+            }
+        } catch (AvionInexistenteException e) {
+            System.out.println(e.getMessage());
         }
     }
 

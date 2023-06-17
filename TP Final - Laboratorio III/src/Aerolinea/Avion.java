@@ -94,6 +94,7 @@ public class Avion {
     public String toString() {
         return "Avion{" +
                 "id='" + id + '\'' +
+                "Nombre: " + nombre +
                 ", distancia=" + distancia +
                 ", cantidadPasajeros=" + cantidadPasajeros +
                 '}';
