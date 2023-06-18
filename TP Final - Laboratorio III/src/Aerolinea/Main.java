@@ -11,6 +11,10 @@ public class Main {
         Aerolinea aerolinea = new Aerolinea("Pepito Airlines");
         aerolinea.addVuelosHC();
 
+        // HARDCODE PARA VER QUE FUNQUE TODOO
+        aerolinea.addVuelosHC(); // borrar despues
+        // borrarrrrrrrrrrrrrrrrr
+
         while (cont) {
 
             // MENÚ ADMIN
@@ -21,6 +25,8 @@ public class Main {
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             int opcionPrincipal = scan.nextInt();
+
+
 
             switch (opcionPrincipal) {
                 case 1:
@@ -35,9 +41,11 @@ public class Main {
                     int opcionVuelos = scan.nextInt();
                     scan.nextLine();
 
+
+
                     switch (opcionVuelos) {
                         case 1:
-                            aerolinea.agregarVuelo();
+                            aerolinea.agregarVueloTeclado();
                             break;
                         case 2:
                             aerolinea.modificarVuelo();
@@ -86,7 +94,7 @@ public class Main {
                             aerolinea.mostrarAviones();
                             break;
                         case 5:
-                            cVuelos = false;
+                            cAviones = false;
                             break;
                         default:
                             System.out.println("ERROR: OPCIÓN INVÁLIDA");

@@ -1,14 +1,14 @@
 package Aerolinea;
-//import com.google.gson.Gson;
-//import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Aerolinea {
+
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
@@ -84,22 +84,64 @@ public class Aerolinea {
         Vuelo v1 = new Vuelo("AP125", 100000, aeropuerto1, aeropuerto2, 5000, avion1, fecha1, 20);
         Vuelo v2 = new Vuelo("AP220", 120000, aeropuerto3, aeropuerto1, 4500, avion2, fecha2, 18);
         Vuelo v3 = new Vuelo("AP307", 40000, aeropuerto4, aeropuerto10, 900, avion3, fecha3, 2.5);
+        agregarVuelo(v1);
+        agregarVuelo(v2);
+        agregarVuelo(v3);
     }
 
-    public void agregarVuelo() {
+//    ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//           VUELOS       ||||||||||||||||||||||||||||||||||||||||||||||||
+//    ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+    public void agregarVueloTeclado() {
         Scanner scan = new Scanner(System.in);
         System.out.println("AGREGAR VUELO");
         System.out.print("Codigo: ");
         String codigo = scan.nextLine();
         Vuelo vuelo = buscarVuelo(codigo);
 
-        if (vuelo == null) {
-            vuelo = cargarVueloPorTeclado(codigo);
-            // AGREGAR VUELO A LA COLECCION
-            System.out.println("VUELO AGREGADO CON ÉXITO");
-        } else {
-            System.out.println("ERROR: EL CÓDIGO INGRESADO YA EXISTE");
+        try {
+            if (vuelo == null) {
+                vuelo = cargarVueloPorTeclado(codigo);
+                agregarVuelo(vuelo);
+                // AGREGAR VUELO A LA COLECCION
+                System.out.println("VUELO AGREGADO CON ÉXITO");
+            } else {
+                throw new VueloExistenteException("ERROR: EL VUELO INGRESADO YA EXISTE");
+            }
         }
+        catch (VueloExistenteException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void agregarVuelo(Vuelo vuelo) {
+        Vuelo vueloBuscado = buscarVuelo(vuelo.getCodigoVuelo());
+
+        try {
+            if (vueloBuscado == null) {
+                String destinoCiudad = vuelo.getDestino().getCiudad();
+                LinkedList<Vuelo> addVuelos = null;
+                if (vuelos.containsKey(destinoCiudad)) {
+                    addVuelos = vuelos.get(destinoCiudad);
+                }
+                else {
+                    addVuelos = new LinkedList<Vuelo>();
+                }
+
+                addVuelos.add(vuelo);
+
+                vuelos.put(destinoCiudad, addVuelos);
+
+                System.out.println("VUELO AGREGADO CON ÉXITO");
+            } else {
+                throw new VueloExistenteException("El vuelo que se intento agregar ya existe! '" + vuelo.getCodigoVuelo() + "'");
+            }
+        } catch (VueloExistenteException e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     private Vuelo buscarVuelo(String codigo) {
@@ -120,53 +162,60 @@ public class Aerolinea {
 
     private Vuelo cargarVueloPorTeclado(String codigo) {
         Scanner scan = new Scanner(System.in);
+
         Vuelo vuelo = null;
-        System.out.print("Aeropuerto de origen: ");
+        System.out.print("Aeropuerto de origen (codigo): ");
         String codigoOrigen = scan.nextLine();
         Aeropuerto origen = buscarAeropuerto(codigoOrigen);
-        if (origen != null) {
-            System.out.print("Aeropuerto de destino: ");
-            String codigoDestino = scan.nextLine();
-            Aeropuerto destino = buscarAeropuerto(codigoDestino);
-            if (destino != null) {
-                System.out.print("Fecha y hora de partida (AAAA-MM-DD HH:mm): ");
-                String fechaHora = scan.nextLine();
-                LocalDateTime salida = LocalDateTime.parse(fechaHora, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                System.out.print("Distancia: ");
-                double distancia = scan.nextDouble();
-                System.out.print("Duración en minutos: ");
-                double duracion = scan.nextDouble();
-                System.out.print("Avion: ");
-                String codigoAvion = scan.nextLine();
-                Avion avion = buscarAvion(codigoAvion);
-                if (avion != null) {
-                    System.out.print("Precio: ");
-                    double precio = scan.nextInt();
-                    vuelo = new Vuelo(codigo, precio, origen, destino, distancia, avion, salida, duracion);
-                } else {
-                    System.out.println("ERROR: AVIÓN NO ENCONTRADO");
+
+        try {
+            if (origen != null) {
+                System.out.print("Aeropuerto de destino: ");
+                String codigoDestino = scan.nextLine();
+                Aeropuerto destino = buscarAeropuerto(codigoDestino);
+
+                if (destino != null) {
+                    System.out.print("Fecha y hora de partida (AAAA-MM-DD HH:mm): ");
+                    String fechaHora = scan.nextLine();
+                    LocalDateTime salida = LocalDateTime.parse(fechaHora, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+                    System.out.print("Distancia: ");
+                    double distancia = scan.nextDouble();
+                    scan.nextLine();
+
+                    System.out.print("Duración en minutos: ");
+                    double duracion = scan.nextDouble();
+                    scan.nextLine();
+
+                    System.out.print("Avion: ");
+                    String codigoAvion = scan.nextLine();
+                    Avion avion = buscarAvion(codigoAvion);
+
+                    if (avion != null) {
+                        System.out.print("Precio: ");
+                        double precio = scan.nextInt();
+                        scan.nextLine();
+
+                        vuelo = new Vuelo(codigo, precio, origen, destino, distancia, avion, salida, duracion);
+                    }
+                    else {
+                        throw new AvionInexistenteException("El avion en cuestion no existe.");
+                    }
+
                 }
-            } else {
-                System.out.println("ERROR: AEROPUERTO NO ENCONTRADO");
+                else {
+                    throw new AeropuertoInexistenteException("El aeropuerto de destino no existe.");
+                }
             }
-        } else {
-            System.out.println("ERROR: AEROPUERTO NO ENCONTRADO");
+            else {
+                throw new AeropuertoInexistenteException("El aeropuerto de origen no existe.");
+            }
+        }
+        catch(AeropuertoInexistenteException | AvionInexistenteException | InputMismatchException e) {
+            System.out.println(e.getMessage());
         }
 
         return vuelo;
-    }
-
-    private Aeropuerto buscarAeropuerto(String codigo) {
-        Aeropuerto aeropuerto = null;
-
-        for (Aeropuerto a : aeropuertos) {
-            if (a.getCodigo().equals(codigo)) {
-                aeropuerto = a;
-                break;
-            }
-        }
-
-        return aeropuerto;
     }
 
     public void modificarVuelo() {
@@ -176,90 +225,87 @@ public class Aerolinea {
         String codigo = scan.nextLine();
         Vuelo vuelo = buscarVuelo(codigo);
 
-        if (vuelo != null) {
-            System.out.println("1. Fecha y hora de salida");
-            System.out.println("2. Distancia");
-            System.out.println("3. Duracion");
-            System.out.println("4. Avión");
-            System.out.println("5. Precio");
-            System.out.println("6. Estado del vuelo");
-            System.out.print("Seleccione el campo a modificar: ");
-            int opcion = scan.nextInt();
-            scan.nextLine();
+        try {
 
-            switch (opcion) {
-                case 1:
-                    System.out.print("Nueva fecha y hora de partida (AAAA-MM-DD HH:mm): ");
-                    String fechaHora = scan.nextLine();
-                    LocalDateTime salida = LocalDateTime.parse(fechaHora, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                    vuelo.setSalida(salida);
-                    break;
+            if (vuelo != null) {
+                System.out.println("1. Fecha y hora de salida");
+                System.out.println("2. Distancia");
+                System.out.println("3. Duracion");
+                System.out.println("4. Avión");
+                System.out.println("5. Precio");
+                System.out.println("6. Estado del vuelo");
+                System.out.print("Seleccione el campo a modificar: ");
+                int opcion = scan.nextInt();
+                scan.nextLine();
 
-                case 2:
-                    System.out.print("Nueva distancia: ");
-                    Double distancia = scan.nextDouble();
-                    vuelo.setDistanciaKm(distancia);
-                    break;
+                switch (opcion) {
+                    case 1:
+                        System.out.print("Nueva fecha y hora de partida (AAAA-MM-DD HH:mm): ");
+                        String fechaHora = scan.nextLine();
+                        LocalDateTime salida = LocalDateTime.parse(fechaHora, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                        vuelo.setSalida(salida);
+                        break;
 
-                case 3:
-                    System.out.print("Nueva duracion: ");
-                    Double duracion = scan.nextDouble();
-                    vuelo.setDuracion(duracion);
-                    break;
+                    case 2:
+                        System.out.print("Nueva distancia: ");
+                        double distancia = scan.nextDouble();
+                        scan.nextLine();
+                        vuelo.setDistanciaKm(distancia);
+                        break;
 
-                case 4:
-                    System.out.print("Nuevo avion: ");
-                    String codigoAvion = scan.nextLine();
-                    Avion avion = buscarAvion(codigoAvion);
-                    if (avion != null) {
-                        vuelo.setAvion(avion);
-                    } else {
-                        System.out.println("ERROR: AVIÓN NO ENCONTRADO");
-                    }
-                    break;
+                    case 3:
+                        System.out.print("Nueva duracion: ");
+                        double duracion = scan.nextDouble();
+                        scan.nextLine();
+                        vuelo.setDuracion(duracion);
+                        break;
 
-                case 5:
-                    System.out.print("Nuevo precio: ");
-                    double precio = scan.nextDouble();
-                    vuelo.setPrecio(precio);
-                    break;
+                    case 4:
+                        System.out.print("Nuevo avion (codigo): ");
+                        String codigoAvion = scan.nextLine();
+                        Avion avion = buscarAvion(codigoAvion);
+                        if (avion != null) {
+                            vuelo.setAvion(avion);
+                        } else {
+                            throw new AvionInexistenteException("No se encontro el avion buscado.");
+                        }
+                        break;
 
-                case 6:
-                    System.out.print("Estado del vuelo: ");
-                    String estado = scan.nextLine();
-                    if (estado.equals("Demorado")) {
-                        vuelo.setDemorado();
-                    } else if (estado.equals("En horario")) {
-                        vuelo.setEnHorario();
-                    } else if (estado.equals("Cancelado")) {
-                        vuelo.setCancelado();
-                    } else {
-                        System.out.println("ERROR: ESTADO INVÁLIDO");
-                    }
-                    break;
+                    case 5:
+                        System.out.print("Nuevo precio: ");
+                        double precio = scan.nextDouble();
+                        scan.nextLine();
+                        vuelo.setPrecio(precio);
+                        break;
 
-                default:
-                    System.out.println("ERROR: OPCIÓN INVÁLIDA");
-                    break;
+                    case 6:
+                        System.out.print("Estado del vuelo: ");
+                        String estado = scan.nextLine();
+                        if (estado.equals("Demorado")) {
+                            vuelo.setDemorado();
+                        } else if (estado.equals("En horario")) {
+                            vuelo.setEnHorario();
+                        } else if (estado.equals("Cancelado")) {
+                            vuelo.setCancelado();
+                        } else {
+                            System.out.println("ERROR: ESTADO INVÁLIDO");
+                        }
+                        break;
+
+                    default:
+                        System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                        break;
+                }
+
+                System.out.println("VUELO MODIFICADO CON ÉXITO");
+            } else {
+                throw new VueloInexistenteException("El vuelo que se quiere modificar no existe.");
             }
-
-            System.out.println("VUELO MODIFICADO CON ÉXITO");
-        } else {
-            System.out.println("ERROR: VUELO NO ENCONTRADO");
+        } catch (VueloInexistenteException | AvionInexistenteException |InputMismatchException | java.time.format.DateTimeParseException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    private Avion buscarAvion(String id) {
-        Avion avion = null;
-
-        for (Avion a : aviones) {
-            if (a.getId().equals(id)) {
-                avion = a;
-            }
-        }
-
-        return avion;
-    }
 
     public void eliminarVuelo() {
         Scanner scan = new Scanner(System.in);
@@ -267,11 +313,16 @@ public class Aerolinea {
         String codigo = scan.nextLine();
         Vuelo vuelo = buscarVuelo(codigo);
 
-        if (vuelo != null) {
-            vuelos.remove(vuelo);
-            System.out.println("VUELO ELIMINADO CON ÉXITO");
-        } else {
-            System.out.println("ERROR: VUELO NO ENCONTRADO");
+        try {
+            if (vuelo != null) {
+                LinkedList<Vuelo> vuelosCiudad = vuelos.get(vuelo.getDestino().getCiudad());
+                vuelosCiudad.remove(vuelo);
+                System.out.println("VUELO ELIMINADO CON ÉXITO");
+            } else {
+                throw new VueloInexistenteException("El vuelo a eliminar no se encontro.");
+            }
+        } catch (VueloInexistenteException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -292,6 +343,10 @@ public class Aerolinea {
             System.out.println(vue.toString());
         }
     }
+
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //       AVIONES      ||||||||||||||||||||||||||||||||||||||||||||||||
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
     public void agregarAvionesTeclado() {
         Scanner scan = new Scanner(System.in);
@@ -419,6 +474,23 @@ public class Aerolinea {
         }
     }
 
+    private Avion buscarAvion(String id) {
+        Avion avion = null;
+
+        for (Avion a : aviones) {
+            if (a.getId().equals(id)) {
+                avion = a;
+            }
+        }
+
+        return avion;
+    }
+
+
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //       AEROPUERTOS      |||||||||||||||||||||||||||||||||||||||||||
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
     public void agregarAeropuerto(Aeropuerto aeropuerto) {
         try {
             for (Aeropuerto aux : aeropuertos) {
@@ -430,6 +502,19 @@ public class Aerolinea {
         } catch (AeropuertoExistenteException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private Aeropuerto buscarAeropuerto(String codigo) {
+        Aeropuerto aeropuerto = null;
+
+        for (Aeropuerto a : aeropuertos) {
+            if (a.getCodigo().equals(codigo)) {
+                aeropuerto = a;
+                break;
+            }
+        }
+
+        return aeropuerto;
     }
 
     public void mostrarAeropuertos() {
@@ -482,6 +567,10 @@ public class Aerolinea {
         }
         System.out.println("No se encontró ningún aeropuerto con el código proporcionado.");
     }
+
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //       CLIENTES          |||||||||||||||||||||||||||||||||||||||||||
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
     public void mostrarClientes() { //ADMIN FUNC
         for (Cliente cliente : clientes) {
@@ -578,77 +667,68 @@ public class Aerolinea {
         }
     }
 
-    // JSON'S
-//    public void cargarJson(String pathname) {
-//        File file = new File(pathname);
-//
-//        try {
-//            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-//
-//            Gson gson = new GsonBuilder() // El Gson builder para poder cargar el LocalDateTime que rompe el archivo
-//                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-//                    .create();
-//
-//            gson.toJson(this, Aerolinea.class, bufferedWriter);
-//
-//            bufferedWriter.close();
-//        } catch (IOException e) {
-//            System.out.println("|X| ERROR CARGANDO AEROLINEA A JSON |X|");
-//            System.out.println(e.getMessage());
-//        }
-//
-//    }
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //       JSON              |||||||||||||||||||||||||||||||||||||||||||
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    public void cargarJson(String pathname) {
+        File file = new File(pathname);
 
-//    public static Aerolinea leerJson(String pathname) {
-//        Aerolinea aerolinea = null;
-//        File file = new File(pathname);
-//        if (file.exists()) {
-//            if (file.canRead()) {
-//                try {
-//                    BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-//
-//                    Gson gson = new GsonBuilder() // El Gson builder para poder leer el LocalDateTime que rompe el archivo
-//                            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-//                            .create();
-//
-//                    aerolinea = gson.fromJson(bufferedReader, Aerolinea.class);
-//
-//                    bufferedReader.close();
-//                } catch (IOException e) {
-//                    System.out.println("|X| ERROR E/S LEYENDO EL JSON |X|");
-//                    System.out.println(e.getMessage());
-//                }
-//            } else {
-//                System.out.println("|X| ERROR LEYENDO EL JSON, NO TIENE PERMISOS |X|");
-//            }
-//        } else {
-//            System.out.println("|X| ERROR LEYENDO EL JSON, NO EXISTE EL ARCHIVO |X|");
-//        }
-//
-//        return aerolinea;
-//    }
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+
+            Gson gson = new GsonBuilder() // El Gson builder para poder cargar el LocalDateTime que rompe el archivo
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                    .create();
+
+            gson.toJson(this, Aerolinea.class, bufferedWriter);
+
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.out.println("|X| ERROR CARGANDO AEROLINEA A JSON |X|");
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static Aerolinea leerJson(String pathname) {
+        Aerolinea aerolinea = null;
+        File file = new File(pathname);
+        if (file.exists()) {
+            if (file.canRead()) {
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+
+                    Gson gson = new GsonBuilder() // El Gson builder para poder leer el LocalDateTime que rompe el archivo
+                            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                            .create();
+
+                    aerolinea = gson.fromJson(bufferedReader, Aerolinea.class);
+
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    System.out.println("|X| ERROR E/S LEYENDO EL JSON |X|");
+                    System.out.println(e.getMessage());
+                }
+            } else {
+                System.out.println("|X| ERROR LEYENDO EL JSON, NO TIENE PERMISOS |X|");
+            }
+        } else {
+            System.out.println("|X| ERROR LEYENDO EL JSON, NO EXISTE EL ARCHIVO |X|");
+        }
+
+        return aerolinea;
+    }
 }
-
-// public Aeropuerto cargarAeropuertoPorTeclado() {
-//        Scanner scan = new Scanner(System.in);
 //
-//        System.out.println("Ingrese el código del aeropuerto: ");
-//        String codigo = scan.nextLine();
-//        System.out.println("Ingrese la ciudad del aeropuerto: ");
-//        String ciudad = scan.nextLine();
-//        System.out.println("Ingrese el pais del aeropuerto: ");
-//        String pais = scan.nextLine();
+//     public Aeropuerto cargarAeropuertoPorTeclado() {
+//            Scanner scan = new Scanner(System.in);
 //
-//        return new Aeropuerto(codigo, ciudad, pais);
-//    }
-//public void mostrarClientes() { //ADMIN FUNC
-//    for (Cliente cliente : clientes) {
-//        System.out.println(cliente.toString());
-//    }
-//}
+//            System.out.println("Ingrese el código del aeropuerto: ");
+//            String codigo = scan.nextLine();
+//            System.out.println("Ingrese la ciudad del aeropuerto: ");
+//            String ciudad = scan.nextLine();
+//            System.out.println("Ingrese el pais del aeropuerto: ");
+//            String pais = scan.nextLine();
 //
-//    public void mostrarAeropuertos() {
-//        for (Aeropuerto aep : aeropuertos) {
-//            System.out.println(aep.toString());
+//            return new Aeropuerto(codigo, ciudad, pais);
 //        }
-//    }

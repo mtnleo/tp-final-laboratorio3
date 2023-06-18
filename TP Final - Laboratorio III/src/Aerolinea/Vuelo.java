@@ -76,8 +76,9 @@ public class Vuelo {
     }
 
     // Puede establecer la llegada (para que funcione JSON)
-    public Vuelo(String numero, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, LocalDateTime llegada, double duracion, LinkedList <Pasaje> pasajes) {
+    public Vuelo(String numero, double precio, Aeropuerto origen, Aeropuerto destino, double km, Avion avion, LocalDateTime salida, LocalDateTime llegada, double duracion, LinkedList <Pasaje> pasajes) {
         this.codigoVuelo = numero;
+        this.precio = precio;
         this.origen = origen;
         this.destino = destino;
         this.distanciaKm = km;
@@ -113,17 +114,17 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return "Vuelo{" +
-                "numero='" + distanciaKm + '\'' +
-                ", origen=" + origen +
-                ", destino=" + destino +
-                ", km=" + distanciaKm +
-                ", avion=" + avion +
-                ", salida=" + salida +
-                ", duracion=" + duracion +
-                ", llegada=" + llegada +
-                ", pasajes=" + pasajes +
-                '}';
+        return  "Numero = " + codigoVuelo +
+                "\nPrecio = " + precio +
+                "\nOrigen = " + origen +
+                "\nDestino = " + destino +
+                "\nKm = " + distanciaKm +
+                "\nAvion = " + avion +
+                "\nSalida = " + salida +
+                "\nDuracion = " + duracion +
+                "\nLlegada = " + llegada +
+                "\nEstado del vuelo = " + estadoVuelo.getDescripcion() +
+                "\nPasajes = " + pasajes;
     }
 
     ////////////////////////////////////////////
@@ -160,6 +161,7 @@ public class Vuelo {
 
     public void setSalida(LocalDateTime salida) {
         this.salida = salida;
+        setLlegada(calcularLlegada(salida, duracion));
     }
 
     public double getDuracion() {
@@ -168,6 +170,7 @@ public class Vuelo {
 
     public void setDuracion(double duracion) {
         this.duracion = duracion;
+        setLlegada(calcularLlegada(salida, duracion));
     }
 
     public LocalDateTime getLlegada() {
