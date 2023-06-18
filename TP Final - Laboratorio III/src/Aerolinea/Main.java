@@ -1,5 +1,4 @@
 package Aerolinea;
-
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +6,10 @@ public class Main {
         boolean cont = true;
         Scanner scan = new Scanner(System.in);
         int num_ej;
+
+        /// AEROLINEA DE PRUEBA
         Aerolinea aerolinea = new Aerolinea("Pepito Airlines");
+        aerolinea.addVuelosHC();
 
         while (cont) {
 
@@ -22,11 +24,13 @@ public class Main {
 
             switch (opcionPrincipal) {
                 case 1:
+                    boolean cVuelos = true;
+                    while(cVuelos) {
                     System.out.println("1. Agregar vuelo");
                     System.out.println("2. Modificar vuelo");
                     System.out.println("3. Eliminar vuelo");
                     System.out.println("4. Mostrar lista de vuelos");
-                    System.out.println("5. Salir");
+                    System.out.println("5. Volver");
                     System.out.println("Seleccione una opción: ");
                     int opcionVuelos = scan.nextInt();
                     scan.nextLine();
@@ -45,19 +49,22 @@ public class Main {
                             aerolinea.mostrarVuelos();
                             break;
                         case 5:
+                            cVuelos = false;
                             break;
                         default:
                             System.out.println("ERROR: OPCIÓN INVÁLIDA");
                             break;
-                    }
+                    }}
                     break;
 
                 case 2:
+                    boolean cAviones = true;
+                    while(cAviones){
                     System.out.println("1. Agregar avión");
                     System.out.println("2. Modificar avión");
                     System.out.println("3. Eliminar avión");
                     System.out.println("4. Mostrar lista de aviones");
-                    System.out.println("5. Salir");
+                    System.out.println("5. Volver");
                     System.out.println("Seleccione una opción:");
                     int opcionAviones = scan.nextInt();
                     scan.nextLine();
@@ -79,25 +86,27 @@ public class Main {
                             aerolinea.mostrarAviones();
                             break;
                         case 5:
+                            cVuelos = false;
                             break;
                         default:
                             System.out.println("ERROR: OPCIÓN INVÁLIDA");
                             break;
-                    }
+                    }}
                     break;
 
                 case 3:
+                    boolean cAeropuertos = true;
+                    while(cAeropuertos){
                     System.out.println("1. Agregar aeropuerto");
                     System.out.println("2. Modificar aeropuerto");
                     System.out.println("3. Eliminar aeropuerto");
                     System.out.println("4. Mostrar lista de aeropuertos");
-                    System.out.println("5. Salir");
+                    System.out.println("5. Volver");
                     System.out.println("Seleccione una opción:");
                     int opcionAeropuertos = scan.nextInt();
 
                     switch (opcionAeropuertos) {
                         case 1:
-                            System.out.println("Agregar aeropuerto");
                             break;
                         case 2:
                             System.out.println("Modificar aeropuerto");
@@ -109,19 +118,22 @@ public class Main {
                             System.out.println("Mostrar aeropuerto");
                             break;
                         case 5:
+                            cAeropuertos = false;
                             break;
                         default:
                             System.out.println("ERROR: OPCIÓN INVÁLIDA");
                             break;
-                    }
+                    }}
                     break;
 
                 case 4:
+                    boolean cClientes = true;
+                    while(cClientes){
                     System.out.println("1. Agregar cliente");
                     System.out.println("2. Modificar cliente");
                     System.out.println("3. Eliminar cliente");
                     System.out.println("4. Mostrar lista de clientes");
-                    System.out.println("5. Salir");
+                    System.out.println("5. Volver");
                     System.out.println("Seleccione una opción:");
                     int opcionClientes = scan.nextInt();
 
@@ -139,12 +151,13 @@ public class Main {
                             System.out.println("Mostrar cliente");
                             break;
                         case 5:
+                            cClientes = false;
                             break;
 
                         default:
                             System.out.println("ERROR: OPCIÓN INVÁLIDA");
                             break;
-                    }
+                    }}
                     break;
 
                 case 5:

@@ -1,7 +1,6 @@
 package Aerolinea;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -81,6 +80,10 @@ public class Aerolinea {
         LocalDateTime fecha4 = LocalDateTime.of(2023, 7, 22, 9, 15);
         LocalDateTime fecha5 = LocalDateTime.of(2023, 7, 28, 14, 0);
         LocalDateTime fecha6 = LocalDateTime.of(2023, 7, 31, 19, 30);
+
+        Vuelo v1 = new Vuelo("AP125", 100000, aeropuerto1, aeropuerto2, 5000, avion1, fecha1, 20);
+        Vuelo v2 = new Vuelo("AP220", 120000, aeropuerto3, aeropuerto1, 4500, avion2, fecha2, 18);
+        Vuelo v3 = new Vuelo("AP307", 40000, aeropuerto4, aeropuerto10, 900, avion3, fecha3, 2.5);
     }
 
     public void agregarVuelo() {
@@ -316,7 +319,6 @@ public class Aerolinea {
             }
         }
 
-
     private Avion cargarAvionPorTeclado(String id) {
 
         Scanner scan = new Scanner(System.in);
@@ -411,6 +413,7 @@ public class Aerolinea {
     }
 
     public void mostrarAviones() {
+        System.out.println("AVIONES");
         for (Avion avion : aviones) {
             System.out.println(avion.toString());
         }
@@ -576,54 +579,54 @@ public class Aerolinea {
     }
 
     // JSON'S
-    public void cargarJson(String pathname) {
-        File file = new File(pathname);
+//    public void cargarJson(String pathname) {
+//        File file = new File(pathname);
+//
+//        try {
+//            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+//
+//            Gson gson = new GsonBuilder() // El Gson builder para poder cargar el LocalDateTime que rompe el archivo
+//                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+//                    .create();
+//
+//            gson.toJson(this, Aerolinea.class, bufferedWriter);
+//
+//            bufferedWriter.close();
+//        } catch (IOException e) {
+//            System.out.println("|X| ERROR CARGANDO AEROLINEA A JSON |X|");
+//            System.out.println(e.getMessage());
+//        }
+//
+//    }
 
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-
-            Gson gson = new GsonBuilder() // El Gson builder para poder cargar el LocalDateTime que rompe el archivo
-                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-                    .create();
-
-            gson.toJson(this, Aerolinea.class, bufferedWriter);
-
-            bufferedWriter.close();
-        } catch (IOException e) {
-            System.out.println("|X| ERROR CARGANDO AEROLINEA A JSON |X|");
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    public static Aerolinea leerJson(String pathname) {
-        Aerolinea aerolinea = null;
-        File file = new File(pathname);
-        if (file.exists()) {
-            if (file.canRead()) {
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-
-                    Gson gson = new GsonBuilder() // El Gson builder para poder leer el LocalDateTime que rompe el archivo
-                            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-                            .create();
-
-                    aerolinea = gson.fromJson(bufferedReader, Aerolinea.class);
-
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    System.out.println("|X| ERROR E/S LEYENDO EL JSON |X|");
-                    System.out.println(e.getMessage());
-                }
-            } else {
-                System.out.println("|X| ERROR LEYENDO EL JSON, NO TIENE PERMISOS |X|");
-            }
-        } else {
-            System.out.println("|X| ERROR LEYENDO EL JSON, NO EXISTE EL ARCHIVO |X|");
-        }
-
-        return aerolinea;
-    }
+//    public static Aerolinea leerJson(String pathname) {
+//        Aerolinea aerolinea = null;
+//        File file = new File(pathname);
+//        if (file.exists()) {
+//            if (file.canRead()) {
+//                try {
+//                    BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+//
+//                    Gson gson = new GsonBuilder() // El Gson builder para poder leer el LocalDateTime que rompe el archivo
+//                            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+//                            .create();
+//
+//                    aerolinea = gson.fromJson(bufferedReader, Aerolinea.class);
+//
+//                    bufferedReader.close();
+//                } catch (IOException e) {
+//                    System.out.println("|X| ERROR E/S LEYENDO EL JSON |X|");
+//                    System.out.println(e.getMessage());
+//                }
+//            } else {
+//                System.out.println("|X| ERROR LEYENDO EL JSON, NO TIENE PERMISOS |X|");
+//            }
+//        } else {
+//            System.out.println("|X| ERROR LEYENDO EL JSON, NO EXISTE EL ARCHIVO |X|");
+//        }
+//
+//        return aerolinea;
+//    }
 }
 
 // public Aeropuerto cargarAeropuertoPorTeclado() {

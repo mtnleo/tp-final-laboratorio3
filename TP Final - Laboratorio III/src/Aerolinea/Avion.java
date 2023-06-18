@@ -92,11 +92,10 @@ public class Avion {
 */
     @Override
     public String toString() {
-        return "Avion{" +
-                "id='" + id + '\'' +
-                "Nombre: " + nombre +
-                ", distancia=" + distancia +
-                ", cantidadPasajeros=" + cantidadPasajeros +
-                '}';
+        return "[ID: " + id +
+                " | Nombre: " + nombre +
+                " | Distancia: " + distancia +
+                " | Cantidad de pasajeros: " + cantidadPasajeros +
+                ']';
     }
 }
