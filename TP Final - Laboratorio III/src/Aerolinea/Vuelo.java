@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Locale;
 
-public class Vuelo {
+public class Vuelo implements Comparable<Vuelo> {
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
@@ -231,5 +231,12 @@ public class Vuelo {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    // PARA COMPARAR EN EL TREESET
+
+    @Override
+    public int compareTo(Vuelo vue) {
+        return Double.compare(precio, vue.precio);
     }
 }

@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.time.LocalDateTime;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -297,6 +298,12 @@ public class Main {
 
                                                     case 3:
                                                         System.out.println("3. Ordenar por precio");
+                                                        TreeSet<Vuelo> setMostrarVuelos = new TreeSet<Vuelo>(listaMostrarVuelos); // lo paso a un treeset para que lo ordene
+
+                                                        listaMostrarVuelos = new LinkedList<Vuelo>(setMostrarVuelos); // lo paso a la lista de nuevo para que si sigue filtrando ya queden ordenados
+
+                                                        aerolinea.mostrarVuelosPorLista(listaMostrarVuelos);
+
                                                         break;
 
                                                     case 4:

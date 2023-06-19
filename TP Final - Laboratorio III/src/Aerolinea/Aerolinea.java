@@ -87,6 +87,8 @@ public class Aerolinea {
         Vuelo v5 = new Vuelo("AP920", 120000, aeropuerto8, aeropuerto4, 9326, avion2, fecha6, 12.75);
         Vuelo v6 = new Vuelo("AP007", 40000, aeropuerto1, aeropuerto8, 4129, avion3, fecha4, 6);
         Vuelo v7 = new Vuelo("AP017", 45000, aeropuerto1, aeropuerto8, 4129, avion1, fecha2, 6);
+        Vuelo v8 = new Vuelo("AP032", 25000, aeropuerto1, aeropuerto8, 4129, avion2, fecha2, 6);
+        Vuelo v9 = new Vuelo("AP013", 15000, aeropuerto1, aeropuerto2, 5000, avion4, fecha2, 20);
 
         agregarVuelo(v1);
         agregarVuelo(v2);
@@ -95,6 +97,8 @@ public class Aerolinea {
         agregarVuelo(v5);
         agregarVuelo(v6);
         agregarVuelo(v7);
+        agregarVuelo(v8);
+        agregarVuelo(v9);
     }
 
 //    ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
