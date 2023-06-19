@@ -84,14 +84,55 @@ public class Aerolinea {
         Vuelo v1 = new Vuelo("AP125", 100000, aeropuerto1, aeropuerto2, 5000, avion1, fecha1, 20);
         Vuelo v2 = new Vuelo("AP220", 120000, aeropuerto3, aeropuerto1, 4500, avion2, fecha2, 18);
         Vuelo v3 = new Vuelo("AP307", 40000, aeropuerto4, aeropuerto10, 900, avion3, fecha3, 2.5);
+        Vuelo v4 = new Vuelo("AP725", 100000, aeropuerto7, aeropuerto8, 9128, avion1, fecha5, 11);
+        Vuelo v5 = new Vuelo("AP920", 120000, aeropuerto8, aeropuerto4, 9326, avion2, fecha6, 12.75);
+        Vuelo v6 = new Vuelo("AP007", 40000, aeropuerto1, aeropuerto8, 4129, avion3, fecha4, 6);
+        Vuelo v7 = new Vuelo("AP017", 45000, aeropuerto1, aeropuerto8, 4129, avion1, fecha2, 6);
+
         agregarVuelo(v1);
         agregarVuelo(v2);
         agregarVuelo(v3);
+        agregarVuelo(v4);
+        agregarVuelo(v5);
+        agregarVuelo(v6);
+        agregarVuelo(v7);
     }
 
 //    ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //           VUELOS       ||||||||||||||||||||||||||||||||||||||||||||||||
 //    ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+    public LinkedList<Vuelo> obtenerVuelosDestinoOrigen(String destino, String origen) {
+        LinkedList<Vuelo> vuelosDestinoOrigen = new LinkedList<>(vuelos.get(destino)); // asi se pasa por copia (y no por referencia que rompe todoo)
+        try {
+            if (vuelos.get(destino) != null) { // aca compruebo de nuevo en este caso si es null, que en lo de arriba no puedo porque ya crea la lista por default
+                Iterator<Vuelo> iterator = vuelosDestinoOrigen.iterator();
+                while (iterator.hasNext()) {
+                    Vuelo vuelo = iterator.next();
+                    if (!vuelo.getOrigen().getCiudad().equals(origen)) {
+                        iterator.remove();
+                    }
+                }
+            }
+            else {
+                throw new AeropuertoInexistenteException("El aeropuerto de destino ingresado no existe.");
+            }
+        }
+        catch (AeropuertoInexistenteException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return vuelosDestinoOrigen;
+    }
+
+    public void mostrarVuelosPorLista(LinkedList<Vuelo> vuelosMostrar) {
+        for (Vuelo vue: vuelosMostrar) {
+            System.out.println("----------------");
+            System.out.println(vue.toString());
+        }
+    }
+
 
     public void agregarVueloTeclado() {
         Scanner scan = new Scanner(System.in);
@@ -481,11 +522,23 @@ public class Aerolinea {
     //       AEROPUERTOS      |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-    private Aeropuerto buscarAeropuerto(String codigo) {
+    public Aeropuerto buscarAeropuerto(String codigo) { // por codigo de aeropuerto
         Aeropuerto aeropuerto = null;
 
         for (Aeropuerto a : aeropuertos) {
             if (a.getCodigo().equals(codigo)) {
+                aeropuerto = a;
+            }
+        }
+
+        return aeropuerto;
+    }
+
+    public Aeropuerto buscarAeropuertoCiudad(String ciudad) { // por ciudad
+        Aeropuerto aeropuerto = null;
+
+        for (Aeropuerto a : aeropuertos) {
+            if (a.getCiudad().equals(ciudad)) {
                 aeropuerto = a;
             }
         }
@@ -699,9 +752,8 @@ public class Aerolinea {
                 contrasenaValida = true;
             }
         }
-        Cliente cliente = new Cliente(nombre, apellido, pasaporte, usuario, contrasena);
 
-        return cliente;
+        return new Cliente(nombre, apellido, pasaporte, usuario, contrasena);
     }
     public void agregarCliente(Cliente cliente) {
         try {
