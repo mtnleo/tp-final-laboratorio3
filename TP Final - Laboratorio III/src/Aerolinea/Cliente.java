@@ -2,6 +2,7 @@ package Aerolinea;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class Cliente {
     ////////////////////////////////////////////
@@ -34,6 +35,14 @@ public class Cliente {
         this.apellido = apellido;
         this.pasaporte = pasaporte;
         this.pasajes = new LinkedList<Pasaje>();
+    }
+
+    public Cliente(String nombre, String apellido, String pasaporte, String nombreDeUsuario, String contrasena) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.pasaporte = pasaporte;
+        this.nombreDeUsuario = nombreDeUsuario;
+        this.contrasena = contrasena;
     }
 
     public Cliente(String nombre, String apellido, String pasaporte, LinkedList <Pasaje> pasajes) {
@@ -95,5 +104,16 @@ public class Cliente {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(nombreDeUsuario, cliente.nombreDeUsuario) && Objects.equals(pasaporte, cliente.pasaporte);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombreDeUsuario, pasaporte);
+    }
 }

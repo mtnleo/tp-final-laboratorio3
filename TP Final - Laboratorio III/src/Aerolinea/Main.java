@@ -143,15 +143,35 @@ public class Main {
                     switch (opcionClientes) {
                         case 1:
                             System.out.println("Agregar cliente");
+                            Cliente cliente = aerolinea.agregarClientePorTeclado();
+                            try {
+                                aerolinea.existeCliente(cliente);
+                            } catch (ClienteExistenteException e) {
+                                e.printStackTrace();
+                            }
+                            aerolinea.agregarCliente(cliente);
                             break;
                         case 2:
                             System.out.println("Modificar cliente");
+                            scan.nextLine();
+                            System.out.println("Ingrese el nombre de usuario del cliente a modificar:");
+                            String nombreUsuarioModificar = scan.nextLine();
+                            aerolinea.modificarCliente(nombreUsuarioModificar);
+
                             break;
                         case 3:
+                            scan.nextLine();
                             System.out.println("Eliminar cliente");
+                            System.out.println("Ingrese el pasaporte del cliente a eliminar:");
+                            String pasaporteEliminar = scan.nextLine();
+                            aerolinea.eliminarCliente(pasaporteEliminar);
                             break;
+                            
                         case 4:
                             System.out.println("Mostrar cliente");
+
+                            aerolinea.mostrarClientes();
+
                             break;
                         case 5:
                             cClientes = false;

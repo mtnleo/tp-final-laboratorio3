@@ -613,9 +613,99 @@ public class Aerolinea {
         }
     }
 
+    public boolean existeCliente(Cliente cliente) {
+        for (Cliente c : clientes) {
+            if (c.getPasaporte().equals(cliente.getPasaporte())) {
+                return true;
+            }
+        }
+        for (Cliente c : clientes) {
+            if (c.getNombreDeUsuario().equals(cliente.getNombreDeUsuario())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Cliente agregarClientePorTeclado() {
+        Scanner scanner = new Scanner(System.in);
+
+        String nombre = "";
+        String apellido = "";
+        String pasaporte = "";
+        String usuario = "";
+        String contrasena = "";
+
+        boolean nombreValido = false;
+        boolean apellidoValido = false;
+        boolean pasaporteValido = false;
+        boolean usuarioValido = false;
+        boolean contrasenaValida = false;
+
+        while (!nombreValido) {
+            System.out.println("Ingrese el nombre del cliente:");
+            nombre = scanner.nextLine();
+
+            // Comprobar si el nombre contiene números
+            if (nombre.matches(".*\\d.*")) {
+                System.out.println("El nombre no puede contener números.");
+            } else {
+                nombreValido = true;
+            }
+        }
+
+        while (!apellidoValido) {
+            System.out.println("Ingrese el apellido del cliente:");
+            apellido = scanner.nextLine();
+
+            // Comprobar si el apellido contiene números
+            if (apellido.matches(".*\\d.*")) {
+                System.out.println("El apellido no puede contener números.");
+            } else {
+                apellidoValido = true;
+            }
+        }
+
+        while (!pasaporteValido) {
+            System.out.println("Ingrese el pasaporte del cliente:");
+            pasaporte = scanner.nextLine();
+
+            // formato: A1234567)
+            if (!pasaporte.matches("[A-Z]\\d{7}")) {
+                System.out.println("El pasaporte ingresado no es válido.");
+            } else {
+                pasaporteValido = true;
+            }
+        }
+
+        while (!usuarioValido) {
+            System.out.println("Ingrese el usuario del cliente:");
+            usuario = scanner.nextLine();
+
+            if (usuario.contains(" ")) {
+                System.out.println("El usuario no puede contener espacios en blanco.");
+            } else {
+                usuarioValido = true;
+            }
+        }
+
+        while (!contrasenaValida) {
+            System.out.println("Ingrese la contraseña del cliente:");
+            contrasena = scanner.nextLine();
+
+            if (contrasena.length() < 6) {
+                System.out.println("La contraseña debe tener al menos 6 caracteres.");
+            } else {
+                contrasenaValida = true;
+            }
+        }
+        Cliente cliente = new Cliente(nombre, apellido, pasaporte, usuario, contrasena);
+
+        return cliente;
+    }
     public void agregarCliente(Cliente cliente) {
         try {
-            if (clientes.contains(cliente)) {
+            if (existeCliente(cliente)) {
                 throw new ClienteExistenteException();
             }
             clientes.add(cliente);
