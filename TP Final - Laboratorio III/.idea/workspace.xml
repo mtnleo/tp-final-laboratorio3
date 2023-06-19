@@ -53,8 +53,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Aerolinea/Aerolinea.java</url>
-          <line>416</line>
-          <option name="timeStamp" value="2" />
+          <line>738</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

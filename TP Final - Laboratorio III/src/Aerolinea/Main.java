@@ -11,10 +11,6 @@ public class Main {
         Aerolinea aerolinea = new Aerolinea("Pepito Airlines");
         aerolinea.addVuelosHC();
 
-        // HARDCODE PARA VER QUE FUNQUE TODOO
-        aerolinea.addVuelosHC(); // borrar despues
-        // borrarrrrrrrrrrrrrrrrr
-
         while (cont) {
 
             // MENÚ ADMIN
@@ -25,8 +21,6 @@ public class Main {
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             int opcionPrincipal = scan.nextInt();
-
-
 
             switch (opcionPrincipal) {
                 case 1:
@@ -40,8 +34,6 @@ public class Main {
                     System.out.println("Seleccione una opción: ");
                     int opcionVuelos = scan.nextInt();
                     scan.nextLine();
-
-
 
                     switch (opcionVuelos) {
                         case 1:
@@ -87,7 +79,6 @@ public class Main {
                         case 3:
                             System.out.print("Ingrese la ID del avion a eliminar: ");
                             String idEliminar = scan.nextLine();
-
                             aerolinea.eliminarAvion(idEliminar);
                             break;
                         case 4:
@@ -112,18 +103,22 @@ public class Main {
                     System.out.println("5. Volver");
                     System.out.println("Seleccione una opción:");
                     int opcionAeropuertos = scan.nextInt();
+                    scan.nextLine();
 
                     switch (opcionAeropuertos) {
                         case 1:
+                            aerolinea.agregarAeropuertosTeclado();
                             break;
                         case 2:
-                            System.out.println("Modificar aeropuerto");
+                            aerolinea.modificarAeropuerto();
                             break;
                         case 3:
-                            System.out.println("Eliminar aeropuerto");
+                            System.out.print("Ingrese el código del aeropuerto a eliminar: ");
+                            String codigoEliminar = scan.nextLine();
+                            aerolinea.eliminarAeropuerto(codigoEliminar);
                             break;
                         case 4:
-                            System.out.println("Mostrar aeropuerto");
+                            aerolinea.mostrarAeropuerto();
                             break;
                         case 5:
                             cAeropuertos = false;
@@ -176,9 +171,7 @@ public class Main {
                     System.out.println("ERROR: OPCIÓN INVÁLIDA");
                     break;
             }
-
         }
-
 //        // MENÚ USUARIO
 //        while (cont.equals("y")) {
 //            System.out.println("Escriba el ejercicio que quieras realizar: ");

@@ -63,10 +63,9 @@ public class Aeropuerto {
 
     @Override
     public String toString() {
-        return "Aeropuerto{" +
-                "codigo='" + codigo + '\'' +
-                ", ciudad='" + ciudad + '\'' +
-                ", pais='" + pais + '\'' +
-                '}';
+        return "[Código: " + codigo +
+                " | Ciudad: " + ciudad +
+                " | Pais: " + pais +
+                ']';
     }
 }

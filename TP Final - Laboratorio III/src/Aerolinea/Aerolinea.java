@@ -1,6 +1,6 @@
 package Aerolinea;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -109,8 +109,7 @@ public class Aerolinea {
             } else {
                 throw new VueloExistenteException("ERROR: EL VUELO INGRESADO YA EXISTE");
             }
-        }
-        catch (VueloExistenteException e) {
+        } catch (VueloExistenteException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -124,8 +123,7 @@ public class Aerolinea {
                 LinkedList<Vuelo> addVuelos = null;
                 if (vuelos.containsKey(destinoCiudad)) {
                     addVuelos = vuelos.get(destinoCiudad);
-                }
-                else {
+                } else {
                     addVuelos = new LinkedList<Vuelo>();
                 }
 
@@ -197,21 +195,17 @@ public class Aerolinea {
                         scan.nextLine();
 
                         vuelo = new Vuelo(codigo, precio, origen, destino, distancia, avion, salida, duracion);
-                    }
-                    else {
+                    } else {
                         throw new AvionInexistenteException("El avion en cuestion no existe.");
                     }
 
-                }
-                else {
+                } else {
                     throw new AeropuertoInexistenteException("El aeropuerto de destino no existe.");
                 }
-            }
-            else {
+            } else {
                 throw new AeropuertoInexistenteException("El aeropuerto de origen no existe.");
             }
-        }
-        catch(AeropuertoInexistenteException | AvionInexistenteException | InputMismatchException e) {
+        } catch (AeropuertoInexistenteException | AvionInexistenteException | InputMismatchException e) {
             System.out.println(e.getMessage());
         }
 
@@ -301,11 +295,11 @@ public class Aerolinea {
             } else {
                 throw new VueloInexistenteException("El vuelo que se quiere modificar no existe.");
             }
-        } catch (VueloInexistenteException | AvionInexistenteException |InputMismatchException | java.time.format.DateTimeParseException e) {
+        } catch (VueloInexistenteException | AvionInexistenteException | InputMismatchException |
+                 java.time.format.DateTimeParseException e) {
             System.out.println(e.getMessage());
         }
     }
-
 
     public void eliminarVuelo() {
         Scanner scan = new Scanner(System.in);
@@ -361,18 +355,17 @@ public class Aerolinea {
                 Avion avion = buscarAvion(id);
                 if (avion != null) {
                     System.out.println("El avion ya existe, intente de nuevo cargando uno diferente");
-                }
-                else {
+                } else {
                     avionExistente = false;
                     avion = cargarAvionPorTeclado(id);
                     agregarAvion(avion);
                 }
             }
 
-                System.out.println("Quiere seguir ingresando aviones? 's'/'n'");
-                continuar = scan.nextLine().charAt(0);
-            }
+            System.out.println("Quiere seguir ingresando aviones? 's'/'n'");
+            continuar = scan.nextLine().charAt(0);
         }
+    }
 
     private Avion cargarAvionPorTeclado(String id) {
 
@@ -394,8 +387,7 @@ public class Aerolinea {
             if (buscarAvion(avion.getId()) == null) {
                 aviones.add(avion);
                 System.out.println("AVIÓN AGREGADO CON ÉXITO");
-            }
-            else {
+            } else {
                 throw new AvionExistenteException();
             }
 
@@ -445,7 +437,7 @@ public class Aerolinea {
                     break;
             }
 
-            System.out.println("VUELO MODIFICADO CON ÉXITO");
+            System.out.println("AVIÓN MODIFICADO CON ÉXITO");
         } else {
             System.out.println("ERROR: AVIÓN NO ENCONTRADO");
         }
@@ -458,8 +450,7 @@ public class Aerolinea {
             if (avion != null) {
                 aviones.remove(avion);
                 System.out.println("AVIÓN ELIMINADO CON ÉXITO");
-            }
-            else {
+            } else {
                 throw new AvionInexistenteException();
             }
         } catch (AvionInexistenteException e) {
@@ -486,23 +477,9 @@ public class Aerolinea {
         return avion;
     }
 
-
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     //       AEROPUERTOS      |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-    public void agregarAeropuerto(Aeropuerto aeropuerto) {
-        try {
-            for (Aeropuerto aux : aeropuertos) {
-                if (aux.equals(aeropuerto)) {
-                    throw new AeropuertoExistenteException();
-                }
-            }
-            aeropuertos.add(aeropuerto);
-        } catch (AeropuertoExistenteException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     private Aeropuerto buscarAeropuerto(String codigo) {
         Aeropuerto aeropuerto = null;
@@ -510,62 +487,120 @@ public class Aerolinea {
         for (Aeropuerto a : aeropuertos) {
             if (a.getCodigo().equals(codigo)) {
                 aeropuerto = a;
-                break;
             }
         }
 
         return aeropuerto;
     }
 
-    public void mostrarAeropuertos() {
-        for (Aeropuerto aep : aeropuertos) {
-            System.out.println(aep.toString());
-        }
-    }
+    public void agregarAeropuertosTeclado() {
+        Scanner scan = new Scanner(System.in);
+        char continuar = 's';
 
-    public void modificarAeropuerto(Aeropuerto aeropuerto) {
-        Scanner input = new Scanner(System.in);
-        System.out.println(aeropuerto);
-        System.out.println("¿Qué campo desea modificar?");
-        System.out.println("1 - Código");
-        System.out.println("2 - Ciudad");
-        System.out.println("3 - País");
+        while (continuar == 's') {
+            boolean aeropuertoExistente = true;
 
-        int opcion = input.nextInt();
-        input.nextLine(); // Consume el salto de línea después de leer la opción
-
-        switch (opcion) {
-            case 1:
-                System.out.println("Ingrese el nuevo código para el Aeropuerto:");
-                String nuevoCodigo = input.nextLine();
-                aeropuerto.setCodigo(nuevoCodigo);
-                break;
-            case 2:
-                System.out.println("Ingrese la nueva ciudad para el Aeropuerto:");
-                String nuevaCiudad = input.nextLine();
-                aeropuerto.setCiudad(nuevaCiudad);
-                break;
-            case 3:
-                System.out.println("Ingrese el nuevo país para el Aeropuerto:");
-                String nuevoPais = input.nextLine();
-                aeropuerto.setPais(nuevoPais);
-                break;
-            default:
-                System.out.println("Opción inválida.");
-                break;
-        }
-    }
-
-    public void eliminarAeropuerto(String codigoAeropuerto) {
-        for (Aeropuerto aeropuerto : aeropuertos) {
-            if (aeropuerto.getCodigo().equals(codigoAeropuerto)) {
-                // Remover el aeropuerto de la lista
-                aeropuertos.remove(aeropuerto);
-                System.out.println("Aeropuerto eliminado correctamente.");
-                return;
+            while (aeropuertoExistente) {
+                System.out.print("Codigo: ");
+                String codigo = scan.nextLine();
+                Aeropuerto aeropuerto = buscarAeropuerto(codigo);
+                if (aeropuerto != null) {
+                    System.out.println("El aeropuerto ya existe, intente de nuevo cargando uno diferente");
+                } else {
+                    aeropuertoExistente = false;
+                    aeropuerto = cargarAeropuertoPorTeclado(codigo);
+                    agregarAeropuerto(aeropuerto);
+                }
             }
+
+            System.out.println("Quiere seguir ingresando aeropuertos? 's'/'n'");
+            continuar = scan.nextLine().charAt(0);
         }
-        System.out.println("No se encontró ningún aeropuerto con el código proporcionado.");
+    }
+
+    private Aeropuerto cargarAeropuertoPorTeclado(String codigo) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Ciudad: ");
+        String ciudad = scan.nextLine();
+        System.out.print("País: ");
+        String pais = scan.nextLine();
+        scan.nextLine();
+
+        return new Aeropuerto(codigo, ciudad, pais);
+    }
+
+    public void agregarAeropuerto(Aeropuerto aeropuerto) {
+        try {
+            if (buscarAeropuerto(aeropuerto.getCodigo()) == null) {
+                aeropuertos.add(aeropuerto);
+                System.out.println("AEROPUERTO AGREGADO CON ÉXITO");
+            } else {
+                throw new AeropuertoExistenteException();
+            }
+
+        } catch (AeropuertoExistenteException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void modificarAeropuerto() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("MODIFICAR AEROPUERTO");
+        System.out.print("Código del aeropuerto: ");
+        String codigo = scan.nextLine();
+        Aeropuerto aeropuerto = buscarAeropuerto(codigo);
+
+        if (aeropuerto != null) {
+            System.out.println("1. Ciudad");
+            System.out.println("2. País");
+            System.out.print("Seleccione el campo a modificar: ");
+            int opcion = scan.nextInt();
+            scan.nextLine();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Nueva ciudad: ");
+                    String ciudad = scan.nextLine();
+                    aeropuerto.setCiudad(ciudad);
+                    break;
+
+                case 2:
+                    System.out.print("Nuevo país: ");
+                    String pais = scan.nextLine();
+                    scan.nextLine();
+                    aeropuerto.setPais(pais);
+                    break;
+
+                default:
+                    System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                    break;
+            }
+
+            System.out.println("AEROPUERTO MODIFICADO CON ÉXITO");
+        } else {
+            System.out.println("ERROR: AEROPUERTO NO ENCONTRADO");
+        }
+    }
+
+    public void eliminarAeropuerto(String codigo) {
+        Aeropuerto aeropuerto = buscarAeropuerto(codigo);
+        try {
+            if (aeropuerto != null) {
+                aeropuertos.remove(aeropuerto);
+                System.out.println("AEROPUERTO ELIMINADO CON ÉXITO");
+            } else {
+                throw new AeropuertoInexistenteException();
+            }
+        } catch (AeropuertoInexistenteException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void mostrarAeropuerto() {
+        System.out.println("AEROPUERTOS");
+        for (Aeropuerto aeropuerto: aeropuertos) {
+            System.out.println(aeropuerto.toString());
+        }
     }
 
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -670,65 +705,52 @@ public class Aerolinea {
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     //       JSON              |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    public void cargarJson(String pathname) {
-        File file = new File(pathname);
-
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-
-            Gson gson = new GsonBuilder() // El Gson builder para poder cargar el LocalDateTime que rompe el archivo
-                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-                    .create();
-
-            gson.toJson(this, Aerolinea.class, bufferedWriter);
-
-            bufferedWriter.close();
-        } catch (IOException e) {
-            System.out.println("|X| ERROR CARGANDO AEROLINEA A JSON |X|");
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    public static Aerolinea leerJson(String pathname) {
-        Aerolinea aerolinea = null;
-        File file = new File(pathname);
-        if (file.exists()) {
-            if (file.canRead()) {
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-
-                    Gson gson = new GsonBuilder() // El Gson builder para poder leer el LocalDateTime que rompe el archivo
-                            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-                            .create();
-
-                    aerolinea = gson.fromJson(bufferedReader, Aerolinea.class);
-
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    System.out.println("|X| ERROR E/S LEYENDO EL JSON |X|");
-                    System.out.println(e.getMessage());
-                }
-            } else {
-                System.out.println("|X| ERROR LEYENDO EL JSON, NO TIENE PERMISOS |X|");
-            }
-        } else {
-            System.out.println("|X| ERROR LEYENDO EL JSON, NO EXISTE EL ARCHIVO |X|");
-        }
-
-        return aerolinea;
-    }
-}
+//    public void cargarJson(String pathname) {
+//        File file = new File(pathname);
 //
-//     public Aeropuerto cargarAeropuertoPorTeclado() {
-//            Scanner scan = new Scanner(System.in);
+//        try {
+//            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
 //
-//            System.out.println("Ingrese el código del aeropuerto: ");
-//            String codigo = scan.nextLine();
-//            System.out.println("Ingrese la ciudad del aeropuerto: ");
-//            String ciudad = scan.nextLine();
-//            System.out.println("Ingrese el pais del aeropuerto: ");
-//            String pais = scan.nextLine();
+//            Gson gson = new GsonBuilder() // El Gson builder para poder cargar el LocalDateTime que rompe el archivo
+//                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+//                    .create();
 //
-//            return new Aeropuerto(codigo, ciudad, pais);
+//            gson.toJson(this, Aerolinea.class, bufferedWriter);
+//
+//            bufferedWriter.close();
+//        } catch (IOException e) {
+//            System.out.println("|X| ERROR CARGANDO AEROLINEA A JSON |X|");
+//            System.out.println(e.getMessage());
 //        }
+//
+//    }
+//
+//    public static Aerolinea leerJson(String pathname) {
+//        Aerolinea aerolinea = null;
+//        File file = new File(pathname);
+//        if (file.exists()) {
+//            if (file.canRead()) {
+//                try {
+//                    BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+//
+//                    Gson gson = new GsonBuilder() // El Gson builder para poder leer el LocalDateTime que rompe el archivo
+//                            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+//                            .create();
+//
+//                    aerolinea = gson.fromJson(bufferedReader, Aerolinea.class);
+//
+//                    bufferedReader.close();
+//                } catch (IOException e) {
+//                    System.out.println("|X| ERROR E/S LEYENDO EL JSON |X|");
+//                    System.out.println(e.getMessage());
+//                }
+//            } else {
+//                System.out.println("|X| ERROR LEYENDO EL JSON, NO TIENE PERMISOS |X|");
+//            }
+//        } else {
+//            System.out.println("|X| ERROR LEYENDO EL JSON, NO EXISTE EL ARCHIVO |X|");
+//        }
+//
+//        return aerolinea;
+//    }
+}
