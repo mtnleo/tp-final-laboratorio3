@@ -2,7 +2,6 @@ package Aerolinea;
 //import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;
 
-import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -102,9 +101,48 @@ public class Aerolinea {
 //           VUELOS       ||||||||||||||||||||||||||||||||||||||||||||||||
 //    ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+    public LinkedList<Vuelo> obtenerVuelosFechaSalida(LinkedList<Vuelo> vuelosModificar, LocalDateTime minima, LocalDateTime maxima) {
+        LinkedList<Vuelo> listaRetornar = new LinkedList<>();
+
+        Iterator<Vuelo> iterator = vuelosModificar.iterator();
+        while (iterator.hasNext()) {
+            Vuelo vuelo = iterator.next();
+            if (vuelo.getSalida().isAfter(minima) && vuelo.getSalida().isBefore(maxima)) {
+                listaRetornar.add(vuelo);
+            }
+        }
+
+        if (listaRetornar.isEmpty()) {
+            System.out.println("No existen vuelos entre las fechas especificadas");
+        }
+
+        return listaRetornar;
+    }
+
+
+    public LinkedList<Vuelo> obtenerVuelosOrigen(String ciudadOrigen) {
+        LinkedList<Vuelo> listaAgregarVuelos = new LinkedList<Vuelo>();
+
+        String[] keysDestinos = vuelos.keySet().toArray(new String[0]);
+
+        for (String destino: keysDestinos) {
+            LinkedList<Vuelo> vuelosPorKey = vuelos.get(destino);
+
+            for (Vuelo vue: vuelosPorKey) {
+                if (vue.getOrigen().getCiudad().equals(ciudadOrigen)) {
+                    listaAgregarVuelos.add(vue);
+                }
+            }
+        }
+
+        return listaAgregarVuelos;
+    }
 
     public LinkedList<Vuelo> obtenerVuelosDestinoOrigen(String destino, String origen) {
-        LinkedList<Vuelo> vuelosDestinoOrigen = new LinkedList<>(vuelos.get(destino)); // asi se pasa por copia (y no por referencia que rompe todoo)
+        LinkedList<Vuelo> vuelosDestinoOrigen = new LinkedList<Vuelo>();
+        if (vuelos.containsKey(destino)) {
+            vuelosDestinoOrigen = new LinkedList<>(vuelos.get(destino)); // asi se pasa por copia (y no por referencia que rompe todoo)
+        }
         try {
             if (vuelos.get(destino) != null) { // aca compruebo de nuevo en este caso si es null, que en lo de arriba no puedo porque ya crea la lista por default
                 Iterator<Vuelo> iterator = vuelosDestinoOrigen.iterator();
@@ -129,8 +167,9 @@ public class Aerolinea {
     public void mostrarVuelosPorLista(LinkedList<Vuelo> vuelosMostrar) {
         for (Vuelo vue: vuelosMostrar) {
             System.out.println("----------------");
-            System.out.println(vue.toString());
+            System.out.println(vue.toStringCorto());
         }
+        System.out.println("----------------");
     }
 
 

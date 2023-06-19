@@ -1,6 +1,11 @@
 package Aerolinea;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -248,14 +253,14 @@ public class Main {
                                                 System.out.println("3. Ordenar por precio");
                                                 System.out.println("4. Volver atras");
 
-                                                LinkedList<Vuelo> listaMostrarVuelos = null;
-
                                                 int buscarVueloMenu = scan.nextInt();
                                                 scan.nextLine();
 
+                                                LinkedList<Vuelo> listaMostrarVuelos = aerolinea.obtenerVuelosOrigen(ciudadOrigen);
+
                                                 switch (buscarVueloMenu) {
                                                     case 1:
-                                                        System.out.println("Escriba la ciudad donde quiera viajar: ");
+                                                        System.out.print("Escriba la ciudad donde quiera viajar: ");
                                                         String ciudadDestino = scan.nextLine();
 
                                                         listaMostrarVuelos = aerolinea.obtenerVuelosDestinoOrigen(ciudadDestino, ciudadOrigen);
@@ -266,11 +271,28 @@ public class Main {
                                                             System.out.println("No se encontraron vuelos.");
                                                         }
 
-
                                                         break;
 
                                                     case 2:
-                                                        System.out.println("2. Filtrar por fecha");
+                                                        try {
+                                                            System.out.print("Escriba la fecha minima (d/m/AAAA): ");
+                                                            String fechaMinima = scan.nextLine();
+                                                            LocalDate fechaMinimaLD = LocalDate.parse(fechaMinima, DateTimeFormatter.ofPattern("d/M/yyyy"));
+
+                                                            System.out.print("Escriba la fecha maxima (d/m/AAAA): ");
+                                                            String fechaMaxima = scan.nextLine();
+                                                            LocalDate fechaMaximaLD = LocalDate.parse(fechaMaxima, DateTimeFormatter.ofPattern("d/M/yyyy"));
+
+                                                            LocalDateTime fechaMinimaLDT = fechaMinimaLD.atStartOfDay();
+                                                            LocalDateTime fechaMaximaLDT = fechaMaximaLD.atTime(23, 59, 59);
+
+                                                            listaMostrarVuelos = aerolinea.obtenerVuelosFechaSalida(listaMostrarVuelos, fechaMinimaLDT, fechaMaximaLDT);
+                                                            aerolinea.mostrarVuelosPorLista(listaMostrarVuelos);
+                                                        } catch (DateTimeParseException e) {
+                                                            System.out.println("El formato de fecha ingresado es inválido.");
+                                                            System.out.println(e.getMessage());
+                                                        }
+
                                                         break;
 
                                                     case 3:

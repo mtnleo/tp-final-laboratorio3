@@ -1,7 +1,9 @@
 package Aerolinea;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class Vuelo {
     ////////////////////////////////////////////
@@ -115,7 +117,7 @@ public class Vuelo {
     @Override
     public String toString() {
         return  "Numero = " + codigoVuelo +
-                "\nPrecio = " + precio +
+                "\nPrecio = $" + precio +
                 "\nOrigen = " + origen +
                 "\nDestino = " + destino +
                 "\nKm = " + distanciaKm +
@@ -125,6 +127,16 @@ public class Vuelo {
                 "\nLlegada = " + llegada +
                 "\nEstado del vuelo = " + estadoVuelo.getDescripcion() +
                 "\nPasajes = " + pasajes;
+    }
+
+    public String toStringCorto() {
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("d 'de' MMMM", new Locale("es"));
+        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+        return "Precio = $" + precio +
+               "\nOrigen = " + origen.getCiudad() + " (" + origen.getCodigo() + ")" +
+               "\nDestino = " + destino.getCiudad() +  " (" + destino.getCodigo() + ")" +
+               "\nFecha = " + salida.format(formatoFecha) +
+               "\nHora = " + salida.format(formatoHora);
     }
 
     ////////////////////////////////////////////
