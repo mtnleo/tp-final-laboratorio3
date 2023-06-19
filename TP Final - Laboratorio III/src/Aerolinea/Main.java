@@ -289,7 +289,9 @@ public class Main {
 
                                                             listaMostrarVuelos = aerolinea.obtenerVuelosFechaSalida(listaMostrarVuelos, fechaMinimaLDT, fechaMaximaLDT);
                                                             aerolinea.mostrarVuelosPorLista(listaMostrarVuelos);
-                                                        } catch (DateTimeParseException e) {
+
+                                                        }
+                                                        catch (DateTimeParseException e) {
                                                             System.out.println("El formato de fecha ingresado es inválido.");
                                                             System.out.println(e.getMessage());
                                                         }
