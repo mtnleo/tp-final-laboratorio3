@@ -1,7 +1,6 @@
 package Aerolinea;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,6 +32,14 @@ public class Aerolinea {
     ////////////////////////////////////////////
     // GETTERS AND SETTERS ---------------------
     ////////////////////////////////////////////
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     ////////////////////////////////////////////
     // METODOS ----------------------------
@@ -1074,7 +1081,7 @@ public class Aerolinea {
         boolean contrasenaValida = false;
 
         while (!nombreValido) {
-            System.out.println("Ingrese el nombre del cliente:");
+            System.out.print("Nombre: ");
             nombre = scanner.nextLine();
 
             // Comprobar si el nombre contiene números
@@ -1086,7 +1093,7 @@ public class Aerolinea {
         }
 
         while (!apellidoValido) {
-            System.out.println("Ingrese el apellido del cliente:");
+            System.out.print("Apellido: ");
             apellido = scanner.nextLine();
 
             // Comprobar si el apellido contiene números
@@ -1098,7 +1105,7 @@ public class Aerolinea {
         }
 
         while (!pasaporteValido) {
-            System.out.println("Ingrese el pasaporte del cliente:");
+            System.out.print("N° de pasaporte: ");
             pasaporte = scanner.nextLine();
 
             // formato: A1234567)
@@ -1110,7 +1117,7 @@ public class Aerolinea {
         }
 
         while (!usuarioValido) {
-            System.out.println("Ingrese el usuario del cliente:");
+            System.out.print("Nombre de usuario: ");
             usuario = scanner.nextLine();
 
             if (usuario.contains(" ")) {
@@ -1121,7 +1128,7 @@ public class Aerolinea {
         }
 
         while (!contrasenaValida) {
-            System.out.println("Ingrese la contraseña del cliente:");
+            System.out.print("Contraseña: ");
             contrasena = scanner.nextLine();
 
             if (contrasena.length() < 6) {
@@ -1272,5 +1279,14 @@ public class Aerolinea {
         }
 
         return aerolinea;
+    }
+
+    public Cliente buscarUsuario(String username) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getNombreDeUsuario().equals(username)) {
+                return cliente;
+            }
+        }
+        return null; // No se encontró el usuario
     }
 }
