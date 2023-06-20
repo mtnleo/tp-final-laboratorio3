@@ -98,6 +98,19 @@ public class Vuelo implements Comparable<Vuelo> {
     // METODOS ---------------------------------
     ////////////////////////////////////////////
 
+    public int comprobarEspacioVuelo () { // retorna 0 si no tiene espacio, sino retorna el numero de asiento
+        int asiento;
+
+        if (pasajes.size() >= avion.getCantidadPasajeros()) {
+            asiento = 0;
+        }
+        else {
+            asiento = pasajes.size() + 1;
+        }
+
+        return asiento;
+    }
+
     private int[] getHorasMinutosFromDouble(double num) { //obtengo horas y minutos de un double
         int[] resultado = new int[2];
         resultado[0] = (int)(Math.floor(num));

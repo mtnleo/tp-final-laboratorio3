@@ -74,22 +74,6 @@ public class Avion {
     ////////////////////////////////////////////
     // METODOS ---- ----------------------------
     ////////////////////////////////////////////
-/*
-    public static void guardarAvionJson(Avion avion) {
-        File file = new File("aviones.json");
-
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-
-            Gson gson = new Gson();
-
-            gson.toJson()
-        } catch (IOException e) {
-            System.out.println("Problemas abriendo el archivo aviones.json");
-        }
-
-    }
-*/
     @Override
     public String toString() {
         return "[ID: " + id +

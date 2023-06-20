@@ -10,10 +10,9 @@ public class Pasaje {
     private Vuelo vuelo;
     private LocalDateTime fecha;
     private Cliente cliente;
-    private Character grupo; //???
     private double precio;
-    private String equipaje; // ¿¿puede ser un enum??
-    private String numeroPassaje;
+    private int cantidadValijas; // cada valija tiene un valor
+    private String numeroPasaje;
     private int numeroAsiento;
 
     ////////////////////////////////////////////
@@ -24,23 +23,21 @@ public class Pasaje {
     }
 
     public Pasaje(Pasaje pasaje) {
-        this.numeroPassaje = pasaje.numeroPassaje;
+        this.numeroPasaje = pasaje.numeroPasaje;
         this.vuelo = pasaje.vuelo;
         this.cliente = pasaje.cliente;
-        this.grupo = pasaje.grupo;
         this.precio = pasaje.precio;
-        this.equipaje = pasaje.equipaje;
+        this.cantidadValijas = pasaje.cantidadValijas;
         this.numeroAsiento = pasaje.numeroAsiento;
         this.fecha = pasaje.fecha;
     }
 
-    public Pasaje(String numero, Vuelo vuelo, Cliente cliente, char grupo, double precio, String equipaje, int numeroAsiento, LocalDateTime fecha) {
-        this.numeroPassaje = UUID.randomUUID().toString().replaceAll("-", "");
+    public Pasaje(Vuelo vuelo, Cliente cliente, double precio, int cantidadValijas, int numeroAsiento, LocalDateTime fecha) {
+        this.numeroPasaje = UUID.randomUUID().toString().replaceAll("-", "");
         this.vuelo = vuelo;
         this.cliente = cliente;
-        this.grupo = grupo;
         this.precio = precio;
-        this.equipaje = equipaje;
+        this.cantidadValijas = cantidadValijas;
         this.numeroAsiento = numeroAsiento;
         this.fecha = fecha;
     }
@@ -65,14 +62,6 @@ public class Pasaje {
         this.cliente = cliente;
     }
 
-    public char getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(char grupo) {
-        this.grupo = grupo;
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -81,20 +70,20 @@ public class Pasaje {
         this.precio = precio;
     }
 
-    public String getEquipaje() {
-        return equipaje;
+    public int getCantidadValijas() {
+        return cantidadValijas;
     }
 
-    public void setEquipaje(String equipaje) {
-        this.equipaje = equipaje;
+    public void setCantidadValijas(int cantidadValijas) {
+        this.cantidadValijas = cantidadValijas;
     }
 
-    public String getNumeroPassaje() {
-        return numeroPassaje;
+    public String getNumeroPasaje() {
+        return numeroPasaje;
     }
 
-    public void setNumeroPassaje(String numeroPassaje) {
-        this.numeroPassaje = numeroPassaje;
+    public void setNumeroPasaje(String numeroPassaje) {
+        this.numeroPasaje = numeroPassaje;
     }
 
     public int getNumeroAsiento() {
@@ -111,16 +100,14 @@ public class Pasaje {
 
     @Override
     public String toString() {
-        return "Pasaje{" +
-                "vuelo=" + vuelo +
-                ", fecha=" + fecha +
-                ", cliente=" + cliente +
-                ", grupo=" + grupo +
-                ", precio=" + precio +
-                ", equipaje='" + equipaje + '\'' +
-                ", numeroPassaje='" + numeroPassaje + '\'' +
-                ", numeroAsiento=" + numeroAsiento +
-                '}';
+        return  "Vuelo = " + vuelo.getOrigen().getCiudad() + " a " + vuelo.getDestino().getCiudad() +
+                "\nCodigo Vuelo = " + vuelo.getCodigoVuelo() +
+                "\nFecha = " + fecha +
+                "\nCliente = " + cliente.getNombre() + " " + cliente.getApellido() + " (" + cliente.getNombreDeUsuario() + ")" +
+                "\nPrecio = $" + precio +
+                "\nCantidad de Valijas = " + cantidadValijas +
+                "\nNumero de Passaje= " + numeroPasaje +
+                "\nNumero de Asiento= " + numeroAsiento;
     }
 
 }

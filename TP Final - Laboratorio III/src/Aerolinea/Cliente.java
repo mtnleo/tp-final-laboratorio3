@@ -9,19 +9,16 @@ public class Cliente {
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
 
-    protected String nombre;
-    protected String apellido;
-    protected String pasaporte;
-    protected String nombreDeUsuario;
-    protected String contrasena;
-    protected LinkedList<Pasaje> pasajes;
+    private String nombre;
+    private String apellido;
+    private String pasaporte;
+    private String nombreDeUsuario;
+    private String contrasena;
+    private final LinkedList<Pasaje> pasajes;
 
     ////////////////////////////////////////////
     // CONSTRUCTORES ----------------------------
     ////////////////////////////////////////////
-
-    public Cliente() {
-    }
 
     public Cliente(Cliente cliente) {
         this.nombre = cliente.nombre;
@@ -43,6 +40,7 @@ public class Cliente {
         this.pasaporte = pasaporte;
         this.nombreDeUsuario = nombreDeUsuario;
         this.contrasena = contrasena;
+        this.pasajes = new LinkedList<Pasaje>();
     }
 
     public Cliente(String nombre, String apellido, String pasaporte, LinkedList <Pasaje> pasajes) {
@@ -84,9 +82,21 @@ public class Cliente {
         return nombreDeUsuario;
     }
 
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
     ////////////////////////////////////////////
     // METODOS ----------------------------
     ////////////////////////////////////////////
+
+    public void agregarPasajeCliente(Pasaje pasaje) {
+        pasajes.add(pasaje);
+    }
 
     @Override
     public String toString() {

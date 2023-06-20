@@ -1053,12 +1053,7 @@ public class Aerolinea {
 
     public boolean existeCliente(Cliente cliente) {
         for (Cliente c : clientes) {
-            if (c.getPasaporte().equals(cliente.getPasaporte())) {
-                return true;
-            }
-        }
-        for (Cliente c : clientes) {
-            if (c.getNombreDeUsuario().equals(cliente.getNombreDeUsuario())) {
+            if (c.getPasaporte().equalsIgnoreCase(cliente.getPasaporte()) || c.getNombreDeUsuario().equalsIgnoreCase(cliente.getNombreDeUsuario())) {
                 return true;
             }
         }
@@ -1105,7 +1100,7 @@ public class Aerolinea {
         }
 
         while (!pasaporteValido) {
-            System.out.print("N° de pasaporte: ");
+            System.out.print("N° de pasaporte (X1234567): ");
             pasaporte = scanner.nextLine();
 
             // formato: A1234567)
@@ -1140,6 +1135,7 @@ public class Aerolinea {
 
         return new Cliente(nombre, apellido, pasaporte, usuario, contrasena);
     }
+
     public void agregarCliente(Cliente cliente) {
         try {
             if (existeCliente(cliente)) {

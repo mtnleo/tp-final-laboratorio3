@@ -22,50 +22,69 @@ public class Main {
             System.out.println("2. LOGIN");
             System.out.print("Seleccione una opción o presione 0 para finalizar: ");
             int primeraOpcion = scan.nextInt();
+            scan.nextLine();
 
             if (primeraOpcion != 0) {
                 switch (primeraOpcion) {
                     case 1:
-                        Cliente clientito = aerolinea.agregarClientePorTeclado();
+                        Cliente clientito = aerolinea.agregarClientePorTeclado(); // lo cargamos
                         try {
-                            aerolinea.existeCliente(clientito);
-                        } catch (ClienteExistenteException e) {
-                            e.printStackTrace();
+                            if (!aerolinea.existeCliente(clientito)) {
+                                aerolinea.agregarCliente(clientito);
+
+                                aerolinea.cargarJson("Aerolinea.json"); // agregarlo al archivo de una
+                            }
+                            else {
+                                throw new ClienteExistenteException("El cliente que intento cargar ya existe.");
+                            }
                         }
-                        aerolinea.agregarCliente(clientito);
+                        catch (ClienteExistenteException e) {
+                            System.out.println(e.getMessage());
+                        }
+
                         break;
 
                     case 2:
                         int opcionMenu = 0;
                         System.out.print("INGRESE NOMBRE DE USUARIO O PRESIONE 0 PARA FINALIZAR: ");
                         String username = scan.nextLine();
-                        username = scan.nextLine();
+
                         Cliente usuario = aerolinea.buscarUsuario(username);
+
                         if (usuario != null) {
                             System.out.print("INGRESE CONTRASEÑA O PRESIONE 0 PARA FINALIZAR: ");
                             String pass = scan.nextLine();
-                            if (usuario.contrasena.equals(pass)) {
+                            if (usuario.getContrasena().equals(pass)) {
                                 opcionMenu = 2;
-                            } else if (pass.equals("0")) {
+                            }
+                            else if (pass.equals("0")) {
                                 cont = false;
-                            } else {
+                            }
+                            else {
                                 System.out.println("EL NOMBRE Y CONTRASEÑA NO COINCIDEN. POR FAVOR VUELVA A INTENTARLO.");
                             }
-                        } else if (username.equals("admin")) {
+                        }
+                        else if (username.equals("admin")) {
                             System.out.print("INGRESE CONTRASEÑA O PRESIONE 0 PARA FINALIZAR: ");
                             String pass = scan.nextLine();
                             if (pass.equals("admin")) {
                                 opcionMenu = 1;
-                            } else if (pass.equals("0")) {
+                            }
+                            else if (pass.equals("0")) {
                                 cont = false;
-                            } else {
+                            }
+                            else {
                                 System.out.println("EL NOMBRE Y CONTRASEÑA NO COINCIDEN. POR FAVOR VUELVA A INTENTARLO.");
                             }
-                        } else if (username.equals("0")) {
-                            cont = false;
-                        } else {
-                            System.out.println("EL NOMBRE DE USUARIO NO EXISTE. POR FAVOR VUELVA A INTENTARLO.");
                         }
+                        else if (username.equals("0")) {
+                            cont = false;
+                        }
+                        else {
+                            System.out.println("EL NOMBRE DE USUARIO NO EXISTE. POR FAVOR VUELVA A INTENTARLO.");
+                            cont = false;
+                        }
+
                         while (opcionMenu != 0) {
                             switch (opcionMenu) {
                                 case 1:
@@ -267,7 +286,7 @@ public class Main {
                                         System.out.println("4. Ver estado de vuelo");
                                         System.out.println("5. Mi perfil");
                                         System.out.println("6. Socios");
-                                        System.out.println("7. Atras");
+                                        System.out.println("7. Guardar y salir");
 
                                         int menuUser = scan.nextInt();
                                         scan.nextLine();
@@ -384,15 +403,101 @@ public class Main {
                                                 break;
 
                                             case 2:
-                                                System.out.println("2. Comprar Pasaje");
+                                                System.out.println("------------------ Comprar Pasaje ------------------");
+                                                boolean compra = true;
+
+                                                while (compra) {
+                                                    System.out.println("Escriba el codigo del vuelo que quiera comprar: ");
+                                                    String codigoComprar = scan.nextLine();
+
+                                                    try {
+                                                        Vuelo vueloToComprar = aerolinea.buscarVuelo(codigoComprar);
+                                                        if (vueloToComprar != null) {
+                                                            System.out.println("Es este el vuelo que quiere comprar? \n---------------------");
+                                                            System.out.println(vueloToComprar.toStringCorto());
+                                                            System.out.println("---------------------\n" + "Presione 's' para finalizar la compra.");
+
+
+                                                            char confirmarCompra = scan.nextLine().toLowerCase().charAt(0);
+                                                            if (confirmarCompra == 's') {
+                                                                int asientoAsignado = vueloToComprar.comprobarEspacioVuelo(); // retrona 0 si no tiene espacio, cualquier otro numero si tiene
+
+                                                                if (asientoAsignado != 0) {
+                                                                    int cantidadValijas = 0;
+
+                                                                    boolean elegirEquipaje = true;
+                                                                    while (elegirEquipaje) {
+                                                                        System.out.println("Seleccione la cantidad de valijas (maximo 2): ");
+                                                                        System.out.println("0 = Solo carry-on (+ $0)\n" +
+                                                                                "1 = Una valija (+ $70)\n" +
+                                                                                "2 = Dos valijas (+ $140)");
+
+                                                                        cantidadValijas = scan.nextInt();
+                                                                        scan.nextLine();
+
+                                                                        if (cantidadValijas >= 0 && cantidadValijas <= 2) {
+                                                                            elegirEquipaje = false;
+                                                                        } else {
+                                                                            System.out.println("El numero elegido no es valido, intente nuevamente.");
+                                                                        }
+                                                                    }
+
+                                                                    Pasaje pasajeNuevo = new Pasaje(vueloToComprar, usuario, vueloToComprar.getPrecio() + (70 * cantidadValijas), cantidadValijas, asientoAsignado, vueloToComprar.getSalida());
+                                                                    usuario.agregarPasajeCliente(pasajeNuevo);
+
+                                                                    System.out.println("COMPRA EXITOSA, PUEDES VER TUS PASAJES EN 'MIS PASAJES'");
+                                                                    compra = false;
+
+                                                                }
+                                                                else {
+                                                                    compra = false;
+                                                                    System.out.println("Se ha producido un error, el vuelo seleccionado esta lleno. Por favor selecciona otro");
+                                                                }
+                                                            }
+                                                            else {
+                                                                System.out.println("COMPRA CANCELADA.");
+                                                                compra = false;
+                                                            }
+
+                                                        }
+                                                        else {
+                                                            throw new VueloInexistenteException("El codigo del vuelo ingresado no corresponde a ningun vuelo disponible.");
+                                                        }
+                                                    }
+                                                    catch (VueloInexistenteException e) {
+                                                        System.out.println(e.getMessage());
+                                                    }
+                                                }
+
                                                 break;
 
                                             case 3:
-                                                System.out.println("3. Mis Pasajes");
+                                                System.out.println("------------------- Mis Pasajes -------------------");
+
+                                                usuario.mostrarPasajes();
+
                                                 break;
 
                                             case 4:
-                                                System.out.println("4. Ver estado de vuelo");
+                                                System.out.println("------------------- Ver estado de vuelo -------------------");
+
+                                                System.out.print("Escribe el codigo del vuelo: ");
+                                                String codigoVueloVerEstado = scan.nextLine();
+
+                                                try {
+                                                    Vuelo vueloVerEstado = aerolinea.buscarVuelo(codigoVueloVerEstado);
+                                                    if (vueloVerEstado != null) {
+                                                        System.out.println(vueloVerEstado.toStringCorto());
+                                                        System.out.println("ESTADO: " + vueloVerEstado.getEstadoVuelo());
+                                                    }
+                                                    else {
+                                                        throw new VueloInexistenteException("El vuelo buscado no se encontro.");
+                                                    }
+                                                }
+                                                catch(VueloInexistenteException e){
+                                                    System.out.println(e.getMessage());
+                                                }
+
                                                 break;
 
                                             case 5:
@@ -404,6 +509,7 @@ public class Main {
                                                 break;
 
                                             case 7:
+                                                aerolinea.cargarJson("Aerolinea.json"); // agregarlo al archivo de una
                                                 cUser = false;
                                                 opcionMenu = 0;
                                                 break;
