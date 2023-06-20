@@ -246,6 +246,9 @@ public class Main {
 
                                         Aeropuerto origen = aerolinea.buscarAeropuertoCiudad(ciudadOrigen);
                                         if (origen != null) {
+
+                                            LinkedList<Vuelo> listaMostrarVuelos = aerolinea.obtenerVuelosOrigen(ciudadOrigen);
+
                                             boolean cFiltrarVuelos = true;
                                             // ya tengo el aeropuerto de origen para realizar todas las busquedas
                                             while (cFiltrarVuelos) {
@@ -256,8 +259,6 @@ public class Main {
 
                                                 int buscarVueloMenu = scan.nextInt();
                                                 scan.nextLine();
-
-                                                LinkedList<Vuelo> listaMostrarVuelos = aerolinea.obtenerVuelosOrigen(ciudadOrigen);
 
                                                 switch (buscarVueloMenu) {
                                                     case 1:
