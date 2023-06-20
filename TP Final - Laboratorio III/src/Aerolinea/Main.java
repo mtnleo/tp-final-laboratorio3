@@ -15,7 +15,8 @@ public class Main {
 
         /// AEROLINEA DE PRUEBA
         Aerolinea aerolinea = new Aerolinea("Pepito Airlines");
-        aerolinea.addVuelosHC();
+        //aerolinea.addVuelosHC();
+        aerolinea = Aerolinea.leerJson("Aerolinea.json");
 
         while (cont) {
             System.out.println("1. MENU ADMIN");
@@ -38,7 +39,7 @@ public class Main {
                         System.out.println("2. Gestionar aviones");
                         System.out.println("3. Gestionar aeropuertos");
                         System.out.println("4. Gestionar clientes");
-                        System.out.println("5. Salir");
+                        System.out.println("5. Salir y guardar cambios");
                         System.out.print("Seleccione una opción: ");
                         int opcionPrincipal = scan.nextInt();
                         scan.nextLine();
@@ -209,6 +210,7 @@ public class Main {
                                 break;
 
                             case 5:
+                                aerolinea.cargarJson("Aerolinea.json");
                                 cAdmin = false;
                                 break;
 
@@ -333,6 +335,7 @@ public class Main {
                                                         break;
 
                                                     case 5:
+
                                                         cFiltrarVuelos = false;
                                                         cBuscarVuelos = false;
                                                         break;
