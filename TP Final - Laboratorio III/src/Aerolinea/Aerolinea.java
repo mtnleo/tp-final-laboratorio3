@@ -560,7 +560,7 @@ public class Aerolinea {
 
     }
 
-    private Vuelo buscarVuelo(String codigo) {
+    public Vuelo buscarVuelo(String codigo) {
         Vuelo vuelo = null;
 
         String[] destinos = vuelos.keySet().toArray(new String[0]);

@@ -116,7 +116,7 @@ public class Vuelo implements Comparable<Vuelo> {
 
     @Override
     public String toString() {
-        return  "Numero = " + codigoVuelo +
+        return  "Codigo = " + codigoVuelo +
                 "\nPrecio = $" + precio +
                 "\nOrigen = " + origen +
                 "\nDestino = " + destino +
@@ -124,9 +124,7 @@ public class Vuelo implements Comparable<Vuelo> {
                 "\nAvion = " + avion +
                 "\nSalida = " + salida +
                 "\nDuracion = " + duracion +
-                "\nLlegada = " + llegada +
-                "\nEstado del vuelo = " + estadoVuelo.getDescripcion() +
-                "\nPasajes = " + pasajes;
+                "\nLlegada = " + llegada;
     }
 
     public String toStringCorto() {
@@ -136,7 +134,8 @@ public class Vuelo implements Comparable<Vuelo> {
                "\nOrigen = " + origen.getCiudad() + " (" + origen.getCodigo() + ")" +
                "\nDestino = " + destino.getCiudad() +  " (" + destino.getCodigo() + ")" +
                "\nFecha = " + salida.format(formatoFecha) +
-               "\nHora = " + salida.format(formatoHora);
+               "\nHora = " + salida.format(formatoHora) +
+               "\nCodigo = " + codigoVuelo;
     }
 
     ////////////////////////////////////////////

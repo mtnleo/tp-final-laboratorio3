@@ -255,7 +255,8 @@ public class Main {
                                                 System.out.println("1. Filtrar por destino");
                                                 System.out.println("2. Filtrar por fecha");
                                                 System.out.println("3. Ordenar por precio");
-                                                System.out.println("4. Volver atras");
+                                                System.out.println("4. Buscar vuelo por codigo");
+                                                System.out.println("5. Volver atras");
 
                                                 int buscarVueloMenu = scan.nextInt();
                                                 scan.nextLine();
@@ -271,6 +272,7 @@ public class Main {
                                                         }
                                                         else {
                                                             System.out.println("No se encontraron vuelos.");
+                                                            listaMostrarVuelos = aerolinea.obtenerVuelosOrigen(ciudadOrigen); // se carga de nuevo la lista para que pueda seguir buscando
                                                         }
 
                                                         break;
@@ -310,6 +312,27 @@ public class Main {
                                                         break;
 
                                                     case 4:
+                                                        System.out.print("Escriba el codigo del vuelo buscado: ");
+                                                        String codigoVueloBuscado = scan.nextLine();
+
+                                                        try {
+                                                            Vuelo vueloBuscadoPorCodigo = aerolinea.buscarVuelo(codigoVueloBuscado);
+                                                            if (vueloBuscadoPorCodigo != null) {
+                                                                System.out.println("-------------------");
+                                                                System.out.println(vueloBuscadoPorCodigo.toString());
+                                                                System.out.println("-------------------");
+                                                            }
+                                                            else {
+                                                                throw new VueloInexistenteException("El codigo del vuelo ingresado no corresponde a ningun vuelo cargado.");
+                                                            }
+                                                        }
+                                                        catch (VueloInexistenteException e) {
+                                                            System.out.println(e.getMessage());
+                                                        }
+
+                                                        break;
+
+                                                    case 5:
                                                         cFiltrarVuelos = false;
                                                         cBuscarVuelos = false;
                                                         break;
