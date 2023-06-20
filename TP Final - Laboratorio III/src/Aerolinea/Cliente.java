@@ -109,8 +109,12 @@ public class Cliente {
     }
 
     public void mostrarPasajes() {
+        int i = 1;
         for (Pasaje pas: pasajes) {
+            System.out.println("\n========================== PASAJE " + i + " ==========================");
             System.out.println(pas.toString());
+            System.out.println("===============================================================");
+            i = i+1;
         }
     }
 
