@@ -442,7 +442,7 @@ public class Main {
                                                                         }
                                                                     }
 
-                                                                    Pasaje pasajeNuevo = new Pasaje(vueloToComprar, usuario, vueloToComprar.getPrecio() + (70 * cantidadValijas), cantidadValijas, asientoAsignado, vueloToComprar.getSalida());
+                                                                    Pasaje pasajeNuevo = new Pasaje(vueloToComprar, usuario.getPasaporte(), vueloToComprar.getPrecio() + (70 * cantidadValijas), cantidadValijas, asientoAsignado, vueloToComprar.getSalida());
                                                                     usuario.agregarPasajeCliente(pasajeNuevo);
 
                                                                     System.out.println("COMPRA EXITOSA, PUEDES VER TUS PASAJES EN 'MIS PASAJES'");

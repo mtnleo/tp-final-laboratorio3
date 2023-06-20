@@ -9,9 +9,9 @@ public class Pasaje {
 
     private Vuelo vuelo;
     private LocalDateTime fecha;
-    private Cliente cliente;
+    private String pasaporteCliente;
     private double precio;
-    private int cantidadValijas; // cada valija tiene un valor
+    private int cantidadValijas; // cada valija tiene un valor de $70
     private String numeroPasaje;
     private int numeroAsiento;
 
@@ -25,17 +25,17 @@ public class Pasaje {
     public Pasaje(Pasaje pasaje) {
         this.numeroPasaje = pasaje.numeroPasaje;
         this.vuelo = pasaje.vuelo;
-        this.cliente = pasaje.cliente;
+        this.pasaporteCliente = pasaje.pasaporteCliente;
         this.precio = pasaje.precio;
         this.cantidadValijas = pasaje.cantidadValijas;
         this.numeroAsiento = pasaje.numeroAsiento;
         this.fecha = pasaje.fecha;
     }
 
-    public Pasaje(Vuelo vuelo, Cliente cliente, double precio, int cantidadValijas, int numeroAsiento, LocalDateTime fecha) {
+    public Pasaje(Vuelo vuelo, String pasaporteCliente, double precio, int cantidadValijas, int numeroAsiento, LocalDateTime fecha) {
         this.numeroPasaje = UUID.randomUUID().toString().replaceAll("-", "");
         this.vuelo = vuelo;
-        this.cliente = cliente;
+        this.pasaporteCliente = pasaporteCliente;
         this.precio = precio;
         this.cantidadValijas = cantidadValijas;
         this.numeroAsiento = numeroAsiento;
@@ -54,12 +54,12 @@ public class Pasaje {
         this.vuelo = vuelo;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getPasaporteCliente() {
+        return pasaporteCliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPasaporteCliente(String pasaporteCliente) {
+        this.pasaporteCliente = pasaporteCliente;
     }
 
     public double getPrecio() {
@@ -103,7 +103,7 @@ public class Pasaje {
         return  "Vuelo = " + vuelo.getOrigen().getCiudad() + " a " + vuelo.getDestino().getCiudad() +
                 "\nCodigo Vuelo = " + vuelo.getCodigoVuelo() +
                 "\nFecha = " + fecha +
-                "\nCliente = " + cliente.getNombre() + " " + cliente.getApellido() + " (" + cliente.getNombreDeUsuario() + ")" +
+                "\nPasaporte Cliente = " + pasaporteCliente +
                 "\nPrecio = $" + precio +
                 "\nCantidad de Valijas = " + cantidadValijas +
                 "\nNumero de Passaje= " + numeroPasaje +
