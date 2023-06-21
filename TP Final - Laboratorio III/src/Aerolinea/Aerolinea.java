@@ -1285,4 +1285,31 @@ public class Aerolinea {
         }
         return null; // No se encontró el usuario
     }
+
+    public void verificarNivel (Cliente cliente) {
+        if(cliente instanceof Estandar) {
+            if(cliente.getMillas() >= 2500) {
+                Gold aux = new Gold(cliente);
+                clientes.remove(cliente);
+                clientes.add(aux);
+                System.out.println("Felicitaciones! Ahora sos socio nivel Gold.");
+            }
+        }
+        else if(cliente instanceof Gold) {
+            if(cliente.getMillas() >= 5000) {
+                Platinum aux = new Platinum(cliente);
+                clientes.remove(cliente);
+                clientes.add(aux);
+                System.out.println("Felicitaciones! Ascendiste al nivel Platinum.");
+            }
+        }
+        else if(cliente instanceof Platinum) {
+            if(cliente.getMillas() >= 10000) {
+                Black aux = new Black(cliente);
+                clientes.remove(cliente);
+                clientes.add(aux);
+                System.out.println("Felicitaciones! Ascendiste al nivel Black.");
+            }
+        }
+    }
 }

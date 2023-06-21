@@ -33,15 +33,12 @@ public class Main {
                             if (!aerolinea.existeCliente(clientito)) {
                                 aerolinea.agregarCliente(new Estandar(clientito)); // ACA CAPAZ QUE HAY QUE AGREGAR LA INICIALIZACION, BUT IDK
                                 aerolinea.cargarJson("Aerolinea.json"); // agregarlo al archivo de una
-                            }
-                            else {
+                            } else {
                                 throw new ClienteExistenteException("El cliente que intento cargar ya existe.");
                             }
-                        }
-                        catch (ClienteExistenteException e) {
+                        } catch (ClienteExistenteException e) {
                             System.out.println(e.getMessage());
                         }
-
                         break;
 
                     case 2:
@@ -56,31 +53,24 @@ public class Main {
                             String pass = scan.nextLine();
                             if (usuario.getContrasena().equals(pass)) {
                                 opcionMenu = 2;
-                            }
-                            else if (pass.equals("0")) {
+                            } else if (pass.equals("0")) {
                                 cont = false;
-                            }
-                            else {
+                            } else {
                                 System.out.println("EL NOMBRE Y CONTRASEÑA NO COINCIDEN. POR FAVOR VUELVA A INTENTARLO.");
                             }
-                        }
-                        else if (username.equals("admin")) {
+                        } else if (username.equals("admin")) {
                             System.out.print("INGRESE CONTRASEÑA O PRESIONE 0 PARA FINALIZAR: ");
                             String pass = scan.nextLine();
                             if (pass.equals("admin")) {
                                 opcionMenu = 1;
-                            }
-                            else if (pass.equals("0")) {
+                            } else if (pass.equals("0")) {
                                 cont = false;
-                            }
-                            else {
+                            } else {
                                 System.out.println("EL NOMBRE Y CONTRASEÑA NO COINCIDEN. POR FAVOR VUELVA A INTENTARLO.");
                             }
-                        }
-                        else if (username.equals("0")) {
+                        } else if (username.equals("0")) {
                             cont = false;
-                        }
-                        else {
+                        } else {
                             System.out.println("EL NOMBRE DE USUARIO NO EXISTE. POR FAVOR VUELVA A INTENTARLO.");
                             cont = false;
                         }
@@ -136,12 +126,10 @@ public class Main {
                                                                     System.out.println("----------------------");
                                                                     System.out.println(adminVueloBuscado.toString());
                                                                     System.out.println("----------------------");
-                                                                }
-                                                                else {
+                                                                } else {
                                                                     throw new VueloInexistenteException("El vuelo buscado no se encontro.");
                                                                 }
-                                                            }
-                                                            catch(VueloInexistenteException e){
+                                                            } catch (VueloInexistenteException e) {
                                                                 System.out.println(e.getMessage());
                                                             }
 
@@ -250,7 +238,7 @@ public class Main {
                                                             } catch (ClienteExistenteException e) {
                                                                 e.printStackTrace();
                                                             }
-                                                            aerolinea.agregarCliente(cliente);
+                                                            aerolinea.agregarCliente(new Estandar(cliente));
                                                             break;
                                                         case 2:
                                                             System.out.println("Modificar cliente");
@@ -470,6 +458,7 @@ public class Main {
                                                                         usuario.agregarPasajeCliente(pasajeNuevo);
 
                                                                         usuario.setMillas(usuario.getMillas() + vueloToComprar.getAvion().getDistancia() * .05); // SE SUMAN MILLAS + 5% DE LAS DEL VUELO
+                                                                        aerolinea.verificarNivel(usuario);
 
                                                                         vueloToComprar.setPasajesVendidos(vueloToComprar.getPasajesVendidos() + 1);
 
@@ -491,8 +480,7 @@ public class Main {
                                                         } catch (VueloInexistenteException e) {
                                                             System.out.println(e.getMessage());
                                                         }
-                                                    }
-                                                    else {
+                                                    } else {
                                                         compra = false;
                                                     }
                                                 }
@@ -517,12 +505,10 @@ public class Main {
                                                     if (vueloVerEstado != null) {
                                                         System.out.println(vueloVerEstado.toStringCorto());
                                                         System.out.println("ESTADO: " + vueloVerEstado.getEstadoVuelo());
-                                                    }
-                                                    else {
+                                                    } else {
                                                         throw new VueloInexistenteException("El vuelo buscado no se encontro.");
                                                     }
-                                                }
-                                                catch(VueloInexistenteException e){
+                                                } catch (VueloInexistenteException e) {
                                                     System.out.println(e.getMessage());
                                                 }
 
@@ -560,9 +546,7 @@ public class Main {
                         System.out.println("OPCIÓN INVÁLIDA. VUELVA A INTENTAR.");
                         break;
                 }
-            }
-
-            else {
+            } else {
                 cont = false;
             }
 

@@ -7,7 +7,7 @@ public class Estandar extends Cliente {
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
-
+    private double porcentajeDescuento;
 
 
     ////////////////////////////////////////////
@@ -16,18 +16,22 @@ public class Estandar extends Cliente {
 
     public Estandar(Cliente cliente) {
         super(cliente);
+        this.porcentajeDescuento = 0;
     }
 
     public Estandar(String nombre, String apellido, String pasaporte) {
         super(nombre, apellido, pasaporte);
+        this.porcentajeDescuento = 0;
     }
 
     public Estandar(String nombre, String apellido, String pasaporte, String nombreDeUsuario, String contrasena) {
         super(nombre, apellido, pasaporte, nombreDeUsuario, contrasena);
+        this.porcentajeDescuento = 0;
     }
 
     public Estandar(String nombre, String apellido, String pasaporte, LinkedList<Pasaje> pasajes) {
         super(nombre, apellido, pasaporte, pasajes);
+        this.porcentajeDescuento = 0;
     }
 
 
