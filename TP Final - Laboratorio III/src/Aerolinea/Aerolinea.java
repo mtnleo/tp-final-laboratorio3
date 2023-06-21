@@ -13,7 +13,7 @@ public class Aerolinea {
     ////////////////////////////////////////////
     String nombre;
     private final HashMap<String, LinkedList<Vuelo>> vuelos; // Tree map -> K: Destino | V: LinkedList<Vuelo> (Ordenado segun precio)
-    private final HashSet<Cliente> clientes;
+    private HashSet<Cliente> clientes;
     private final ArrayList<Avion> aviones;
     private final ArrayList<Aeropuerto> aeropuertos;
 
@@ -1284,6 +1284,31 @@ public class Aerolinea {
             }
         }
         return null; // No se encontró el usuario
+    }
+
+    public void actualizarHashsetSubclases() {
+        HashSet<Cliente> setSubclases = new HashSet<Cliente>();
+
+        for (Cliente clien: clientes) {
+            double millasCliente = clien.getMillas();
+            if (millasCliente < 2500) {
+                clien = new Estandar(clien);
+            }
+            else if (millasCliente < 5000) {
+                clien = new Gold(clien);
+            }
+            else if (millasCliente < 10000) {
+                clien = new Platinum(clien);
+            }
+            else {
+                clien = new Black(clien);
+            }
+
+            setSubclases.add(clien);
+        }
+
+        clientes.clear();
+        clientes = setSubclases;
     }
 
     public void verificarNivel (Cliente cliente) {

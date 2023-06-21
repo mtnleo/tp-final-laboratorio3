@@ -12,7 +12,9 @@ public class Main {
         /// AEROLINEA DE PRUEBA
         Aerolinea aerolinea = new Aerolinea("Pepito Airlines");
         aerolinea = Aerolinea.leerJson("Aerolinea.json");
-        aerolinea.agregarCliente(new Gold("Ana", "Torres", "P123", "anitaloquita", "anita"));
+        //aerolinea.agregarCliente(new Gold("Ana", "Torres", "P123", "anitaloquita", "anita"));
+        aerolinea.actualizarHashsetSubclases();
+
 
         Scanner scan = new Scanner(System.in);
         boolean cont = true;
