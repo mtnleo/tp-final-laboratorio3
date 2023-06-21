@@ -523,7 +523,9 @@ public class Main {
                                                 c = aerolinea.buscarUsuario(username);
                                                 if(c == null) {
                                                     cUser = false;
+                                                    opcionMenu = 0;
                                                 }
+
                                                 break;
 
                                             case 6:
@@ -550,7 +552,6 @@ public class Main {
                             }
                         }
                     default:
-                        System.out.println("OPCIÓN INVÁLIDA. VUELVA A INTENTAR.");
                         break;
                 }
             } else {
