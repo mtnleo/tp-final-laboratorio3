@@ -9,12 +9,14 @@ public class Cliente {
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
 
-    private String nombre;
-    private String apellido;
-    private String pasaporte;
-    private String nombreDeUsuario;
-    private String contrasena;
-    private final LinkedList<Pasaje> pasajes;
+    protected String nombre;
+    protected String apellido;
+    protected String pasaporte;
+    protected String nombreDeUsuario;
+    protected String contrasena;
+
+    protected double millas;
+    protected final LinkedList<Pasaje> pasajes;
 
     ////////////////////////////////////////////
     // CONSTRUCTORES ----------------------------
@@ -90,6 +92,18 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
+    public void setNombreDeUsuario(String nombreDeUsuario) {
+        this.nombreDeUsuario = nombreDeUsuario;
+    }
+
+    public double getMillas() {
+        return millas;
+    }
+
+    public void setMillas(double millas) {
+        this.millas = millas;
+    }
+
     ////////////////////////////////////////////
     // METODOS ----------------------------
     ////////////////////////////////////////////
@@ -129,5 +143,22 @@ public class Cliente {
     @Override
     public int hashCode() {
         return Objects.hash(nombreDeUsuario, pasaporte);
+    }
+
+    public void verPerfil() {
+        System.out.println("MI PERFIL");
+        System.out.println(nombre + " " + apellido);
+        System.out.println("Pasaporte " + pasaporte);
+        System.out.println("Millas: " + millas);
+
+        if (this instanceof Estandar) {
+            System.out.println("Clase: Estándar");
+        } else if (this instanceof Gold) {
+            System.out.println("Clase: Gold");
+        } else if (this instanceof Platinum) {
+            System.out.println("Clase: Platinum");
+        } else if (this instanceof Black) {
+            System.out.println("Clase: Black");
+        }
     }
 }

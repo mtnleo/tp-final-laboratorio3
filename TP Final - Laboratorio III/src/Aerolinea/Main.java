@@ -12,6 +12,7 @@ public class Main {
         /// AEROLINEA DE PRUEBA
         Aerolinea aerolinea = new Aerolinea("Pepito Airlines");
         aerolinea = Aerolinea.leerJson("Aerolinea.json");
+        aerolinea.agregarCliente(new Gold("Ana", "Torres", "P123", "anitaloquita", "anita"));
 
         Scanner scan = new Scanner(System.in);
         boolean cont = true;
@@ -407,7 +408,6 @@ public class Main {
                                                                         break;
 
                                                                     case 5:
-
                                                                         cFiltrarVuelos = false;
                                                                         cBuscarVuelos = false;
                                                                         break;
@@ -528,7 +528,8 @@ public class Main {
                                                 break;
 
                                             case 5:
-                                                System.out.println("5. Mi perfil");
+                                                Cliente c = aerolinea.buscarUsuario(username);
+                                                c.verPerfil();
                                                 break;
 
                                             case 6:
