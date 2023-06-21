@@ -1,8 +1,5 @@
 package Aerolinea;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.Objects;
+import java.util.*;
 
 public class Cliente {
     ////////////////////////////////////////////
@@ -45,7 +42,7 @@ public class Cliente {
         this.pasajes = new LinkedList<Pasaje>();
     }
 
-    public Cliente(String nombre, String apellido, String pasaporte, LinkedList <Pasaje> pasajes) {
+    public Cliente(String nombre, String apellido, String pasaporte, LinkedList<Pasaje> pasajes) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.pasaporte = pasaporte;
@@ -124,11 +121,11 @@ public class Cliente {
 
     public void mostrarPasajes() {
         int i = 1;
-        for (Pasaje pas: pasajes) {
+        for (Pasaje pas : pasajes) {
             System.out.println("\n========================== PASAJE " + i + " ==========================");
             System.out.println(pas.toString());
             System.out.println("===============================================================");
-            i = i+1;
+            i = i + 1;
         }
     }
 
@@ -146,6 +143,7 @@ public class Cliente {
     }
 
     public void verPerfil() {
+        Scanner scan = new Scanner(System.in);
         System.out.println("MI PERFIL");
         System.out.println(nombre + " " + apellido);
         System.out.println("Pasaporte " + pasaporte);
@@ -159,6 +157,39 @@ public class Cliente {
             System.out.println("Clase: Platinum");
         } else if (this instanceof Black) {
             System.out.println("Clase: Black");
+        }
+
+        System.out.println("1. Cambiar contraseña");
+        System.out.println("2. Eliminar mi cuenta");
+        System.out.println("3. Volver");
+        System.out.print("Ingrese una opción: ");
+        int opcion = scan.nextInt();
+        scan.nextLine();
+
+        switch (opcion) {
+            case 1:
+                boolean cont1 = true;
+                while (cont1) {
+                    System.out.println("Nueva contraseña: ");
+                    String nuevaPass = scan.nextLine();
+                    System.out.println("Confirme nueva contraseña: ");
+                    if (scan.nextLine().equals(nuevaPass)) {
+                        this.contrasena = nuevaPass;
+                        System.out.println("CONTRASEÑA MODIFICADA CON ÉXITO");
+                        cont1 = false;
+                    } else {
+                        System.out.println("Las contraseñas no coinciden. Por favor vuelva a intentar.");
+                    }
+                }
+                break;
+            case 2:
+                ///AAAAAA
+                break;
+            case 3:
+                break;
+            default:
+                System.out.println("Por favor ingrese una opción válida.");
+                break;
         }
     }
 }
