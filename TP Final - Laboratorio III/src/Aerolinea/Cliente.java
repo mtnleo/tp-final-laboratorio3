@@ -23,6 +23,8 @@ public class Cliente {
         this.nombre = cliente.nombre;
         this.apellido = cliente.apellido;
         this.pasaporte = cliente.pasaporte;
+        this.nombreDeUsuario = cliente.nombreDeUsuario;
+        this.contrasena = cliente.contrasena;
         this.millas = cliente.millas;
         this.pasajes = cliente.pasajes;
     }

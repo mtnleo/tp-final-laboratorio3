@@ -31,8 +31,7 @@ public class Main {
                         Cliente clientito = aerolinea.agregarClientePorTeclado(); // lo cargamos
                         try {
                             if (!aerolinea.existeCliente(clientito)) {
-                                aerolinea.agregarCliente(clientito); // ACA CAPAZ QUE HAY QUE AGREGAR LA INICIALIZACION, BUT IDK
-
+                                aerolinea.agregarCliente(new Estandar(clientito)); // ACA CAPAZ QUE HAY QUE AGREGAR LA INICIALIZACION, BUT IDK
                                 aerolinea.cargarJson("Aerolinea.json"); // agregarlo al archivo de una
                             }
                             else {
