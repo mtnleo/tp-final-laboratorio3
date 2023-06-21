@@ -1225,6 +1225,16 @@ public class Aerolinea {
         }
     }
 
+    public Cliente buscarUsuario(String username) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getNombreDeUsuario().equals(username)) {
+                return cliente;
+            }
+        }
+        return null; // No se encontró el usuario
+    }
+
+
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     //       JSON              |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -1277,14 +1287,9 @@ public class Aerolinea {
         return aerolinea;
     }
 
-    public Cliente buscarUsuario(String username) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getNombreDeUsuario().equals(username)) {
-                return cliente;
-            }
-        }
-        return null; // No se encontró el usuario
-    }
+      //////////////////////////////////////////////////
+     // VERIFICAR NIVELES ////////////////////////////
+    ////////////////////////////////////////////////
 
     public void actualizarHashsetSubclases() {
         HashSet<Cliente> setSubclases = new HashSet<Cliente>();
@@ -1337,4 +1342,6 @@ public class Aerolinea {
             }
         }
     }
+
+
 }

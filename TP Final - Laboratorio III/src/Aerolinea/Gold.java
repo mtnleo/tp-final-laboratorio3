@@ -7,7 +7,7 @@ public class Gold extends Cliente implements Socio {
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
-    private int pocentajeDescuento;
+    private final int porcentajeDescuento;
 
     ////////////////////////////////////////////
     // CONSTRUCTORES ----------------------------
@@ -15,22 +15,22 @@ public class Gold extends Cliente implements Socio {
 
     public Gold(Cliente cliente) {
         super(cliente);
-        this.pocentajeDescuento = 5;
+        this.porcentajeDescuento = 5;
     }
 
     public Gold(String nombre, String apellido, String pasaporte) {
         super(nombre, apellido, pasaporte);
-        this.pocentajeDescuento = 5;
+        this.porcentajeDescuento = 5;
     }
 
     public Gold(String nombre, String apellido, String pasaporte, String nombreDeUsuario, String contrasena) {
         super(nombre, apellido, pasaporte, nombreDeUsuario, contrasena);
-        this.pocentajeDescuento = 5;
+        this.porcentajeDescuento = 5;
     }
 
     public Gold(String nombre, String apellido, String pasaporte, LinkedList<Pasaje> pasajes) {
         super(nombre, apellido, pasaporte, pasajes);
-        this.pocentajeDescuento = 5;
+        this.porcentajeDescuento = 5;
     }
 
     ////////////////////////////////////////////
@@ -42,4 +42,11 @@ public class Gold extends Cliente implements Socio {
     ////////////////////////////////////////////
     // METODOS ----------------------------
     ////////////////////////////////////////////
+
+    public void mostrarBenificiosSocio() {
+        System.out.println("---------- SOCIO -----------");
+        System.out.println("Nivel: Gold");
+        System.out.println("Descuento en pasajes: " + porcentajeDescuento + "%");
+        System.out.println("Millas hasta el proximo nivel: " + (5000 - getMillas()));
+    }
 }

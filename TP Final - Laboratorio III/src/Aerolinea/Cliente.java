@@ -198,4 +198,20 @@ public class Cliente {
                 break;
         }
     }
+
+    public void mostrarInterfazSocio() {
+        if (this instanceof Estandar) {
+            System.out.println("Todavia no es socio.\nSiga sumando millas para acceder a descuentos exclusivos!");
+            System.out.println("Millas hasta el proximo nivel: " + (2500 - millas));
+        }
+        else if (this instanceof Gold) {
+            ((Gold) this).mostrarBenificiosSocio();
+        }
+        else if (this instanceof Platinum) {
+            ((Platinum) this).mostrarBenificiosSocio();
+        }
+        else {
+            ((Black) this).mostrarBenificiosSocio();
+        }
+    }
 }

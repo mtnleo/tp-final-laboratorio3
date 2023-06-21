@@ -523,6 +523,9 @@ public class Main {
 
                                             case 6:
                                                 System.out.println("6. Socios");
+
+                                                usuario.mostrarInterfazSocio();
+
                                                 break;
 
                                             case 7:

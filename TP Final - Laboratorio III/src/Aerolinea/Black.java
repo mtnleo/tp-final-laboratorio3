@@ -7,7 +7,7 @@ public class Black extends Cliente implements Socio {
     ////////////////////////////////////////////
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
-    private int porcentajeDescuento;
+    private final int porcentajeDescuento;
 
     ////////////////////////////////////////////
     // CONSTRUCTORES ----------------------------
@@ -43,4 +43,12 @@ public class Black extends Cliente implements Socio {
     ////////////////////////////////////////////
     // METODOS ----------------------------
     ////////////////////////////////////////////
+
+    public void mostrarBenificiosSocio() {
+        System.out.println("---------- SOCIO -----------");
+        System.out.println("Nivel: Black");
+        System.out.println("Descuento en pasajes: " + porcentajeDescuento + "%");
+        System.out.println("Felicitaciones! Estas en el nivel mas alto de todos");
+    }
+
 }
