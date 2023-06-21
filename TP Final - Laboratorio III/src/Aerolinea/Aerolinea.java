@@ -1343,5 +1343,55 @@ public class Aerolinea {
         }
     }
 
+    public void verPerfil(Cliente cliente) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("------------------ MI PERFIL ------------------");
+        System.out.println(cliente.getNombre() + " " + cliente.getApellido());
+        System.out.println("Pasaporte: " + cliente.getPasaporte());
+        System.out.println("Millas: " + cliente.getMillas());
 
+        if (cliente instanceof Estandar) {
+            System.out.println("Clase: Estándar");
+        } else if (cliente instanceof Gold) {
+            System.out.println("Clase: Gold");
+        } else if (cliente instanceof Platinum) {
+            System.out.println("Clase: Platinum");
+        } else if (cliente instanceof Black) {
+            System.out.println("Clase: Black");
+        }
+
+        System.out.println("1. Cambiar contraseña");
+        System.out.println("2. Eliminar mi cuenta");
+        System.out.println("3. Volver");
+        System.out.print("Ingrese una opción: ");
+        int opcion = scan.nextInt();
+        scan.nextLine();
+
+        switch (opcion) {
+            case 1:
+                boolean cont1 = true;
+                while (cont1) {
+                    System.out.println("Nueva contraseña: ");
+                    String nuevaPass = scan.nextLine();
+                    System.out.println("Confirme nueva contraseña: ");
+                    if (scan.nextLine().equals(nuevaPass)) {
+                        cliente.setContrasena(nuevaPass);
+                        System.out.println("CONTRASEÑA MODIFICADA CON ÉXITO");
+                        cont1 = false;
+                    } else {
+                        System.out.println("Las contraseñas no coinciden. Por favor vuelva a intentar.");
+                    }
+                }
+                break;
+            case 2:
+                clientes.remove(cliente);
+                System.out.println("Usuario eliminado");
+                break;
+            case 3:
+                break;
+            default:
+                System.out.println("Por favor ingrese una opción válida.");
+                break;
+        }
+    }
 }

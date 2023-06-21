@@ -148,57 +148,6 @@ public class Cliente {
         return Objects.hash(nombreDeUsuario, pasaporte);
     }
 
-    public void verPerfil() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("------------------ MI PERFIL ------------------");
-        System.out.println(nombre + " " + apellido);
-        System.out.println("Pasaporte: " + pasaporte);
-        System.out.println("Millas: " + millas);
-
-        if (this instanceof Estandar) {
-            System.out.println("Clase: Estándar");
-        } else if (this instanceof Gold) {
-            System.out.println("Clase: Gold");
-        } else if (this instanceof Platinum) {
-            System.out.println("Clase: Platinum");
-        } else if (this instanceof Black) {
-            System.out.println("Clase: Black");
-        }
-
-        System.out.println("1. Cambiar contraseña");
-        System.out.println("2. Eliminar mi cuenta");
-        System.out.println("3. Volver");
-        System.out.print("Ingrese una opción: ");
-        int opcion = scan.nextInt();
-        scan.nextLine();
-
-        switch (opcion) {
-            case 1:
-                boolean cont1 = true;
-                while (cont1) {
-                    System.out.println("Nueva contraseña: ");
-                    String nuevaPass = scan.nextLine();
-                    System.out.println("Confirme nueva contraseña: ");
-                    if (scan.nextLine().equals(nuevaPass)) {
-                        this.contrasena = nuevaPass;
-                        System.out.println("CONTRASEÑA MODIFICADA CON ÉXITO");
-                        cont1 = false;
-                    } else {
-                        System.out.println("Las contraseñas no coinciden. Por favor vuelva a intentar.");
-                    }
-                }
-                break;
-            case 2:
-                ///AAAAAA
-                break;
-            case 3:
-                break;
-            default:
-                System.out.println("Por favor ingrese una opción válida.");
-                break;
-        }
-    }
-
     public void mostrarInterfazSocio() {
         if (this instanceof Estandar) {
             System.out.println("Todavia no es socio.\nSiga sumando millas para acceder a descuentos exclusivos!");

@@ -1,4 +1,5 @@
 package Aerolinea;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -518,14 +519,15 @@ public class Main {
 
                                             case 5:
                                                 Cliente c = aerolinea.buscarUsuario(username);
-                                                c.verPerfil();
+                                                aerolinea.verPerfil(c);
+                                                c = aerolinea.buscarUsuario(username);
+                                                if(c == null) {
+                                                    cUser = false;
+                                                }
                                                 break;
 
                                             case 6:
-                                                System.out.println("6. Socios");
-
                                                 usuario.mostrarInterfazSocio();
-
                                                 break;
 
                                             case 7:
