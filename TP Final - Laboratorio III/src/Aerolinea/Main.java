@@ -31,7 +31,7 @@ public class Main {
                         Cliente clientito = aerolinea.agregarClientePorTeclado(); // lo cargamos
                         try {
                             if (!aerolinea.existeCliente(clientito)) {
-                                aerolinea.agregarCliente(clientito);
+                                aerolinea.agregarCliente(clientito); // ACA CAPAZ QUE HAY QUE AGREGAR LA INICIALIZACION, BUT IDK
 
                                 aerolinea.cargarJson("Aerolinea.json"); // agregarlo al archivo de una
                             }
@@ -469,6 +469,8 @@ public class Main {
 
                                                                         Pasaje pasajeNuevo = new Pasaje(vueloToComprar, usuario.getPasaporte(), vueloToComprar.getPrecio() + (70 * cantidadValijas), cantidadValijas, asientoAsignado, vueloToComprar.getSalida());
                                                                         usuario.agregarPasajeCliente(pasajeNuevo);
+
+                                                                        usuario.setMillas(usuario.getMillas() + vueloToComprar.getAvion().getDistancia() * .05); // SE SUMAN MILLAS + 5% DE LAS DEL VUELO
 
                                                                         vueloToComprar.setPasajesVendidos(vueloToComprar.getPasajesVendidos() + 1);
 

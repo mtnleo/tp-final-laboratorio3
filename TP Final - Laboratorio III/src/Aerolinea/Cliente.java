@@ -6,14 +6,14 @@ public class Cliente {
     // ATRIBUTOS ----------------------------
     ////////////////////////////////////////////
 
-    protected String nombre;
-    protected String apellido;
-    protected String pasaporte;
-    protected String nombreDeUsuario;
-    protected String contrasena;
+    private String nombre;
+    private String apellido;
+    private String pasaporte;
+    private String nombreDeUsuario;
+    private String contrasena;
 
-    protected double millas;
-    protected final LinkedList<Pasaje> pasajes;
+    private double millas;
+    private final LinkedList<Pasaje> pasajes;
 
     ////////////////////////////////////////////
     // CONSTRUCTORES ----------------------------
@@ -23,6 +23,7 @@ public class Cliente {
         this.nombre = cliente.nombre;
         this.apellido = cliente.apellido;
         this.pasaporte = cliente.pasaporte;
+        this.millas = cliente.millas;
         this.pasajes = cliente.pasajes;
     }
 
@@ -30,6 +31,7 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
         this.pasaporte = pasaporte;
+        this.millas = 0;
         this.pasajes = new LinkedList<Pasaje>();
     }
 
@@ -39,6 +41,7 @@ public class Cliente {
         this.pasaporte = pasaporte;
         this.nombreDeUsuario = nombreDeUsuario;
         this.contrasena = contrasena;
+        this.millas = 0;
         this.pasajes = new LinkedList<Pasaje>();
     }
 
@@ -46,6 +49,7 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
         this.pasaporte = pasaporte;
+        this.millas = 0;
         this.pasajes = pasajes;
     }
 
@@ -144,9 +148,9 @@ public class Cliente {
 
     public void verPerfil() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("MI PERFIL");
+        System.out.println("------------------ MI PERFIL ------------------");
         System.out.println(nombre + " " + apellido);
-        System.out.println("Pasaporte " + pasaporte);
+        System.out.println("Pasaporte: " + pasaporte);
         System.out.println("Millas: " + millas);
 
         if (this instanceof Estandar) {
