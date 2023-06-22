@@ -54,400 +54,6 @@ public class Aerolinea {
     // METODOS ----------------------------
     ////////////////////////////////////////////
 
-    // funcion provisorioa para probar agregarVuelos
-    public void addVuelosHC() {
-//        Aeropuerto nuevayork = new Aeropuerto("JFK", "Nueva York", "Estados Unidos");
-//        Aeropuerto londres = new Aeropuerto("LHR", "Londres", "Reino Unido");
-//        Aeropuerto paris = new Aeropuerto("CDG", "Paris", "Francia");
-//        Aeropuerto tokio = new Aeropuerto("HND", "Tokio", "Japon");
-//        Aeropuerto sydney = new Aeropuerto("SYD", "Sydney", "Australia");
-//        Aeropuerto dubai = new Aeropuerto("DXB", "Dubai", "Emiratos Arabes Unidos");
-//        Aeropuerto sanfrancisco = new Aeropuerto("SFO", "San Francisco", "Estados Unidos");
-//        Aeropuerto frankfurt = new Aeropuerto("FRA", "Frankfurt", "Alemania");
-//        Aeropuerto seul = new Aeropuerto("ICN", "Seul", "Corea del Sur");
-//        Aeropuerto ciudadmexico = new Aeropuerto("MEX", "Ciudad de Mexico", "Mexico");
-//        Aeropuerto buenosaires = new Aeropuerto("EZE", "Buenos Aires", "Argentina");
-//
-//        aeropuertos.add(nuevayork);
-//        aeropuertos.add(londres);
-//        aeropuertos.add(paris);
-//        aeropuertos.add(tokio);
-//        aeropuertos.add(sydney);
-//        aeropuertos.add(dubai);
-//        aeropuertos.add(sanfrancisco);
-//        aeropuertos.add(frankfurt);
-//        aeropuertos.add(seul);
-//        aeropuertos.add(ciudadmexico);
-//        aeropuertos.add(buenosaires);
-//
-        Avion boeing747 = new Avion("A001", "Boeing 747", 2000.0, 150);
-        Avion privado1 = new Avion("B002", "Cessna Citation X", 3000.0, 8);
-        Avion aribusA380 = new Avion("C003", "Airbus A380", 8000.0, 550);
-        Avion privado2 = new Avion("D004", "Gulfstream G650", 7000.0, 14);
-        Avion boeing787 = new Avion("E005", "Boeing 787", 11000.0, 300);
-        Avion privado3 = new Avion("F006", "Bombardier Global 6000", 6000.0, 12);
-
-        aviones.add(boeing747);
-        aviones.add(privado1);
-        aviones.add(aribusA380);
-        aviones.add(privado2);
-        aviones.add(boeing787);
-        aviones.add(privado3);
-    }
-//
-//        LocalDateTime fecha1 = LocalDateTime.of(2023, 7, 1, 8, 0);
-//        LocalDateTime fecha2 = LocalDateTime.of(2023, 7, 2, 12, 30);
-//        LocalDateTime fecha3 = LocalDateTime.of(2023, 7, 3, 16, 45);
-//        LocalDateTime fecha4 = LocalDateTime.of(2023, 7, 4, 9, 15);
-//        LocalDateTime fecha5 = LocalDateTime.of(2023, 7, 5, 14, 0);
-//        LocalDateTime fecha6 = LocalDateTime.of(2023, 7, 6, 19, 30);
-//        LocalDateTime fecha7 = LocalDateTime.of(2023, 7, 7, 8, 0);
-//        LocalDateTime fecha8 = LocalDateTime.of(2023, 7, 9, 12, 30);
-//        LocalDateTime fecha9 = LocalDateTime.of(2023, 7, 10, 16, 45);
-//        LocalDateTime fecha10 = LocalDateTime.of(2023, 7, 11, 9, 15);
-//        LocalDateTime fecha11 = LocalDateTime.of(2023, 7, 12, 14, 0);
-//        LocalDateTime fecha12 = LocalDateTime.of(2023, 7, 13, 19, 30);
-//        LocalDateTime fecha13 = LocalDateTime.of(2023, 7, 14, 8, 0);
-//        LocalDateTime fecha14 = LocalDateTime.of(2023, 7, 16, 12, 30);
-//        LocalDateTime fecha15 = LocalDateTime.of(2023, 7, 17, 16, 45);
-//        LocalDateTime fecha16 = LocalDateTime.of(2023, 7, 18, 9, 15);
-//        LocalDateTime fecha17 = LocalDateTime.of(2023, 7, 19, 14, 0);
-//        LocalDateTime fecha18 = LocalDateTime.of(2023, 7, 20, 19, 30);
-//        LocalDateTime fecha19 = LocalDateTime.of(2023, 7, 21, 8, 0);
-//        LocalDateTime fecha20 = LocalDateTime.of(2023, 7, 23, 12, 30);
-//        LocalDateTime fecha21 = LocalDateTime.of(2023, 7, 24, 16, 45);
-//        LocalDateTime fecha22 = LocalDateTime.of(2023, 7, 25, 9, 15);
-//        LocalDateTime fecha23 = LocalDateTime.of(2023, 7, 26, 14, 0);
-//        LocalDateTime fecha24 = LocalDateTime.of(2023, 7, 27, 19, 30);
-//        LocalDateTime fecha25 = LocalDateTime.of(2023, 7, 29, 8, 0);
-//        LocalDateTime fecha26 = LocalDateTime.of(2023, 7, 30, 12, 30);
-//        LocalDateTime fecha27 = LocalDateTime.of(2023, 7, 31, 16, 45);
-//
-//        LocalDateTime fecha28 = LocalDateTime.of(2023, 8, 1, 9, 15);
-//        LocalDateTime fecha29 = LocalDateTime.of(2023, 8, 2, 14, 0);
-//        LocalDateTime fecha30 = LocalDateTime.of(2023, 8, 3, 19, 30);
-//        LocalDateTime fecha31 = LocalDateTime.of(2023, 8, 4, 8, 0);
-//        LocalDateTime fecha32 = LocalDateTime.of(2023, 8, 5, 12, 30);
-//        LocalDateTime fecha33 = LocalDateTime.of(2023, 8, 6, 16, 45);
-//        LocalDateTime fecha34 = LocalDateTime.of(2023, 8, 7, 9, 15);
-//        LocalDateTime fecha35 = LocalDateTime.of(2023, 8, 8, 14, 0);
-//        LocalDateTime fecha36 = LocalDateTime.of(2023, 8, 9, 19, 30);
-//        LocalDateTime fecha37 = LocalDateTime.of(2023, 8, 10, 8, 0);
-//        LocalDateTime fecha38 = LocalDateTime.of(2023, 8, 11, 12, 30);
-//        LocalDateTime fecha39 = LocalDateTime.of(2023, 8, 12, 18, 0);
-//        LocalDateTime fecha40 = LocalDateTime.of(2023, 8, 13, 9, 15);
-//        LocalDateTime fecha41 = LocalDateTime.of(2023, 8, 14, 14, 0);
-//        LocalDateTime fecha42 = LocalDateTime.of(2023, 8, 15, 19, 30);
-//        LocalDateTime fecha43 = LocalDateTime.of(2023, 8, 16, 8, 0);
-//        LocalDateTime fecha44 = LocalDateTime.of(2023, 8, 17, 12, 30);
-//        LocalDateTime fecha45 = LocalDateTime.of(2023, 8, 18, 16, 45);
-//        LocalDateTime fecha46 = LocalDateTime.of(2023, 8, 19, 9, 15);
-//        LocalDateTime fecha47 = LocalDateTime.of(2023, 8, 20, 14, 0);
-//        LocalDateTime fecha48 = LocalDateTime.of(2023, 8, 21, 19, 30);
-//        LocalDateTime fecha49 = LocalDateTime.of(2023, 8, 22, 8, 0);
-//        LocalDateTime fecha50 = LocalDateTime.of(2023, 8, 23, 12, 30);
-//        LocalDateTime fecha51 = LocalDateTime.of(2023, 8, 24, 16, 45);
-//        LocalDateTime fecha52 = LocalDateTime.of(2023, 8, 25, 9, 15);
-//        LocalDateTime fecha53 = LocalDateTime.of(2023, 8, 26, 14, 0);
-//        LocalDateTime fecha54 = LocalDateTime.of(2023, 8, 27, 19, 30);
-//        LocalDateTime fecha55 = LocalDateTime.of(2023, 8, 28, 8, 0);
-//        LocalDateTime fecha56 = LocalDateTime.of(2023, 8, 29, 12, 30);
-//        LocalDateTime fecha57 = LocalDateTime.of(2023, 8, 30, 16, 45);
-//        LocalDateTime fecha58 = LocalDateTime.of(2023, 8, 31, 9, 15);
-//
-//        // Vuelos del 1 de julio de 2023
-//        Vuelo vuelo1julio1 = new Vuelo("NJ001", 500.0, nuevayork, londres, 5500.0, boeing747, fecha1, 7.0);
-//        Vuelo vuelo1julio2 = new Vuelo("LN001", 800.0, londres, nuevayork, 5500.0, privado1, fecha2, 6.0);
-//
-//// Vuelos del 2 de julio de 2023
-//        Vuelo vuelo2julio1 = new Vuelo("NP002", 1500.0, nuevayork, paris, 5800.0, aribusA380, fecha3, 9.0);
-//        Vuelo vuelo2julio2 = new Vuelo("PN002", 1200.0, paris, nuevayork, 5800.0, privado2, fecha4, 8.5);
-//
-//// Vuelos del 3 de julio de 2023
-//        Vuelo vuelo3julio1 = new Vuelo("NS003", 1800.0, nuevayork, sydney, 16000.0, boeing787, fecha5, 19.0);
-//        Vuelo vuelo3julio2 = new Vuelo("SN003", 2100.0, sydney, nuevayork, 16000.0, privado3, fecha6, 18.5);
-//
-//// Vuelos del 4 de julio de 2023
-//        Vuelo vuelo4julio1 = new Vuelo("PL004", 1200.0, paris, londres, 344.0, privado1, fecha7, 1.0);
-//        Vuelo vuelo4julio2 = new Vuelo("LP004", 1400.0, londres, paris, 344.0, boeing747, fecha8, 1.5);
-//
-//// Vuelos del 5 de julio de 2023
-//        Vuelo vuelo5julio1 = new Vuelo("TP005", 900.0, tokio, paris, 9600.0, privado2, fecha9, 12.0);
-//        Vuelo vuelo5julio2 = new Vuelo("PT005", 1100.0, paris, tokio, 9600.0, aribusA380, fecha10, 11.5);
-//
-//// Vuelos del 6 de julio de 2023
-//        Vuelo vuelo6julio1 = new Vuelo("SD006", 600.0, sydney, dubai, 12000.0, boeing787, fecha11, 15.0);
-//        Vuelo vuelo6julio2 = new Vuelo("DS006", 800.0, dubai, sydney, 12000.0, privado3, fecha12, 14.5);
-//
-//// Vuelos del 7 de julio de 2023
-//        Vuelo vuelo7julio1 = new Vuelo("SF007", 700.0, sydney, frankfurt, 16500.0, privado1, fecha13, 18.0);
-//        Vuelo vuelo7julio2 = new Vuelo("FS007", 900.0, frankfurt, sydney, 16500.0, boeing787, fecha14, 17.5);
-//
-//        // Vuelos del 8 de julio de 2023
-//        Vuelo vuelo8julio1 = new Vuelo("FL008", 800.0, frankfurt, londres, 344.0, aribusA380, fecha15, 2.0);
-//        Vuelo vuelo8julio2 = new Vuelo("LF008", 1000.0, londres, frankfurt, 344.0, privado2, fecha16, 1.5);
-//
-//// Vuelos del 9 de julio de 2023
-//        Vuelo vuelo9julio1 = new Vuelo("PN009", 1300.0, paris, nuevayork, 5500.0, privado3, fecha17, 7.0);
-//        Vuelo vuelo9julio2 = new Vuelo("NP009", 1600.0, nuevayork, paris, 5500.0, boeing747, fecha18, 6.5);
-//
-//// Vuelos del 10 de julio de 2023
-//        Vuelo vuelo10julio1 = new Vuelo("DT010", 600.0, dubai, tokio, 9600.0, boeing787, fecha19, 12.0);
-//        Vuelo vuelo10julio2 = new Vuelo("TD010", 800.0, tokio, dubai, 9600.0, privado1, fecha20, 11.5);
-//
-//// Vuelos del 11 de julio de 2023
-//        Vuelo vuelo11julio1 = new Vuelo("LS011", 700.0, londres, sydney, 16000.0, privado2, fecha21, 17.0);
-//        Vuelo vuelo11julio2 = new Vuelo("SL011", 900.0, sydney, londres, 16000.0, boeing747, fecha22, 16.5);
-//
-//// Vuelos del 12 de julio de 2023
-//        Vuelo vuelo12julio1 = new Vuelo("FT012", 1000.0, frankfurt, tokio, 12000.0, aribusA380, fecha23, 14.0);
-//        Vuelo vuelo12julio2 = new Vuelo("TF012", 1200.0, tokio, frankfurt, 12000.0, privado3, fecha24, 13.5);
-//
-//// Vuelos del 13 de julio de 2023
-//        Vuelo vuelo13julio1 = new Vuelo("PT013", 800.0, paris, tokio, 9600.0, privado1, fecha25, 11.0);
-//        Vuelo vuelo13julio2 = new Vuelo("TP013", 1000.0, tokio, paris, 9600.0, boeing787, fecha26, 10.5);
-//
-//// Vuelos del 14 de julio de 2023
-//        Vuelo vuelo14julio1 = new Vuelo("SD014", 900.0, sydney, dubai, 12000.0, boeing747, fecha27, 16.0);
-//        Vuelo vuelo14julio2 = new Vuelo("DS014", 1100.0, dubai, sydney, 12000.0, privado2, fecha28, 15.5);
-//// Vuelos del 15 de julio de 2023
-//        Vuelo vuelo15julio1 = new Vuelo("LF015", 800.0, londres, frankfurt, 344.0, aribusA380, fecha29, 2.0);
-//        Vuelo vuelo15julio2 = new Vuelo("FL015", 1000.0, frankfurt, londres, 344.0, privado3, fecha30, 1.5);
-//
-//// Vuelos del 16 de julio de 2023
-//        Vuelo vuelo16julio1 = new Vuelo("PN016", 1300.0, paris, nuevayork, 5500.0, privado1, fecha31, 7.0);
-//        Vuelo vuelo16julio2 = new Vuelo("NP016", 1600.0, nuevayork, paris, 5500.0, boeing747, fecha32, 6.5);
-//
-//// Vuelos del 17 de julio de 2023
-//        Vuelo vuelo17julio1 = new Vuelo("DT017", 600.0, dubai, tokio, 9600.0, boeing787, fecha33, 12.0);
-//        Vuelo vuelo17julio2 = new Vuelo("TD017", 800.0, tokio, dubai, 9600.0, privado2, fecha34, 11.5);
-//
-//// Vuelos del 18 de julio de 2023
-//        Vuelo vuelo18julio1 = new Vuelo("LS018", 700.0, londres, sydney, 16000.0, privado3, fecha35, 17.0);
-//        Vuelo vuelo18julio2 = new Vuelo("SL018", 900.0, sydney, londres, 16000.0, boeing747, fecha36, 16.5);
-//
-//// Vuelos del 19 de julio de 2023
-//        Vuelo vuelo19julio1 = new Vuelo("FT019", 1000.0, frankfurt, tokio, 12000.0, aribusA380, fecha37, 14.0);
-//        Vuelo vuelo19julio2 = new Vuelo("TF019", 1200.0, tokio, frankfurt, 12000.0, privado1, fecha38, 13.5);
-//
-//// Vuelos del 20 de julio de 2023
-//        Vuelo vuelo20julio1 = new Vuelo("PT020", 800.0, paris, tokio, 9600.0, privado2, fecha39, 11.0);
-//        Vuelo vuelo20julio2 = new Vuelo("TP020", 1000.0, tokio, paris, 9600.0, boeing787, fecha40, 10.5);
-//
-//// Vuelos del 21 de julio de 2023
-//        Vuelo vuelo21julio1 = new Vuelo("SD021", 900.0, sydney, dubai, 12000.0, boeing747, fecha41, 16.0);
-//        Vuelo vuelo21julio2 = new Vuelo("DS021", 1100.0, dubai, sydney, 12000.0, privado3, fecha42, 15.5);
-//
-//// Vuelos del 22 de julio de 2023
-//        Vuelo vuelo22julio1 = new Vuelo("LF022", 800.0, londres, frankfurt, 344.0, aribusA380, fecha43, 2.0);
-//        Vuelo vuelo22julio2 = new Vuelo("FL022", 1000.0, frankfurt, londres, 344.0, privado1, fecha44, 1.5);
-//// Vuelos del 23 de julio de 2023
-//        Vuelo vuelo23julio1 = new Vuelo("PS023", 700.0, paris, sydney, 16000.0, privado2, fecha45, 17.0);
-//        Vuelo vuelo23julio2 = new Vuelo("SP023", 900.0, sydney, paris, 16000.0, boeing787, fecha46, 16.5);
-//
-//// Vuelos del 24 de julio de 2023
-//        Vuelo vuelo24julio1 = new Vuelo("DT024", 1000.0, dubai, tokio, 9600.0, aribusA380, fecha47, 12.0);
-//        Vuelo vuelo24julio2 = new Vuelo("TD024", 1200.0, tokio, dubai, 9600.0, privado3, fecha48, 11.5);
-//
-//// Vuelos del 25 de julio de 2023
-//        Vuelo vuelo25julio1 = new Vuelo("FP025", 800.0, frankfurt, paris, 344.0, privado1, fecha49, 2.0);
-//        Vuelo vuelo25julio2 = new Vuelo("PF025", 1000.0, paris, frankfurt, 344.0, boeing747, fecha50, 1.5);
-//
-//// Vuelos del 26 de julio de 2023
-//        Vuelo vuelo26julio1 = new Vuelo("LS026", 1300.0, londres, sydney, 16000.0, boeing787, fecha51, 17.0);
-//        Vuelo vuelo26julio2 = new Vuelo("SL026", 1600.0, sydney, londres, 16000.0, privado2, fecha52, 16.5);
-//
-//// Vuelos del 27 de julio de 2023
-//        Vuelo vuelo27julio1 = new Vuelo("NP027", 1000.0, nuevayork, paris, 5500.0, aribusA380, fecha53, 7.0);
-//        Vuelo vuelo27julio2 = new Vuelo("PN027", 1200.0, paris, nuevayork, 5500.0, privado3, fecha54, 6.5);
-//
-//// Vuelos del 28 de julio de 2023
-//        Vuelo vuelo28julio1 = new Vuelo("SD028", 600.0, sydney, dubai, 12000.0, privado1, fecha55, 16.0);
-//        Vuelo vuelo28julio2 = new Vuelo("DS028", 800.0, dubai, sydney, 12000.0, boeing747, fecha56, 15.5);
-//
-//// Vuelos del 29 de julio de 2023
-//        Vuelo vuelo29julio1 = new Vuelo("TF029", 800.0, tokio, frankfurt, 12000.0, privado2, fecha57, 14.0);
-//        Vuelo vuelo29julio2 = new Vuelo("FT029", 1000.0, frankfurt, tokio, 12000.0, aribusA380, fecha58, 13.5);
-//
-//        Vuelo vuelo30julio1 = new Vuelo("BN030", 600.0, buenosaires, nuevayork, 5800.0, boeing787, fecha51, 10.0);
-//        Vuelo vuelo30julio2 = new Vuelo("NB030", 800.0, nuevayork, buenosaires, 5800.0, privado1, fecha31, 9.5);
-//
-//        Vuelo vuelo31julio1 = new Vuelo("LP031", 500.0, londres, paris, 344.0, privado2, fecha1, 2.0);
-//        Vuelo vuelo31julio2 = new Vuelo("PL031", 700.0, paris, londres, 344.0, boeing747, fecha2, 1.5);
-//
-//        Vuelo vuelo1agosto1 = new Vuelo("TB801", 1200.0, tokio, buenosaires, 19000.0, aribusA380, fecha23, 20.0);
-//        Vuelo vuelo1agosto2 = new Vuelo("BT801", 1400.0, buenosaires, tokio, 19000.0, privado3, fecha4, 19.5);
-//
-//        Vuelo vuelo2agosto1 = new Vuelo("SF802", 900.0, sanfrancisco, frankfurt, 9200.0, privado1, fecha15, 11.0);
-//        Vuelo vuelo2agosto2 = new Vuelo("FS802", 1100.0, frankfurt, sanfrancisco, 9200.0, boeing747, fecha6, 10.5);
-//
-//        Vuelo vuelo3agosto1 = new Vuelo("SM803", 1300.0, seul, ciudadmexico, 18000.0, aribusA380, fecha37, 14.0);
-//        Vuelo vuelo3agosto2 = new Vuelo("MS803", 1500.0, ciudadmexico, seul, 18000.0, privado2, fecha28, 13.5);
-//
-//        Vuelo vuelo4agosto1 = new Vuelo("DB804", 800.0, dubai, buenosaires, 13000.0, privado3, fecha6, 15.0);
-//        Vuelo vuelo4agosto2 = new Vuelo("BD804", 1000.0, buenosaires, dubai, 13000.0, boeing787, fecha55, 14.5);
-//
-//        Vuelo vuelo5agosto1 = new Vuelo("TS805", 700.0, tokio, seul, 8600.0, boeing787, fecha11, 9.0);
-//        Vuelo vuelo5agosto2 = new Vuelo("ST805", 900.0, seul, tokio, 8600.0, privado1, fecha22, 8.5);
-//
-//        Vuelo vuelo6agosto1 = new Vuelo("SN806", 1000.0, sydney, nuevayork, 16000.0, privado2, fecha32, 17.0);
-//        Vuelo vuelo6agosto2 = new Vuelo("NS806", 1200.0, nuevayork, sydney, 16000.0, aribusA380, fecha14, 16.5);
-//
-//// Vuelos del 10 de agosto de 2023
-//        Vuelo vuelo10agosto1 = new Vuelo("BM810", 800.0, buenosaires, ciudadmexico, 5500.0, boeing787, fecha15, 10.0);
-//        Vuelo vuelo10agosto2 = new Vuelo("MB810", 1000.0, ciudadmexico, buenosaires, 5500.0, privado1, fecha33, 9.5);
-//
-//// Vuelos del 15 de agosto de 2023
-//        Vuelo vuelo15agosto1 = new Vuelo("CS815", 600.0, ciudadmexico, seul, 12000.0, privado2, fecha12, 12.0);
-//        Vuelo vuelo15agosto2 = new Vuelo("SC815", 800.0, seul, ciudadmexico, 12000.0, aribusA380, fecha18, 11.5);
-//
-//// Vuelos del 20 de agosto de 2023
-//        Vuelo vuelo20agosto1 = new Vuelo("BS820", 900.0, buenosaires, seul, 19000.0, privado3, fecha8, 15.0);
-//        Vuelo vuelo20agosto2 = new Vuelo("SB820", 1100.0, seul, buenosaires, 19000.0, boeing747, fecha34, 14.5);
-//
-//// Vuelos del 25 de agosto de 2023
-//        Vuelo vuelo25agosto1 = new Vuelo("CM825", 1200.0, ciudadmexico, londres, 9000.0, boeing787, fecha32, 16.0);
-//        Vuelo vuelo25agosto2 = new Vuelo("MC825", 1400.0, londres, ciudadmexico, 9000.0, privado1, fecha43, 15.5);
-//
-//// Vuelos del 30 de agosto de 2023
-//        Vuelo vuelo30agosto1 = new Vuelo("BS830", 700.0, buenosaires, sanfrancisco, 12000.0, privado2, fecha23, 11.0);
-//        Vuelo vuelo30agosto2 = new Vuelo("SB830", 900.0, sanfrancisco, buenosaires, 12000.0, aribusA380, fecha13, 10.5);
-//
-//// Vuelos del 5 de septiembre de 2023
-//        Vuelo vuelo5septiembre1 = new Vuelo("CS905", 800.0, ciudadmexico, sydney, 16000.0, aribusA380, fecha14, 14.0);
-//        Vuelo vuelo5septiembre2 = new Vuelo("SC905", 1000.0, sydney, ciudadmexico, 16000.0, privado3, fecha56, 13.5);
-//
-//// Vuelos del 10 de septiembre de 2023
-//        Vuelo vuelo10septiembre1 = new Vuelo("SL910", 1300.0, seul, londres, 10000.0, privado1, fecha57, 15.0);
-//        Vuelo vuelo10septiembre2 = new Vuelo("LS910", 1500.0, londres, seul, 10000.0, boeing787, fecha8, 14.5);
-//
-//        // Vuelos del 1 de julio de 2023
-//        agregarVuelo(vuelo1julio1);
-//        agregarVuelo(vuelo1julio2);
-//
-//// Vuelos del 2 de julio de 2023
-//        agregarVuelo(vuelo2julio1);
-//        agregarVuelo(vuelo2julio2);
-//
-//// Vuelos del 3 de julio de 2023
-//        agregarVuelo(vuelo3julio1);
-//        agregarVuelo(vuelo3julio2);
-//
-//// Vuelos del 4 de julio de 2023
-//        agregarVuelo(vuelo4julio1);
-//        agregarVuelo(vuelo4julio2);
-//
-//// Vuelos del 5 de julio de 2023
-//        agregarVuelo(vuelo5julio1);
-//        agregarVuelo(vuelo5julio2);
-//
-//// Vuelos del 6 de julio de 2023
-//        agregarVuelo(vuelo6julio1);
-//        agregarVuelo(vuelo6julio2);
-//
-//// Vuelos del 7 de julio de 2023
-//        agregarVuelo(vuelo7julio1);
-//        agregarVuelo(vuelo7julio2);
-//
-//// Vuelos del 8 de julio de 2023
-//        agregarVuelo(vuelo8julio1);
-//        agregarVuelo(vuelo8julio2);
-//
-//// Vuelos del 9 de julio de 2023
-//        agregarVuelo(vuelo9julio1);
-//        agregarVuelo(vuelo9julio2);
-//
-//// Vuelos del 10 de julio de 2023
-//        agregarVuelo(vuelo10julio1);
-//        agregarVuelo(vuelo10julio2);
-//
-//// Vuelos del 11 de julio de 2023
-//        agregarVuelo(vuelo11julio1);
-//        agregarVuelo(vuelo11julio2);
-//
-//// Vuelos del 12 de julio de 2023
-//        agregarVuelo(vuelo12julio1);
-//        agregarVuelo(vuelo12julio2);
-//
-//// Vuelos del 13 de julio de 2023
-//        agregarVuelo(vuelo13julio1);
-//        agregarVuelo(vuelo13julio2);
-//
-//// Vuelos del 14 de julio de 2023
-//        agregarVuelo(vuelo14julio1);
-//        agregarVuelo(vuelo14julio2);
-//
-//// Vuelos del 15 de julio de 2023
-//        agregarVuelo(vuelo15julio1);
-//        agregarVuelo(vuelo15julio2);
-//
-//// Vuelos del 16 de julio de 2023
-//        agregarVuelo(vuelo16julio1);
-//        agregarVuelo(vuelo16julio2);
-//
-//// Vuelos del 17 de julio de 2023
-//        agregarVuelo(vuelo17julio1);
-//        agregarVuelo(vuelo17julio2);
-//
-//        agregarVuelo(vuelo18julio1);
-//        agregarVuelo(vuelo18julio2);
-//        agregarVuelo(vuelo19julio1);
-//        agregarVuelo(vuelo19julio2);
-//        agregarVuelo(vuelo20julio1);
-//        agregarVuelo(vuelo20julio2);
-//        agregarVuelo(vuelo21julio1);
-//        agregarVuelo(vuelo21julio2);
-//        agregarVuelo(vuelo22julio1);
-//        agregarVuelo(vuelo22julio2);
-//        agregarVuelo(vuelo23julio1);
-//        agregarVuelo(vuelo23julio2);
-//        agregarVuelo(vuelo24julio1);
-//        agregarVuelo(vuelo24julio2);
-//        agregarVuelo(vuelo25julio1);
-//        agregarVuelo(vuelo25julio2);
-//        agregarVuelo(vuelo26julio1);
-//        agregarVuelo(vuelo26julio2);
-//        agregarVuelo(vuelo27julio1);
-//        agregarVuelo(vuelo27julio2);
-//        agregarVuelo(vuelo28julio1);
-//        agregarVuelo(vuelo28julio2);
-//        agregarVuelo(vuelo29julio1);
-//        agregarVuelo(vuelo29julio2);
-//        agregarVuelo(vuelo30julio1);
-//        agregarVuelo(vuelo30julio2);
-//        agregarVuelo(vuelo31julio1);
-//        agregarVuelo(vuelo31julio2);
-//        agregarVuelo(vuelo1agosto1);
-//        agregarVuelo(vuelo1agosto2);
-//        agregarVuelo(vuelo2agosto1);
-//        agregarVuelo(vuelo2agosto2);
-//        agregarVuelo(vuelo3agosto1);
-//        agregarVuelo(vuelo3agosto2);
-//        agregarVuelo(vuelo4agosto1);
-//        agregarVuelo(vuelo4agosto2);
-//        agregarVuelo(vuelo5agosto1);
-//        agregarVuelo(vuelo5agosto2);
-//        agregarVuelo(vuelo6agosto1);
-//        agregarVuelo(vuelo6agosto2);
-//        agregarVuelo(vuelo10agosto1);
-//        agregarVuelo(vuelo10agosto2);
-//        agregarVuelo(vuelo15agosto1);
-//        agregarVuelo(vuelo15agosto2);
-//        agregarVuelo(vuelo20agosto1);
-//        agregarVuelo(vuelo20agosto2);
-//        agregarVuelo(vuelo25agosto1);
-//        agregarVuelo(vuelo25agosto2);
-//        agregarVuelo(vuelo30agosto1);
-//        agregarVuelo(vuelo30agosto2);
-//        agregarVuelo(vuelo10septiembre1);
-//        agregarVuelo(vuelo10septiembre2);
-//        agregarVuelo(vuelo5septiembre1);
-//        agregarVuelo(vuelo5septiembre2);
-//
-//
-//    }
-
-
     /// MOSTRAR GENERICO
 
     public <T> void mostrarColeccion(Collection<T> coleccion) {
@@ -1514,4 +1120,487 @@ public void modificarAvion() {
                 break;
         }
     }
+
+
+    public void comprarPasaje(Cliente usuario) {
+        Scanner scan = new Scanner(System.in);
+        boolean opcionValida = false;
+
+        System.out.println("------------------ Comprar Pasaje ------------------");
+        boolean compra = true;
+
+        while (compra) {
+            System.out.println("Escriba el codigo del vuelo que quiera comprar ('0' para salir): ");
+            String codigoComprar = scan.nextLine();
+
+            if (!codigoComprar.equals("0")) {
+
+                try {
+                    Vuelo vueloToComprar = buscarVuelo(codigoComprar);
+
+                    if (vueloToComprar != null) {
+                        System.out.println("Es este el vuelo que quiere comprar? \n---------------------");
+                        System.out.println(vueloToComprar.toStringCorto());
+                        System.out.println("---------------------\n" + "Presione 's' para finalizar la compra.");
+
+
+                        char confirmarCompra = scan.nextLine().toLowerCase().charAt(0);
+                        if (confirmarCompra == 's') {
+                            int asientoAsignado = vueloToComprar.comprobarEspacioVuelo(); // retrona 0 si no tiene espacio, cualquier otro numero si tiene
+
+                            if (asientoAsignado != 0) {
+                                int cantidadValijas = 0;
+
+                                boolean elegirEquipaje = true;
+                                while (elegirEquipaje) {
+                                    System.out.println("Seleccione la cantidad de valijas (maximo 2): ");
+                                    System.out.println("0 = Solo carry-on (+ $0)\n" +
+                                            "1 = Una valija (+ $70)\n" +
+                                            "2 = Dos valijas (+ $140)");
+
+                                    opcionValida = false;
+                                    while (!opcionValida) {
+                                        try {
+                                            cantidadValijas = scan.nextInt();
+                                            scan.nextLine();
+                                            opcionValida = true;
+
+                                        } catch (InputMismatchException e) {
+                                            System.out.println("Por favor, ingrese un numero valido.");
+                                            scan.nextLine();
+                                        }
+                                    }
+
+
+                                    if (cantidadValijas >= 0 && cantidadValijas <= 2) {
+                                        elegirEquipaje = false;
+                                    } else {
+                                        System.out.println("El numero elegido no es valido, intente nuevamente.");
+                                    }
+                                }
+
+                                Pasaje pasajeNuevo = new Pasaje(vueloToComprar, usuario.getPasaporte(), vueloToComprar.getPrecio() + (70 * cantidadValijas), cantidadValijas, asientoAsignado, vueloToComprar.getSalida());
+                                usuario.agregarPasajeCliente(pasajeNuevo);
+
+                                usuario.setMillas(usuario.getMillas() + vueloToComprar.getAvion().getDistancia() * .05); // SE SUMAN MILLAS + 5% DE LAS DEL VUELO
+                                verificarNivel(usuario);
+
+                                vueloToComprar.setPasajesVendidos(vueloToComprar.getPasajesVendidos() + 1);
+
+                                System.out.println("COMPRA EXITOSA, PUEDES VER TUS PASAJES EN 'MIS PASAJES'");
+                                compra = false;
+
+                            } else {
+                                compra = false;
+                                System.out.println("Se ha producido un error, el vuelo seleccionado esta lleno. Por favor selecciona otro");
+                            }
+                        } else {
+                            System.out.println("COMPRA CANCELADA.");
+                            compra = false;
+                        }
+
+                    } else {
+                        throw new VueloInexistenteException("El codigo del vuelo ingresado no corresponde a ningun vuelo disponible.");
+                    }
+                } catch (VueloInexistenteException e) {
+                    System.out.println(e.getMessage());
+                }
+            } else {
+                compra = false;
+            }
+        }
+    }
+
 }
+
+// funcion provisorioa para probar agregarVuelos
+//    public void addVuelosHC() {
+//        Aeropuerto nuevayork = new Aeropuerto("JFK", "Nueva York", "Estados Unidos");
+//        Aeropuerto londres = new Aeropuerto("LHR", "Londres", "Reino Unido");
+//        Aeropuerto paris = new Aeropuerto("CDG", "Paris", "Francia");
+//        Aeropuerto tokio = new Aeropuerto("HND", "Tokio", "Japon");
+//        Aeropuerto sydney = new Aeropuerto("SYD", "Sydney", "Australia");
+//        Aeropuerto dubai = new Aeropuerto("DXB", "Dubai", "Emiratos Arabes Unidos");
+//        Aeropuerto sanfrancisco = new Aeropuerto("SFO", "San Francisco", "Estados Unidos");
+//        Aeropuerto frankfurt = new Aeropuerto("FRA", "Frankfurt", "Alemania");
+//        Aeropuerto seul = new Aeropuerto("ICN", "Seul", "Corea del Sur");
+//        Aeropuerto ciudadmexico = new Aeropuerto("MEX", "Ciudad de Mexico", "Mexico");
+//        Aeropuerto buenosaires = new Aeropuerto("EZE", "Buenos Aires", "Argentina");
+//
+//        aeropuertos.add(nuevayork);
+//        aeropuertos.add(londres);
+//        aeropuertos.add(paris);
+//        aeropuertos.add(tokio);
+//        aeropuertos.add(sydney);
+//        aeropuertos.add(dubai);
+//        aeropuertos.add(sanfrancisco);
+//        aeropuertos.add(frankfurt);
+//        aeropuertos.add(seul);
+//        aeropuertos.add(ciudadmexico);
+//        aeropuertos.add(buenosaires);
+//
+//        Avion boeing747 = new Avion("A001", "Boeing 747", 2000.0, 150);
+//        Avion privado1 = new Avion("B002", "Cessna Citation X", 3000.0, 8);
+//        Avion aribusA380 = new Avion("C003", "Airbus A380", 8000.0, 550);
+//        Avion privado2 = new Avion("D004", "Gulfstream G650", 7000.0, 14);
+//        Avion boeing787 = new Avion("E005", "Boeing 787", 11000.0, 300);
+//        Avion privado3 = new Avion("F006", "Bombardier Global 6000", 6000.0, 12);
+//
+//        aviones.add(boeing747);
+//        aviones.add(privado1);
+//        aviones.add(aribusA380);
+//        aviones.add(privado2);
+//        aviones.add(boeing787);
+//        aviones.add(privado3);
+//
+//        LocalDateTime fecha1 = LocalDateTime.of(2023, 7, 1, 8, 0);
+//        LocalDateTime fecha2 = LocalDateTime.of(2023, 7, 2, 12, 30);
+//        LocalDateTime fecha3 = LocalDateTime.of(2023, 7, 3, 16, 45);
+//        LocalDateTime fecha4 = LocalDateTime.of(2023, 7, 4, 9, 15);
+//        LocalDateTime fecha5 = LocalDateTime.of(2023, 7, 5, 14, 0);
+//        LocalDateTime fecha6 = LocalDateTime.of(2023, 7, 6, 19, 30);
+//        LocalDateTime fecha7 = LocalDateTime.of(2023, 7, 7, 8, 0);
+//        LocalDateTime fecha8 = LocalDateTime.of(2023, 7, 9, 12, 30);
+//        LocalDateTime fecha9 = LocalDateTime.of(2023, 7, 10, 16, 45);
+//        LocalDateTime fecha10 = LocalDateTime.of(2023, 7, 11, 9, 15);
+//        LocalDateTime fecha11 = LocalDateTime.of(2023, 7, 12, 14, 0);
+//        LocalDateTime fecha12 = LocalDateTime.of(2023, 7, 13, 19, 30);
+//        LocalDateTime fecha13 = LocalDateTime.of(2023, 7, 14, 8, 0);
+//        LocalDateTime fecha14 = LocalDateTime.of(2023, 7, 16, 12, 30);
+//        LocalDateTime fecha15 = LocalDateTime.of(2023, 7, 17, 16, 45);
+//        LocalDateTime fecha16 = LocalDateTime.of(2023, 7, 18, 9, 15);
+//        LocalDateTime fecha17 = LocalDateTime.of(2023, 7, 19, 14, 0);
+//        LocalDateTime fecha18 = LocalDateTime.of(2023, 7, 20, 19, 30);
+//        LocalDateTime fecha19 = LocalDateTime.of(2023, 7, 21, 8, 0);
+//        LocalDateTime fecha20 = LocalDateTime.of(2023, 7, 23, 12, 30);
+//        LocalDateTime fecha21 = LocalDateTime.of(2023, 7, 24, 16, 45);
+//        LocalDateTime fecha22 = LocalDateTime.of(2023, 7, 25, 9, 15);
+//        LocalDateTime fecha23 = LocalDateTime.of(2023, 7, 26, 14, 0);
+//        LocalDateTime fecha24 = LocalDateTime.of(2023, 7, 27, 19, 30);
+//        LocalDateTime fecha25 = LocalDateTime.of(2023, 7, 29, 8, 0);
+//        LocalDateTime fecha26 = LocalDateTime.of(2023, 7, 30, 12, 30);
+//        LocalDateTime fecha27 = LocalDateTime.of(2023, 7, 31, 16, 45);
+//
+//        LocalDateTime fecha28 = LocalDateTime.of(2023, 8, 1, 9, 15);
+//        LocalDateTime fecha29 = LocalDateTime.of(2023, 8, 2, 14, 0);
+//        LocalDateTime fecha30 = LocalDateTime.of(2023, 8, 3, 19, 30);
+//        LocalDateTime fecha31 = LocalDateTime.of(2023, 8, 4, 8, 0);
+//        LocalDateTime fecha32 = LocalDateTime.of(2023, 8, 5, 12, 30);
+//        LocalDateTime fecha33 = LocalDateTime.of(2023, 8, 6, 16, 45);
+//        LocalDateTime fecha34 = LocalDateTime.of(2023, 8, 7, 9, 15);
+//        LocalDateTime fecha35 = LocalDateTime.of(2023, 8, 8, 14, 0);
+//        LocalDateTime fecha36 = LocalDateTime.of(2023, 8, 9, 19, 30);
+//        LocalDateTime fecha37 = LocalDateTime.of(2023, 8, 10, 8, 0);
+//        LocalDateTime fecha38 = LocalDateTime.of(2023, 8, 11, 12, 30);
+//        LocalDateTime fecha39 = LocalDateTime.of(2023, 8, 12, 18, 0);
+//        LocalDateTime fecha40 = LocalDateTime.of(2023, 8, 13, 9, 15);
+//        LocalDateTime fecha41 = LocalDateTime.of(2023, 8, 14, 14, 0);
+//        LocalDateTime fecha42 = LocalDateTime.of(2023, 8, 15, 19, 30);
+//        LocalDateTime fecha43 = LocalDateTime.of(2023, 8, 16, 8, 0);
+//        LocalDateTime fecha44 = LocalDateTime.of(2023, 8, 17, 12, 30);
+//        LocalDateTime fecha45 = LocalDateTime.of(2023, 8, 18, 16, 45);
+//        LocalDateTime fecha46 = LocalDateTime.of(2023, 8, 19, 9, 15);
+//        LocalDateTime fecha47 = LocalDateTime.of(2023, 8, 20, 14, 0);
+//        LocalDateTime fecha48 = LocalDateTime.of(2023, 8, 21, 19, 30);
+//        LocalDateTime fecha49 = LocalDateTime.of(2023, 8, 22, 8, 0);
+//        LocalDateTime fecha50 = LocalDateTime.of(2023, 8, 23, 12, 30);
+//        LocalDateTime fecha51 = LocalDateTime.of(2023, 8, 24, 16, 45);
+//        LocalDateTime fecha52 = LocalDateTime.of(2023, 8, 25, 9, 15);
+//        LocalDateTime fecha53 = LocalDateTime.of(2023, 8, 26, 14, 0);
+//        LocalDateTime fecha54 = LocalDateTime.of(2023, 8, 27, 19, 30);
+//        LocalDateTime fecha55 = LocalDateTime.of(2023, 8, 28, 8, 0);
+//        LocalDateTime fecha56 = LocalDateTime.of(2023, 8, 29, 12, 30);
+//        LocalDateTime fecha57 = LocalDateTime.of(2023, 8, 30, 16, 45);
+//        LocalDateTime fecha58 = LocalDateTime.of(2023, 8, 31, 9, 15);
+//
+//        // Vuelos del 1 de julio de 2023
+//        Vuelo vuelo1julio1 = new Vuelo("NJ001", 500.0, nuevayork, londres, 5500.0, boeing747, fecha1, 7.0);
+//        Vuelo vuelo1julio2 = new Vuelo("LN001", 800.0, londres, nuevayork, 5500.0, privado1, fecha2, 6.0);
+//
+//// Vuelos del 2 de julio de 2023
+//        Vuelo vuelo2julio1 = new Vuelo("NP002", 1500.0, nuevayork, paris, 5800.0, aribusA380, fecha3, 9.0);
+//        Vuelo vuelo2julio2 = new Vuelo("PN002", 1200.0, paris, nuevayork, 5800.0, privado2, fecha4, 8.5);
+//
+//// Vuelos del 3 de julio de 2023
+//        Vuelo vuelo3julio1 = new Vuelo("NS003", 1800.0, nuevayork, sydney, 16000.0, boeing787, fecha5, 19.0);
+//        Vuelo vuelo3julio2 = new Vuelo("SN003", 2100.0, sydney, nuevayork, 16000.0, privado3, fecha6, 18.5);
+//
+//// Vuelos del 4 de julio de 2023
+//        Vuelo vuelo4julio1 = new Vuelo("PL004", 1200.0, paris, londres, 344.0, privado1, fecha7, 1.0);
+//        Vuelo vuelo4julio2 = new Vuelo("LP004", 1400.0, londres, paris, 344.0, boeing747, fecha8, 1.5);
+//
+//// Vuelos del 5 de julio de 2023
+//        Vuelo vuelo5julio1 = new Vuelo("TP005", 900.0, tokio, paris, 9600.0, privado2, fecha9, 12.0);
+//        Vuelo vuelo5julio2 = new Vuelo("PT005", 1100.0, paris, tokio, 9600.0, aribusA380, fecha10, 11.5);
+//
+//// Vuelos del 6 de julio de 2023
+//        Vuelo vuelo6julio1 = new Vuelo("SD006", 600.0, sydney, dubai, 12000.0, boeing787, fecha11, 15.0);
+//        Vuelo vuelo6julio2 = new Vuelo("DS006", 800.0, dubai, sydney, 12000.0, privado3, fecha12, 14.5);
+//
+//// Vuelos del 7 de julio de 2023
+//        Vuelo vuelo7julio1 = new Vuelo("SF007", 700.0, sydney, frankfurt, 16500.0, privado1, fecha13, 18.0);
+//        Vuelo vuelo7julio2 = new Vuelo("FS007", 900.0, frankfurt, sydney, 16500.0, boeing787, fecha14, 17.5);
+//
+//        // Vuelos del 8 de julio de 2023
+//        Vuelo vuelo8julio1 = new Vuelo("FL008", 800.0, frankfurt, londres, 344.0, aribusA380, fecha15, 2.0);
+//        Vuelo vuelo8julio2 = new Vuelo("LF008", 1000.0, londres, frankfurt, 344.0, privado2, fecha16, 1.5);
+//
+//// Vuelos del 9 de julio de 2023
+//        Vuelo vuelo9julio1 = new Vuelo("PN009", 1300.0, paris, nuevayork, 5500.0, privado3, fecha17, 7.0);
+//        Vuelo vuelo9julio2 = new Vuelo("NP009", 1600.0, nuevayork, paris, 5500.0, boeing747, fecha18, 6.5);
+//
+//// Vuelos del 10 de julio de 2023
+//        Vuelo vuelo10julio1 = new Vuelo("DT010", 600.0, dubai, tokio, 9600.0, boeing787, fecha19, 12.0);
+//        Vuelo vuelo10julio2 = new Vuelo("TD010", 800.0, tokio, dubai, 9600.0, privado1, fecha20, 11.5);
+//
+//// Vuelos del 11 de julio de 2023
+//        Vuelo vuelo11julio1 = new Vuelo("LS011", 700.0, londres, sydney, 16000.0, privado2, fecha21, 17.0);
+//        Vuelo vuelo11julio2 = new Vuelo("SL011", 900.0, sydney, londres, 16000.0, boeing747, fecha22, 16.5);
+//
+//// Vuelos del 12 de julio de 2023
+//        Vuelo vuelo12julio1 = new Vuelo("FT012", 1000.0, frankfurt, tokio, 12000.0, aribusA380, fecha23, 14.0);
+//        Vuelo vuelo12julio2 = new Vuelo("TF012", 1200.0, tokio, frankfurt, 12000.0, privado3, fecha24, 13.5);
+//
+//// Vuelos del 13 de julio de 2023
+//        Vuelo vuelo13julio1 = new Vuelo("PT013", 800.0, paris, tokio, 9600.0, privado1, fecha25, 11.0);
+//        Vuelo vuelo13julio2 = new Vuelo("TP013", 1000.0, tokio, paris, 9600.0, boeing787, fecha26, 10.5);
+//
+//// Vuelos del 14 de julio de 2023
+//        Vuelo vuelo14julio1 = new Vuelo("SD014", 900.0, sydney, dubai, 12000.0, boeing747, fecha27, 16.0);
+//        Vuelo vuelo14julio2 = new Vuelo("DS014", 1100.0, dubai, sydney, 12000.0, privado2, fecha28, 15.5);
+//// Vuelos del 15 de julio de 2023
+//        Vuelo vuelo15julio1 = new Vuelo("LF015", 800.0, londres, frankfurt, 344.0, aribusA380, fecha29, 2.0);
+//        Vuelo vuelo15julio2 = new Vuelo("FL015", 1000.0, frankfurt, londres, 344.0, privado3, fecha30, 1.5);
+//
+//// Vuelos del 16 de julio de 2023
+//        Vuelo vuelo16julio1 = new Vuelo("PN016", 1300.0, paris, nuevayork, 5500.0, privado1, fecha31, 7.0);
+//        Vuelo vuelo16julio2 = new Vuelo("NP016", 1600.0, nuevayork, paris, 5500.0, boeing747, fecha32, 6.5);
+//
+//// Vuelos del 17 de julio de 2023
+//        Vuelo vuelo17julio1 = new Vuelo("DT017", 600.0, dubai, tokio, 9600.0, boeing787, fecha33, 12.0);
+//        Vuelo vuelo17julio2 = new Vuelo("TD017", 800.0, tokio, dubai, 9600.0, privado2, fecha34, 11.5);
+//
+//// Vuelos del 18 de julio de 2023
+//        Vuelo vuelo18julio1 = new Vuelo("LS018", 700.0, londres, sydney, 16000.0, privado3, fecha35, 17.0);
+//        Vuelo vuelo18julio2 = new Vuelo("SL018", 900.0, sydney, londres, 16000.0, boeing747, fecha36, 16.5);
+//
+//// Vuelos del 19 de julio de 2023
+//        Vuelo vuelo19julio1 = new Vuelo("FT019", 1000.0, frankfurt, tokio, 12000.0, aribusA380, fecha37, 14.0);
+//        Vuelo vuelo19julio2 = new Vuelo("TF019", 1200.0, tokio, frankfurt, 12000.0, privado1, fecha38, 13.5);
+//
+//// Vuelos del 20 de julio de 2023
+//        Vuelo vuelo20julio1 = new Vuelo("PT020", 800.0, paris, tokio, 9600.0, privado2, fecha39, 11.0);
+//        Vuelo vuelo20julio2 = new Vuelo("TP020", 1000.0, tokio, paris, 9600.0, boeing787, fecha40, 10.5);
+//
+//// Vuelos del 21 de julio de 2023
+//        Vuelo vuelo21julio1 = new Vuelo("SD021", 900.0, sydney, dubai, 12000.0, boeing747, fecha41, 16.0);
+//        Vuelo vuelo21julio2 = new Vuelo("DS021", 1100.0, dubai, sydney, 12000.0, privado3, fecha42, 15.5);
+//
+//// Vuelos del 22 de julio de 2023
+//        Vuelo vuelo22julio1 = new Vuelo("LF022", 800.0, londres, frankfurt, 344.0, aribusA380, fecha43, 2.0);
+//        Vuelo vuelo22julio2 = new Vuelo("FL022", 1000.0, frankfurt, londres, 344.0, privado1, fecha44, 1.5);
+//// Vuelos del 23 de julio de 2023
+//        Vuelo vuelo23julio1 = new Vuelo("PS023", 700.0, paris, sydney, 16000.0, privado2, fecha45, 17.0);
+//        Vuelo vuelo23julio2 = new Vuelo("SP023", 900.0, sydney, paris, 16000.0, boeing787, fecha46, 16.5);
+//
+//// Vuelos del 24 de julio de 2023
+//        Vuelo vuelo24julio1 = new Vuelo("DT024", 1000.0, dubai, tokio, 9600.0, aribusA380, fecha47, 12.0);
+//        Vuelo vuelo24julio2 = new Vuelo("TD024", 1200.0, tokio, dubai, 9600.0, privado3, fecha48, 11.5);
+//
+//// Vuelos del 25 de julio de 2023
+//        Vuelo vuelo25julio1 = new Vuelo("FP025", 800.0, frankfurt, paris, 344.0, privado1, fecha49, 2.0);
+//        Vuelo vuelo25julio2 = new Vuelo("PF025", 1000.0, paris, frankfurt, 344.0, boeing747, fecha50, 1.5);
+//
+//// Vuelos del 26 de julio de 2023
+//        Vuelo vuelo26julio1 = new Vuelo("LS026", 1300.0, londres, sydney, 16000.0, boeing787, fecha51, 17.0);
+//        Vuelo vuelo26julio2 = new Vuelo("SL026", 1600.0, sydney, londres, 16000.0, privado2, fecha52, 16.5);
+//
+//// Vuelos del 27 de julio de 2023
+//        Vuelo vuelo27julio1 = new Vuelo("NP027", 1000.0, nuevayork, paris, 5500.0, aribusA380, fecha53, 7.0);
+//        Vuelo vuelo27julio2 = new Vuelo("PN027", 1200.0, paris, nuevayork, 5500.0, privado3, fecha54, 6.5);
+//
+//// Vuelos del 28 de julio de 2023
+//        Vuelo vuelo28julio1 = new Vuelo("SD028", 600.0, sydney, dubai, 12000.0, privado1, fecha55, 16.0);
+//        Vuelo vuelo28julio2 = new Vuelo("DS028", 800.0, dubai, sydney, 12000.0, boeing747, fecha56, 15.5);
+//
+//// Vuelos del 29 de julio de 2023
+//        Vuelo vuelo29julio1 = new Vuelo("TF029", 800.0, tokio, frankfurt, 12000.0, privado2, fecha57, 14.0);
+//        Vuelo vuelo29julio2 = new Vuelo("FT029", 1000.0, frankfurt, tokio, 12000.0, aribusA380, fecha58, 13.5);
+//
+//        Vuelo vuelo30julio1 = new Vuelo("BN030", 600.0, buenosaires, nuevayork, 5800.0, boeing787, fecha51, 10.0);
+//        Vuelo vuelo30julio2 = new Vuelo("NB030", 800.0, nuevayork, buenosaires, 5800.0, privado1, fecha31, 9.5);
+//
+//        Vuelo vuelo31julio1 = new Vuelo("LP031", 500.0, londres, paris, 344.0, privado2, fecha1, 2.0);
+//        Vuelo vuelo31julio2 = new Vuelo("PL031", 700.0, paris, londres, 344.0, boeing747, fecha2, 1.5);
+//
+//        Vuelo vuelo1agosto1 = new Vuelo("TB801", 1200.0, tokio, buenosaires, 19000.0, aribusA380, fecha23, 20.0);
+//        Vuelo vuelo1agosto2 = new Vuelo("BT801", 1400.0, buenosaires, tokio, 19000.0, privado3, fecha4, 19.5);
+//
+//        Vuelo vuelo2agosto1 = new Vuelo("SF802", 900.0, sanfrancisco, frankfurt, 9200.0, privado1, fecha15, 11.0);
+//        Vuelo vuelo2agosto2 = new Vuelo("FS802", 1100.0, frankfurt, sanfrancisco, 9200.0, boeing747, fecha6, 10.5);
+//
+//        Vuelo vuelo3agosto1 = new Vuelo("SM803", 1300.0, seul, ciudadmexico, 18000.0, aribusA380, fecha37, 14.0);
+//        Vuelo vuelo3agosto2 = new Vuelo("MS803", 1500.0, ciudadmexico, seul, 18000.0, privado2, fecha28, 13.5);
+//
+//        Vuelo vuelo4agosto1 = new Vuelo("DB804", 800.0, dubai, buenosaires, 13000.0, privado3, fecha6, 15.0);
+//        Vuelo vuelo4agosto2 = new Vuelo("BD804", 1000.0, buenosaires, dubai, 13000.0, boeing787, fecha55, 14.5);
+//
+//        Vuelo vuelo5agosto1 = new Vuelo("TS805", 700.0, tokio, seul, 8600.0, boeing787, fecha11, 9.0);
+//        Vuelo vuelo5agosto2 = new Vuelo("ST805", 900.0, seul, tokio, 8600.0, privado1, fecha22, 8.5);
+//
+//        Vuelo vuelo6agosto1 = new Vuelo("SN806", 1000.0, sydney, nuevayork, 16000.0, privado2, fecha32, 17.0);
+//        Vuelo vuelo6agosto2 = new Vuelo("NS806", 1200.0, nuevayork, sydney, 16000.0, aribusA380, fecha14, 16.5);
+//
+//// Vuelos del 10 de agosto de 2023
+//        Vuelo vuelo10agosto1 = new Vuelo("BM810", 800.0, buenosaires, ciudadmexico, 5500.0, boeing787, fecha15, 10.0);
+//        Vuelo vuelo10agosto2 = new Vuelo("MB810", 1000.0, ciudadmexico, buenosaires, 5500.0, privado1, fecha33, 9.5);
+//
+//// Vuelos del 15 de agosto de 2023
+//        Vuelo vuelo15agosto1 = new Vuelo("CS815", 600.0, ciudadmexico, seul, 12000.0, privado2, fecha12, 12.0);
+//        Vuelo vuelo15agosto2 = new Vuelo("SC815", 800.0, seul, ciudadmexico, 12000.0, aribusA380, fecha18, 11.5);
+//
+//// Vuelos del 20 de agosto de 2023
+//        Vuelo vuelo20agosto1 = new Vuelo("BS820", 900.0, buenosaires, seul, 19000.0, privado3, fecha8, 15.0);
+//        Vuelo vuelo20agosto2 = new Vuelo("SB820", 1100.0, seul, buenosaires, 19000.0, boeing747, fecha34, 14.5);
+//
+//// Vuelos del 25 de agosto de 2023
+//        Vuelo vuelo25agosto1 = new Vuelo("CM825", 1200.0, ciudadmexico, londres, 9000.0, boeing787, fecha32, 16.0);
+//        Vuelo vuelo25agosto2 = new Vuelo("MC825", 1400.0, londres, ciudadmexico, 9000.0, privado1, fecha43, 15.5);
+//
+//// Vuelos del 30 de agosto de 2023
+//        Vuelo vuelo30agosto1 = new Vuelo("BS830", 700.0, buenosaires, sanfrancisco, 12000.0, privado2, fecha23, 11.0);
+//        Vuelo vuelo30agosto2 = new Vuelo("SB830", 900.0, sanfrancisco, buenosaires, 12000.0, aribusA380, fecha13, 10.5);
+//
+//// Vuelos del 5 de septiembre de 2023
+//        Vuelo vuelo5septiembre1 = new Vuelo("CS905", 800.0, ciudadmexico, sydney, 16000.0, aribusA380, fecha14, 14.0);
+//        Vuelo vuelo5septiembre2 = new Vuelo("SC905", 1000.0, sydney, ciudadmexico, 16000.0, privado3, fecha56, 13.5);
+//
+//// Vuelos del 10 de septiembre de 2023
+//        Vuelo vuelo10septiembre1 = new Vuelo("SL910", 1300.0, seul, londres, 10000.0, privado1, fecha57, 15.0);
+//        Vuelo vuelo10septiembre2 = new Vuelo("LS910", 1500.0, londres, seul, 10000.0, boeing787, fecha8, 14.5);
+//
+//        // Vuelos del 1 de julio de 2023
+//        agregarVuelo(vuelo1julio1);
+//        agregarVuelo(vuelo1julio2);
+//
+//// Vuelos del 2 de julio de 2023
+//        agregarVuelo(vuelo2julio1);
+//        agregarVuelo(vuelo2julio2);
+//
+//// Vuelos del 3 de julio de 2023
+//        agregarVuelo(vuelo3julio1);
+//        agregarVuelo(vuelo3julio2);
+//
+//// Vuelos del 4 de julio de 2023
+//        agregarVuelo(vuelo4julio1);
+//        agregarVuelo(vuelo4julio2);
+//
+//// Vuelos del 5 de julio de 2023
+//        agregarVuelo(vuelo5julio1);
+//        agregarVuelo(vuelo5julio2);
+//
+//// Vuelos del 6 de julio de 2023
+//        agregarVuelo(vuelo6julio1);
+//        agregarVuelo(vuelo6julio2);
+//
+//// Vuelos del 7 de julio de 2023
+//        agregarVuelo(vuelo7julio1);
+//        agregarVuelo(vuelo7julio2);
+//
+//// Vuelos del 8 de julio de 2023
+//        agregarVuelo(vuelo8julio1);
+//        agregarVuelo(vuelo8julio2);
+//
+//// Vuelos del 9 de julio de 2023
+//        agregarVuelo(vuelo9julio1);
+//        agregarVuelo(vuelo9julio2);
+//
+//// Vuelos del 10 de julio de 2023
+//        agregarVuelo(vuelo10julio1);
+//        agregarVuelo(vuelo10julio2);
+//
+//// Vuelos del 11 de julio de 2023
+//        agregarVuelo(vuelo11julio1);
+//        agregarVuelo(vuelo11julio2);
+//
+//// Vuelos del 12 de julio de 2023
+//        agregarVuelo(vuelo12julio1);
+//        agregarVuelo(vuelo12julio2);
+//
+//// Vuelos del 13 de julio de 2023
+//        agregarVuelo(vuelo13julio1);
+//        agregarVuelo(vuelo13julio2);
+//
+//// Vuelos del 14 de julio de 2023
+//        agregarVuelo(vuelo14julio1);
+//        agregarVuelo(vuelo14julio2);
+//
+//// Vuelos del 15 de julio de 2023
+//        agregarVuelo(vuelo15julio1);
+//        agregarVuelo(vuelo15julio2);
+//
+//// Vuelos del 16 de julio de 2023
+//        agregarVuelo(vuelo16julio1);
+//        agregarVuelo(vuelo16julio2);
+//
+//// Vuelos del 17 de julio de 2023
+//        agregarVuelo(vuelo17julio1);
+//        agregarVuelo(vuelo17julio2);
+//
+//        agregarVuelo(vuelo18julio1);
+//        agregarVuelo(vuelo18julio2);
+//        agregarVuelo(vuelo19julio1);
+//        agregarVuelo(vuelo19julio2);
+//        agregarVuelo(vuelo20julio1);
+//        agregarVuelo(vuelo20julio2);
+//        agregarVuelo(vuelo21julio1);
+//        agregarVuelo(vuelo21julio2);
+//        agregarVuelo(vuelo22julio1);
+//        agregarVuelo(vuelo22julio2);
+//        agregarVuelo(vuelo23julio1);
+//        agregarVuelo(vuelo23julio2);
+//        agregarVuelo(vuelo24julio1);
+//        agregarVuelo(vuelo24julio2);
+//        agregarVuelo(vuelo25julio1);
+//        agregarVuelo(vuelo25julio2);
+//        agregarVuelo(vuelo26julio1);
+//        agregarVuelo(vuelo26julio2);
+//        agregarVuelo(vuelo27julio1);
+//        agregarVuelo(vuelo27julio2);
+//        agregarVuelo(vuelo28julio1);
+//        agregarVuelo(vuelo28julio2);
+//        agregarVuelo(vuelo29julio1);
+//        agregarVuelo(vuelo29julio2);
+//        agregarVuelo(vuelo30julio1);
+//        agregarVuelo(vuelo30julio2);
+//        agregarVuelo(vuelo31julio1);
+//        agregarVuelo(vuelo31julio2);
+//        agregarVuelo(vuelo1agosto1);
+//        agregarVuelo(vuelo1agosto2);
+//        agregarVuelo(vuelo2agosto1);
+//        agregarVuelo(vuelo2agosto2);
+//        agregarVuelo(vuelo3agosto1);
+//        agregarVuelo(vuelo3agosto2);
+//        agregarVuelo(vuelo4agosto1);
+//        agregarVuelo(vuelo4agosto2);
+//        agregarVuelo(vuelo5agosto1);
+//        agregarVuelo(vuelo5agosto2);
+//        agregarVuelo(vuelo6agosto1);
+//        agregarVuelo(vuelo6agosto2);
+//        agregarVuelo(vuelo10agosto1);
+//        agregarVuelo(vuelo10agosto2);
+//        agregarVuelo(vuelo15agosto1);
+//        agregarVuelo(vuelo15agosto2);
+//        agregarVuelo(vuelo20agosto1);
+//        agregarVuelo(vuelo20agosto2);
+//        agregarVuelo(vuelo25agosto1);
+//        agregarVuelo(vuelo25agosto2);
+//        agregarVuelo(vuelo30agosto1);
+//        agregarVuelo(vuelo30agosto2);
+//        agregarVuelo(vuelo10septiembre1);
+//        agregarVuelo(vuelo10septiembre2);
+//        agregarVuelo(vuelo5septiembre1);
+//        agregarVuelo(vuelo5septiembre2);
+//
+//
+//    }
