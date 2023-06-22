@@ -3,6 +3,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.time.LocalDateTime;
@@ -19,15 +20,28 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         boolean cont = true;
+        boolean opcionValida = false;
+        int primeraOpcion=0;
 
-        while (cont) {
+        while (!opcionValida)
+        {
             System.out.println("BIENVENIDO A " + aerolinea.getNombre().toUpperCase() + " - - - - - - ✈");
             System.out.println("1. REGISTRARSE");
             System.out.println("2. LOGIN");
             System.out.print("Seleccione una opción o presione 0 para finalizar: ");
-            int primeraOpcion = scan.nextInt();
-            scan.nextLine();
+            try
+            {
 
+            primeraOpcion = scan.nextInt();
+            scan.nextLine();
+            opcionValida=true;
+            }catch (InputMismatchException e)
+            {
+                System.out.println("Por favor, ingrese un número válido para iniciar sesión.");
+                scan.nextLine();
+            }
+
+        }
             if (primeraOpcion != 0) {
                 switch (primeraOpcion) {
                     case 1:
@@ -89,8 +103,23 @@ public class Main {
                                         System.out.println("4. Gestionar clientes");
                                         System.out.println("5. Salir y guardar cambios");
                                         System.out.print("Seleccione una opción: ");
-                                        int opcionPrincipal = scan.nextInt();
-                                        scan.nextLine();
+                                        opcionValida=false;
+                                        int opcionPrincipal=0;
+
+                                        while (!opcionValida)
+                                        {
+                                            try
+                                            {
+                                                opcionPrincipal = scan.nextInt();
+                                                scan.nextLine();
+                                                opcionValida=true;
+                                            }catch (InputMismatchException e)
+                                            {
+                                                System.out.println("Por favor, ingrese un numero valido.");
+                                                scan.nextLine();
+                                            }
+                                        }
+
                                         switch (opcionPrincipal) {
                                             case 1:
                                                 boolean cVuelos = true;
@@ -102,8 +131,20 @@ public class Main {
                                                     System.out.println("5. Buscar vuelo por codigo");
                                                     System.out.println("6. Volver");
                                                     System.out.println("Seleccione una opción: ");
-                                                    int opcionVuelos = scan.nextInt();
-                                                    scan.nextLine();
+                                                    opcionValida=false;
+                                                    int opcionVuelos=0;
+                                                    while (!opcionValida)
+                                                    {
+                                                        try
+                                                        {
+                                                            opcionVuelos = scan.nextInt();
+                                                            scan.nextLine();
+                                                            opcionValida=true;
+                                                        }catch (InputMismatchException e)
+                                                        {
+                                                            System.out.println("Por favor, ingrese un numero valido.");
+                                                        }
+                                                    }
 
                                                     switch (opcionVuelos) {
                                                         case 1:
@@ -148,6 +189,7 @@ public class Main {
                                                 break;
 
                                             case 2:
+                                                opcionValida = false;
                                                 boolean cAviones = true;
                                                 while (cAviones) {
                                                     System.out.println("1. Agregar avión");
@@ -156,8 +198,19 @@ public class Main {
                                                     System.out.println("4. Mostrar lista de aviones");
                                                     System.out.println("5. Volver");
                                                     System.out.println("Seleccione una opción:");
-                                                    int opcionAviones = scan.nextInt();
-                                                    scan.nextLine();
+                                                    int opcionAviones = 0;
+                                                    while (!opcionValida)
+                                                    {
+                                                        try
+                                                        {
+                                                            opcionAviones  = scan.nextInt();
+                                                            scan.nextLine();
+                                                            opcionValida = true;
+                                                        }catch (InputMismatchException e)
+                                                        {
+                                                            System.out.println("Por favor, ingrese un numero valido");
+                                                        }
+                                                    }
 
                                                     switch (opcionAviones) {
                                                         case 1:
@@ -193,8 +246,22 @@ public class Main {
                                                     System.out.println("4. Mostrar lista de aeropuertos");
                                                     System.out.println("5. Volver");
                                                     System.out.println("Seleccione una opción:");
-                                                    int opcionAeropuertos = scan.nextInt();
-                                                    scan.nextLine();
+                                                    opcionValida=false;
+                                                    int opcionAeropuertos=0;
+                                                    while (!opcionValida)
+                                                    {
+                                                        try
+                                                        {
+                                                            opcionAeropuertos = scan.nextInt();
+                                                            scan.nextLine();
+                                                            opcionValida=true;
+                                                        }catch (InputMismatchException e)
+                                                        {
+                                                            System.out.println("Por favor, ingrese un numero valido.");
+                                                            scan.nextLine();
+                                                        }
+
+                                                    }
 
                                                     switch (opcionAeropuertos) {
                                                         case 1:
@@ -230,7 +297,20 @@ public class Main {
                                                     System.out.println("4. Mostrar lista de clientes");
                                                     System.out.println("5. Volver");
                                                     System.out.println("Seleccione una opción:");
-                                                    int opcionClientes = scan.nextInt();
+                                                    opcionValida=false;
+                                                    int opcionClientes = 0;
+
+                                                    while (!opcionValida)
+                                                    {
+                                                        try {
+                                                            opcionClientes = scan.nextInt();
+                                                            scan.nextLine();
+                                                            opcionValida=true;
+                                                        }catch (InputMismatchException e)
+                                                        {
+                                                            System.out.println("Por favor, ingrese un numero valido.");
+                                                        }
+                                                    }
 
                                                     switch (opcionClientes) {
                                                         case 1:
@@ -300,9 +380,25 @@ public class Main {
                                         System.out.println("5. Mi perfil");
                                         System.out.println("6. Socios");
                                         System.out.println("7. Guardar y salir");
+                                        opcionValida=false;
+                                        int menuUser = 0;
 
-                                        int menuUser = scan.nextInt();
-                                        scan.nextLine();
+                                        while (!opcionValida)
+                                        {
+                                           try
+                                           {
+                                               menuUser = scan.nextInt();
+                                               scan.nextLine();
+                                               opcionValida=true;
+                                           }catch (InputMismatchException e)
+                                           {
+                                               System.out.println("Por favor, ingrese un numero valido.");
+                                               scan.nextLine();
+                                           }
+
+                                        }
+
+
 
                                         switch (menuUser) {
                                             case 1:
@@ -327,8 +423,22 @@ public class Main {
                                                                 System.out.println("4. Buscar vuelo por codigo");
                                                                 System.out.println("5. Volver atras");
 
-                                                                int buscarVueloMenu = scan.nextInt();
-                                                                scan.nextLine();
+                                                                opcionValida=false;
+                                                                int buscarVueloMenu=0;
+
+                                                                while (!opcionValida)
+                                                                {
+                                                                  try {
+                                                                      buscarVueloMenu = scan.nextInt();
+                                                                      scan.nextLine();
+                                                                      opcionValida=true;
+
+                                                                  }catch (InputMismatchException e)
+                                                                  {
+                                                                      System.out.println("Por favor, ingrese un numero valido.");
+                                                                      scan.nextLine();
+                                                                  }
+                                                                }
 
                                                                 switch (buscarVueloMenu) {
                                                                     case 1:
@@ -447,8 +557,23 @@ public class Main {
                                                                                     "1 = Una valija (+ $70)\n" +
                                                                                     "2 = Dos valijas (+ $140)");
 
-                                                                            cantidadValijas = scan.nextInt();
-                                                                            scan.nextLine();
+                                                                            opcionValida=false;
+                                                                            while (!opcionValida)
+                                                                            {
+                                                                                try
+                                                                                {
+                                                                                    cantidadValijas = scan.nextInt();
+                                                                                    scan.nextLine();
+                                                                                    opcionValida=true;
+
+                                                                                }catch (InputMismatchException e)
+                                                                                {
+                                                                                    System.out.println("Por favor, ingrese un numero valido.");
+                                                                                    scan.nextLine();
+                                                                                }
+                                                                            }
+
+
 
                                                                             if (cantidadValijas >= 0 && cantidadValijas <= 2) {
                                                                                 elegirEquipaje = false;
@@ -557,7 +682,5 @@ public class Main {
             } else {
                 cont = false;
             }
-
-        }
-    }
+   }
 }

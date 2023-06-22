@@ -768,6 +768,7 @@ public class Aerolinea {
     //       AVIONES      ||||||||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+    ///AGREGAR AVION
     public void agregarAvionesTeclado() {
         Scanner scan = new Scanner(System.in);
         char continuar = 's';
@@ -792,18 +793,38 @@ public class Aerolinea {
             continuar = scan.nextLine().charAt(0);
         }
     }
-
+///CARGAR AVION
     private Avion cargarAvionPorTeclado(String id) {
-
         Scanner scan = new Scanner(System.in);
         System.out.print("Nombre: ");
         String nombre = scan.nextLine();
-        System.out.print("Distancia: ");
-        double distancia = scan.nextDouble();
-        scan.nextLine();
-        System.out.print("Cantidad de pasajeros: ");
-        int cantidad = scan.nextInt(); //////// CHEQUEAR QUE NO SE ROMPA ESTA MIERDA SI PONES UN STRING EN EL INT ************************************
-        scan.nextLine();
+        double distancia = 0;
+        int cantidad = 0;
+        boolean inputValido = false;
+
+        while (!inputValido) {
+            try {
+                System.out.print("Distancia: ");
+                distancia = scan.nextDouble();
+                inputValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debes ingresar un número válido.");
+                scan.nextLine();
+            }
+        }
+
+        inputValido = false;
+
+        while (!inputValido) {
+            try {
+                System.out.print("Cantidad de pasajeros: ");
+                cantidad = scan.nextInt();
+                inputValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debes ingresar un número entero válido.");
+                scan.nextLine();
+            }
+        }
 
         return new Avion(id, nombre, distancia, cantidad);
     }
@@ -821,53 +842,88 @@ public class Aerolinea {
             System.out.println(e.getMessage());
         }
     }
+////////MODIFICAR
+public void modificarAvion() {
+    Scanner scan = new Scanner(System.in);
+    System.out.println("MODIFICAR AVION");
+    System.out.print("ID del avión: ");
+    String id = scan.nextLine();
+    Avion avion = buscarAvion(id);
 
-    public void modificarAvion() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("MODIFICAR AVION");
-        System.out.print("ID del avión: ");
-        String id = scan.nextLine();
-        Avion avion = buscarAvion(id);
+    if (avion != null) {
+        System.out.println("1. Nombre");
+        System.out.println("2. Distancia");
+        System.out.println("3. Cantidad de pasajeros");
+        System.out.print("Seleccione el campo a modificar: ");
+        int opcion = scan.nextInt();
+        scan.nextLine();
 
-        if (avion != null) {
-            System.out.println("1. Nombre");
-            System.out.println("2. Distancia");
-            System.out.println("3. Cantidad de pasajeros");
-            System.out.print("Seleccione el campo a modificar: ");
-            int opcion = scan.nextInt();
-            scan.nextLine();
-
-            switch (opcion) {
-                case 1:
+        switch (opcion) {
+            case 1:
+                try {
                     System.out.print("Nuevo nombre: ");
                     String nombre = scan.nextLine();
                     avion.setNombre(nombre);
-                    break;
+                    System.out.println("AVIÓN MODIFICADO CON ÉXITO");
+                } catch (Exception e) {
+                    System.out.println("ERROR: No se pudo modificar el nombre del avión.");
+                }
+                break;
 
-                case 2:
-                    System.out.print("Nueva distancia: ");
-                    double distancia = scan.nextDouble();
-                    scan.nextLine();
+            case 2:
+                try {
+                    double distancia = leerNumeroDouble(scan, "Nueva distancia: ");
                     avion.setDistancia(distancia);
-                    break;
+                    System.out.println("AVIÓN MODIFICADO CON ÉXITO");
+                } catch (Exception e) {
+                    System.out.println("ERROR: No se pudo modificar la distancia del avión.");
+                }
+                break;
 
-                case 3:
-                    System.out.print("Nueva cantidad de pasajeros: ");
-                    int cantidad = scan.nextInt();
-                    scan.nextLine();
+            case 3:
+                try {
+                    int cantidad = leerNumeroEntero(scan, "Nueva cantidad de pasajeros: ");
                     avion.setCantidadPasajeros(cantidad);
-                    break;
+                    System.out.println("AVIÓN MODIFICADO CON ÉXITO");
+                } catch (Exception e) {
+                    System.out.println("ERROR: No se pudo modificar la cantidad de pasajeros del avión.");
+                }
+                break;
 
-                default:
-                    System.out.println("ERROR: OPCIÓN INVÁLIDA");
-                    break;
+            default:
+                System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                break;
+        }
+    } else {
+        System.out.println("ERROR: AVIÓN NO ENCONTRADO");
+    }
+}
+///funciones para gestionar excepciones en modificarAvion()
+    private double leerNumeroDouble(Scanner scan, String mensaje) {
+        while (true) {
+            try {
+                System.out.print(mensaje);
+                return scan.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debes ingresar un número válido.");
+                scan.nextLine();
             }
-
-            System.out.println("AVIÓN MODIFICADO CON ÉXITO");
-        } else {
-            System.out.println("ERROR: AVIÓN NO ENCONTRADO");
         }
     }
+
+    private int leerNumeroEntero(Scanner scan, String mensaje) {
+        while (true) {
+            try {
+                System.out.print(mensaje);
+                return scan.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debes ingresar un número entero válido.");
+                scan.nextLine();
+            }
+        }
+    }
+
+    ////////////////////////////////////////////////////
 
     public void eliminarAvion(String id) {
         Avion avion = buscarAvion(id);
@@ -883,14 +939,14 @@ public class Aerolinea {
             System.out.println(e.getMessage());
         }
     }
-
+//MOSTRAR AVION
     public void mostrarAviones() {
         System.out.println("AVIONES");
         for (Avion avion : aviones) {
             System.out.println(avion.toString());
         }
     }
-
+//BUSCAR AVION
     private Avion buscarAvion(String id) {
         Avion avion = null;
 
@@ -907,6 +963,7 @@ public class Aerolinea {
     //       AEROPUERTOS      |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+    ///BUSCAR
     public Aeropuerto buscarAeropuerto(String codigo) { // por codigo de aeropuerto
         Aeropuerto aeropuerto = null;
 
@@ -918,7 +975,7 @@ public class Aerolinea {
 
         return aeropuerto;
     }
-
+///BUSCAR POR CIUDAD
     public Aeropuerto buscarAeropuertoCiudad(String ciudad) { // por ciudad
         Aeropuerto aeropuerto = null;
 
@@ -931,6 +988,7 @@ public class Aerolinea {
         return aeropuerto;
     }
 
+    ///CARGAR AEROPUERTO(S)
     public void agregarAeropuertosTeclado() {
         Scanner scan = new Scanner(System.in);
         char continuar = 's';
@@ -955,7 +1013,7 @@ public class Aerolinea {
             continuar = scan.nextLine().charAt(0);
         }
     }
-
+///CARGAR AEROPUERTO
     private Aeropuerto cargarAeropuertoPorTeclado(String codigo) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Ciudad: ");
@@ -966,7 +1024,7 @@ public class Aerolinea {
 
         return new Aeropuerto(codigo, ciudad, pais);
     }
-
+///AGREGAR
     public void agregarAeropuerto(Aeropuerto aeropuerto) {
         try {
             if (buscarAeropuerto(aeropuerto.getCodigo()) == null) {
@@ -980,7 +1038,7 @@ public class Aerolinea {
             System.out.println(e.getMessage());
         }
     }
-
+///MODIFICAR
     public void modificarAeropuerto() {
         Scanner scan = new Scanner(System.in);
         System.out.println("MODIFICAR AEROPUERTO");
@@ -1019,7 +1077,7 @@ public class Aerolinea {
             System.out.println("ERROR: AEROPUERTO NO ENCONTRADO");
         }
     }
-
+///ELIMINAR
     public void eliminarAeropuerto(String codigo) {
         Aeropuerto aeropuerto = buscarAeropuerto(codigo);
         try {
@@ -1033,7 +1091,7 @@ public class Aerolinea {
             System.out.println(e.getMessage());
         }
     }
-
+///MOSTRAR
     public void mostrarAeropuerto() {
         System.out.println("AEROPUERTOS");
         for (Aeropuerto aeropuerto: aeropuertos) {
@@ -1045,12 +1103,13 @@ public class Aerolinea {
     //       CLIENTES          |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+    ///MOSTRAR
     public void mostrarClientes() { //ADMIN FUNC
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
         }
     }
-
+///COMPROBAR SI EL CLIENTE EXISTE
     public boolean existeCliente(Cliente cliente) {
         for (Cliente c : clientes) {
             if (c.getPasaporte().equalsIgnoreCase(cliente.getPasaporte()) || c.getNombreDeUsuario().equalsIgnoreCase(cliente.getNombreDeUsuario())) {
@@ -1059,7 +1118,7 @@ public class Aerolinea {
         }
         return false;
     }
-
+///CARGAR
     public Cliente agregarClientePorTeclado() {
         Scanner scanner = new Scanner(System.in);
 
@@ -1135,7 +1194,7 @@ public class Aerolinea {
 
         return new Cliente(nombre, apellido, pasaporte, usuario, contrasena);
     }
-
+///AGREGAR
     public void agregarCliente(Cliente cliente) {
         try {
             if (existeCliente(cliente)) {
@@ -1146,7 +1205,7 @@ public class Aerolinea {
             System.out.println(e.getMessage());
         }
     }
-
+///ELIMINAR
     public void eliminarCliente(String pasaporte) {
         Cliente clienteAEliminar = null;
         for (Cliente cliente : clientes) {
@@ -1166,7 +1225,7 @@ public class Aerolinea {
 
 
     }
-
+///MODIFICAR
     public void modificarCliente(String nombreDeUsuario) {
         Cliente clienteAModificar = null;
         for (Cliente cliente : clientes) {
@@ -1189,42 +1248,79 @@ public class Aerolinea {
         System.out.println("3 - Pasaporte");
         System.out.println("4 - Modificar todos los campos");
 
-        int opcion = input.nextInt();
-        input.nextLine();
+        int opcion;
+        while (true) {
+            try {
+                opcion = input.nextInt();
+                input.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debe ingresar un número válido.");
+                input.nextLine();
+            }
+        }
 
         switch (opcion) {
             case 1:
-                System.out.println("Ingrese el nuevo nombre para el cliente:");
-                String nuevoNombre = input.nextLine();
-                clienteAModificar.setNombre(nuevoNombre);
+                while (true) {
+                    try {
+                        System.out.println("Ingrese el nuevo nombre para el cliente:");
+                        String nuevoNombre = input.nextLine();
+                        clienteAModificar.setNombre(nuevoNombre);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Error: No se pudo modificar el nombre del cliente.");
+                    }
+                }
                 break;
             case 2:
-                System.out.println("Ingrese el nuevo apellido para el cliente:");
-                String nuevoApellido = input.nextLine();
-                clienteAModificar.setApellido(nuevoApellido);
+                while (true) {
+                    try {
+                        System.out.println("Ingrese el nuevo apellido para el cliente:");
+                        String nuevoApellido = input.nextLine();
+                        clienteAModificar.setApellido(nuevoApellido);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Error: No se pudo modificar el apellido del cliente.");
+                    }
+                }
                 break;
             case 3:
-                System.out.println("Ingrese el nuevo pasaporte para el cliente:");
-                String nuevoPasaporte = input.nextLine();
-                clienteAModificar.setPasaporte(nuevoPasaporte);
+                while (true) {
+                    try {
+                        System.out.println("Ingrese el nuevo pasaporte para el cliente:");
+                        String nuevoPasaporte = input.nextLine();
+                        clienteAModificar.setPasaporte(nuevoPasaporte);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Error: No se pudo modificar el pasaporte del cliente.");
+                    }
+                }
                 break;
             case 4:
-                System.out.println("Ingrese el nuevo nombre para el cliente:");
-                nuevoNombre = input.nextLine();
-                System.out.println("Ingrese el nuevo apellido para el cliente:");
-                nuevoApellido = input.nextLine();
-                System.out.println("Ingrese el nuevo pasaporte para el cliente:");
-                nuevoPasaporte = input.nextLine();
-                clienteAModificar.setNombre(nuevoNombre);
-                clienteAModificar.setApellido(nuevoApellido);
-                clienteAModificar.setPasaporte(nuevoPasaporte);
+                while (true) {
+                    try {
+                        System.out.println("Ingrese el nuevo nombre para el cliente:");
+                        String nuevoNombre = input.nextLine();
+                        System.out.println("Ingrese el nuevo apellido para el cliente:");
+                        String nuevoApellido = input.nextLine();
+                        System.out.println("Ingrese el nuevo pasaporte para el cliente:");
+                        String nuevoPasaporte = input.nextLine();
+                        clienteAModificar.setNombre(nuevoNombre);
+                        clienteAModificar.setApellido(nuevoApellido);
+                        clienteAModificar.setPasaporte(nuevoPasaporte);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Error: No se pudieron modificar todos los campos del cliente.");
+                    }
+                }
                 break;
             default:
                 System.out.println("Opción inválida.");
                 break;
         }
     }
-
+///BUSCAR
     public Cliente buscarUsuario(String username) {
         for (Cliente cliente : clientes) {
             if (cliente.getNombreDeUsuario().equals(username)) {
@@ -1238,6 +1334,8 @@ public class Aerolinea {
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     //       JSON              |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+    ///ESCRITURA
     public void cargarJson(String pathname) {
         File file = new File(pathname);
 
@@ -1257,7 +1355,7 @@ public class Aerolinea {
         }
 
     }
-
+///LECTURA
     public static Aerolinea leerJson(String pathname) {
         Aerolinea aerolinea = null;
         File file = new File(pathname);
@@ -1291,6 +1389,7 @@ public class Aerolinea {
      // VERIFICAR NIVELES ////////////////////////////
     ////////////////////////////////////////////////
 
+    ///ACTUALIZACION
     public void actualizarHashsetSubclases() {
         HashSet<Cliente> setSubclases = new HashSet<Cliente>();
 
@@ -1316,6 +1415,7 @@ public class Aerolinea {
         clientes = setSubclases;
     }
 
+    ///VERIFICAR NIVEL DE SOCIO
     public void verificarNivel (Cliente cliente) {
         if(cliente instanceof Estandar) {
             if(cliente.getMillas() >= 2500) {
@@ -1342,7 +1442,7 @@ public class Aerolinea {
             }
         }
     }
-
+///VER EL PERFIL
     public void verPerfil(Cliente cliente) {
         Scanner scan = new Scanner(System.in);
         System.out.println("------------------ MI PERFIL ------------------");
