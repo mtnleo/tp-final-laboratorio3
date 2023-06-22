@@ -163,4 +163,18 @@ public class Cliente {
             ((Black) this).mostrarBenificiosSocio();
         }
     }
+
+    public double obtenerPrecioFinal( Vuelo vuelo) {
+        double precioVuelo = vuelo.getPrecio(); //obtener el precio
+        if (this instanceof Gold) {
+            precioVuelo = ((Gold) this).calcularPrecioDescuento(precioVuelo);
+        }
+        else if(this instanceof Platinum) {
+            precioVuelo = ((Platinum) this).calcularPrecioDescuento(precioVuelo);
+        } else if (this instanceof Black) {
+            precioVuelo = ((Black) this).calcularPrecioDescuento(precioVuelo);
+        }
+
+        return precioVuelo;
+    }
 }

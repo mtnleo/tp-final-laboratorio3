@@ -44,11 +44,17 @@ public class Black extends Cliente implements Socio {
     // METODOS ----------------------------
     ////////////////////////////////////////////
 
+    @Override
     public void mostrarBenificiosSocio() {
         System.out.println("---------- SOCIO -----------");
         System.out.println("Nivel: Black");
         System.out.println("Descuento en pasajes: " + porcentajeDescuento + "%");
         System.out.println("Felicitaciones! Estas en el nivel mas alto de todos");
+    }
+
+    @Override
+    public double calcularPrecioDescuento(double precioOriginal) {
+        return precioOriginal - precioOriginal * (porcentajeDescuento / 100.0);
     }
 
 }

@@ -43,10 +43,16 @@ public class Gold extends Cliente implements Socio {
     // METODOS ----------------------------
     ////////////////////////////////////////////
 
+    @Override
     public void mostrarBenificiosSocio() {
         System.out.println("---------- SOCIO -----------");
         System.out.println("Nivel: Gold");
         System.out.println("Descuento en pasajes: " + porcentajeDescuento + "%");
         System.out.println("Millas hasta el proximo nivel: " + (5000 - getMillas()));
+    }
+
+    @Override
+    public double calcularPrecioDescuento(double precioOriginal) {
+        return precioOriginal - precioOriginal * (porcentajeDescuento / 100.0);
     }
 }

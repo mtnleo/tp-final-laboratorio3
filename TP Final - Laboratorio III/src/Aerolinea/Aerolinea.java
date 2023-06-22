@@ -1042,13 +1042,14 @@ public void modificarAvion() {
     }
 
     ///VERIFICAR NIVEL DE SOCIO
-    public void verificarNivel (Cliente cliente) {
+    public Cliente verificarNivel (Cliente cliente) {
         if(cliente instanceof Estandar) {
             if(cliente.getMillas() >= 2500) {
                 Gold aux = new Gold(cliente);
                 clientes.remove(cliente);
                 clientes.add(aux);
                 System.out.println("Felicitaciones! Ahora sos socio nivel Gold.");
+                cliente = aux;
             }
         }
         else if(cliente instanceof Gold) {
@@ -1057,6 +1058,7 @@ public void modificarAvion() {
                 clientes.remove(cliente);
                 clientes.add(aux);
                 System.out.println("Felicitaciones! Ascendiste al nivel Platinum.");
+                cliente = aux;
             }
         }
         else if(cliente instanceof Platinum) {
@@ -1065,8 +1067,10 @@ public void modificarAvion() {
                 clientes.remove(cliente);
                 clientes.add(aux);
                 System.out.println("Felicitaciones! Ascendiste al nivel Black.");
+                cliente = aux;
             }
         }
+        return cliente;
     }
 ///VER EL PERFIL
     public void verPerfil(Cliente cliente) {
@@ -1139,8 +1143,11 @@ public void modificarAvion() {
                     Vuelo vueloToComprar = buscarVuelo(codigoComprar);
 
                     if (vueloToComprar != null) {
+                        double precioVuelo = usuario.obtenerPrecioFinal(vueloToComprar);
+
                         System.out.println("Es este el vuelo que quiere comprar? \n---------------------");
-                        System.out.println(vueloToComprar.toStringCorto());
+                        System.out.println("Precio = $" + precioVuelo);
+                        System.out.println(vueloToComprar.toStringCortoSinPrecio());
                         System.out.println("---------------------\n" + "Presione 's' para finalizar la compra.");
 
 
@@ -1179,11 +1186,11 @@ public void modificarAvion() {
                                     }
                                 }
 
-                                Pasaje pasajeNuevo = new Pasaje(vueloToComprar, usuario.getPasaporte(), vueloToComprar.getPrecio() + (70 * cantidadValijas), cantidadValijas, asientoAsignado, vueloToComprar.getSalida());
+                                Pasaje pasajeNuevo = new Pasaje(vueloToComprar, usuario.getPasaporte(), precioVuelo + (70 * cantidadValijas), cantidadValijas, asientoAsignado, vueloToComprar.getSalida());
                                 usuario.agregarPasajeCliente(pasajeNuevo);
 
                                 usuario.setMillas(usuario.getMillas() + vueloToComprar.getAvion().getDistancia() * .05); // SE SUMAN MILLAS + 5% DE LAS DEL VUELO
-                                verificarNivel(usuario);
+                                usuario = verificarNivel(usuario);
 
                                 vueloToComprar.setPasajesVendidos(vueloToComprar.getPasajesVendidos() + 1);
 

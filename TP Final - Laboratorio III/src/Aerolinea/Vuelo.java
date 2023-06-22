@@ -145,12 +145,22 @@ public class Vuelo implements Comparable<Vuelo> {
     public String toStringCorto() {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("d 'de' MMMM", new Locale("es"));
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
-        return "Precio = $" + precio +
+        return "Precio (sin descuento) = $" + precio +
                "\nOrigen = " + origen.getCiudad() + " (" + origen.getCodigo() + ")" +
                "\nDestino = " + destino.getCiudad() +  " (" + destino.getCodigo() + ")" +
                "\nFecha = " + salida.format(formatoFecha) +
                "\nHora = " + salida.format(formatoHora) +
                "\nCodigo = " + codigoVuelo;
+    }
+
+    public String toStringCortoSinPrecio() {
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("d 'de' MMMM", new Locale("es"));
+        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+        return "Origen = " + origen.getCiudad() + " (" + origen.getCodigo() + ")" +
+                "\nDestino = " + destino.getCiudad() +  " (" + destino.getCodigo() + ")" +
+                "\nFecha = " + salida.format(formatoFecha) +
+                "\nHora = " + salida.format(formatoHora) +
+                "\nCodigo = " + codigoVuelo;
     }
 
     ////////////////////////////////////////////
