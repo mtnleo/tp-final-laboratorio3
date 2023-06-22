@@ -2,6 +2,7 @@ package Aerolinea;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.*;
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -41,12 +42,20 @@ public class Aerolinea {
         this.nombre = nombre;
     }
 
+    public ArrayList<Avion> getAviones() {
+        return aviones;
+    }
+
+    public ArrayList<Aeropuerto> getAeropuertos() {
+        return aeropuertos;
+    }
+
     ////////////////////////////////////////////
     // METODOS ----------------------------
     ////////////////////////////////////////////
 
     // funcion provisorioa para probar agregarVuelos
-//    public void addVuelosHC() {
+    public void addVuelosHC() {
 //        Aeropuerto nuevayork = new Aeropuerto("JFK", "Nueva York", "Estados Unidos");
 //        Aeropuerto londres = new Aeropuerto("LHR", "Londres", "Reino Unido");
 //        Aeropuerto paris = new Aeropuerto("CDG", "Paris", "Francia");
@@ -71,19 +80,20 @@ public class Aerolinea {
 //        aeropuertos.add(ciudadmexico);
 //        aeropuertos.add(buenosaires);
 //
-//        Avion boeing747 = new Avion("A001", "Boeing 747", 2000.0, 150);
-//        Avion privado1 = new Avion("B002", "Cessna Citation X", 3000.0, 8);
-//        Avion aribusA380 = new Avion("C003", "Airbus A380", 8000.0, 550);
-//        Avion privado2 = new Avion("D004", "Gulfstream G650", 7000.0, 14);
-//        Avion boeing787 = new Avion("E005", "Boeing 787", 11000.0, 300);
-//        Avion privado3 = new Avion("F006", "Bombardier Global 6000", 6000.0, 12);
-//
-//        aviones.add(boeing747);
-//        aviones.add(privado1);
-//        aviones.add(aribusA380);
-//        aviones.add(privado2);
-//        aviones.add(boeing787);
-//        aviones.add(privado3);
+        Avion boeing747 = new Avion("A001", "Boeing 747", 2000.0, 150);
+        Avion privado1 = new Avion("B002", "Cessna Citation X", 3000.0, 8);
+        Avion aribusA380 = new Avion("C003", "Airbus A380", 8000.0, 550);
+        Avion privado2 = new Avion("D004", "Gulfstream G650", 7000.0, 14);
+        Avion boeing787 = new Avion("E005", "Boeing 787", 11000.0, 300);
+        Avion privado3 = new Avion("F006", "Bombardier Global 6000", 6000.0, 12);
+
+        aviones.add(boeing747);
+        aviones.add(privado1);
+        aviones.add(aribusA380);
+        aviones.add(privado2);
+        aviones.add(boeing787);
+        aviones.add(privado3);
+    }
 //
 //        LocalDateTime fecha1 = LocalDateTime.of(2023, 7, 1, 8, 0);
 //        LocalDateTime fecha2 = LocalDateTime.of(2023, 7, 2, 12, 30);
@@ -437,6 +447,14 @@ public class Aerolinea {
 //
 //    }
 
+
+    /// MOSTRAR GENERICO
+
+    public <T> void mostrarColeccion(Collection<T> coleccion) {
+        for (T elemento : coleccion) {
+            System.out.println(elemento.toString());
+        }
+    }
 
 //    ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //           VUELOS       ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -806,6 +824,7 @@ public class Aerolinea {
             try {
                 System.out.print("Distancia: ");
                 distancia = scan.nextDouble();
+                scan.nextLine();
                 inputValido = true;
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debes ingresar un número válido.");
@@ -851,12 +870,24 @@ public void modificarAvion() {
     Avion avion = buscarAvion(id);
 
     if (avion != null) {
-        System.out.println("1. Nombre");
-        System.out.println("2. Distancia");
-        System.out.println("3. Cantidad de pasajeros");
-        System.out.print("Seleccione el campo a modificar: ");
-        int opcion = scan.nextInt();
-        scan.nextLine();
+        boolean opcionValida = false;
+        int opcion = 0;
+
+        while (!opcionValida) {
+            try {
+                System.out.println("1. Nombre");
+                System.out.println("2. Distancia");
+                System.out.println("3. Cantidad de pasajeros");
+                System.out.print("Seleccione el campo a modificar: ");
+
+                opcion = scan.nextInt();
+                scan.nextLine();
+                opcionValida = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Por favor ingrese un numero valido.");
+                scan.nextLine();
+            }
+        }
 
         switch (opcion) {
             case 1:
@@ -939,42 +970,39 @@ public void modificarAvion() {
             System.out.println(e.getMessage());
         }
     }
-//MOSTRAR AVION
-    public void mostrarAviones() {
-        System.out.println("AVIONES");
-        for (Avion avion : aviones) {
-            System.out.println(avion.toString());
-        }
-    }
 //BUSCAR AVION
-    private Avion buscarAvion(String id) {
-        Avion avion = null;
-
-        for (Avion a : aviones) {
-            if (a.getId().equals(id)) {
-                avion = a;
-            }
-        }
-
-        return avion;
+    public Avion buscarAvion(String id) {
+        return buscarElementoPorCampo(aviones, "id", id);
     }
 
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     //       AEROPUERTOS      |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-    ///BUSCAR
-    public Aeropuerto buscarAeropuerto(String codigo) { // por codigo de aeropuerto
-        Aeropuerto aeropuerto = null;
+    private <T> T buscarElementoPorCampo(Collection<T> coleccion, String campo, String valor) {
+        for (T elemento : coleccion) {
+            try {
+                Field field = elemento.getClass().getDeclaredField(campo);
+                field.setAccessible(true);
+                Object fieldValue = field.get(elemento);
 
-        for (Aeropuerto a : aeropuertos) {
-            if (a.getCodigo().equals(codigo)) {
-                aeropuerto = a;
+                if (fieldValue != null && fieldValue.toString().equals(valor)) {
+                    return elemento;
+                }
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                System.out.println("El campo ingresado no existe o hay un problema en el acceso.");
+                System.out.println(e.getMessage());
             }
         }
 
-        return aeropuerto;
+        return null;
     }
+
+    ///BUSCAR
+    public Aeropuerto buscarAeropuerto(String codigo) { // por codigo de aeropuerto
+        return buscarElementoPorCampo(aeropuertos, "codigo", codigo);
+    }
+
 ///BUSCAR POR CIUDAD
     public Aeropuerto buscarAeropuertoCiudad(String ciudad) { // por ciudad
         Aeropuerto aeropuerto = null;
@@ -1091,14 +1119,6 @@ public void modificarAvion() {
             System.out.println(e.getMessage());
         }
     }
-///MOSTRAR
-    public void mostrarAeropuerto() {
-        System.out.println("AEROPUERTOS");
-        for (Aeropuerto aeropuerto: aeropuertos) {
-            System.out.println(aeropuerto.toString());
-        }
-    }
-
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     //       CLIENTES          |||||||||||||||||||||||||||||||||||||||||||
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
