@@ -1,5 +1,4 @@
 package Aerolinea;
-
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,43 +11,42 @@ import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
-        /// AEROLINEA DE PRUEBA
         Aerolinea aerolinea = Aerolinea.leerJson("Aerolinea.json");
         aerolinea.actualizarHashsetSubclases();
 
         Scanner scan = new Scanner(System.in);
         boolean cont = true;
-
         int primeraOpcion = 0;
 
         while (cont) {
             boolean opcionValida = false;
 
             while (!opcionValida) {
-                System.out.println("BIENVENIDO A " + aerolinea.getNombre().toUpperCase() + " - - - - - - ✈");
+                System.out.println("\nBIENVENIDO A " + aerolinea.getNombre().toUpperCase() + " - - - - - - ✈\n");
                 System.out.println("1. REGISTRARSE");
-                System.out.println("2. LOGIN");
+                System.out.println("2. LOGIN\n");
                 System.out.print("Seleccione una opción o presione 0 para finalizar: ");
+
                 try {
                     primeraOpcion = scan.nextInt();
                     scan.nextLine();
                     opcionValida = true;
                 } catch (InputMismatchException e) {
-                    System.out.println("Por favor, ingrese un número válido para iniciar sesión.");
+                    System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                     scan.nextLine();
                 }
-
             }
+
             if (primeraOpcion != 0) {
                 switch (primeraOpcion) {
                     case 1:
-                        Cliente clientito = aerolinea.agregarClientePorTeclado(); // lo cargamos
+                        Cliente clientito = aerolinea.agregarClientePorTeclado();
                         try {
                             if (!aerolinea.existeCliente(clientito)) {
                                 aerolinea.agregarCliente(new Estandar(clientito));
-                                aerolinea.cargarJson("Aerolinea.json"); // agregarlo al archivo de una
+                                aerolinea.cargarJson("Aerolinea.json");
                             } else {
-                                throw new ClienteExistenteException("El cliente que intento cargar ya existe.");
+                                throw new ClienteExistenteException("⚠ El cliente ya existe ⚠");
                             }
                         } catch (ClienteExistenteException e) {
                             System.out.println(e.getMessage());
@@ -57,35 +55,35 @@ public class Main {
 
                     case 2:
                         int opcionMenu = 0;
-                        System.out.print("INGRESE NOMBRE DE USUARIO O PRESIONE 0 PARA FINALIZAR: ");
+                        System.out.print("INGRESE SU NOMBRE DE USUARIO O PRESIONE 0 PARA FINALIZAR: ");
                         String username = scan.nextLine();
 
                         Cliente usuario = aerolinea.buscarUsuario(username);
 
                         if (usuario != null) {
-                            System.out.print("INGRESE CONTRASEÑA O PRESIONE 0 PARA FINALIZAR: ");
+                            System.out.print("INGRESE SU CONTRASEÑA O PRESIONE 0 PARA FINALIZAR: ");
                             String pass = scan.nextLine();
                             if (usuario.getContrasena().equals(pass)) {
                                 opcionMenu = 2;
                             } else if (pass.equals("0")) {
                                 cont = false;
                             } else {
-                                System.out.println("EL NOMBRE Y CONTRASEÑA NO COINCIDEN. POR FAVOR VUELVA A INTENTARLO.");
+                                System.out.println("⚠ El nombre de usuario y la contraseña no coinciden ⚠");
                             }
                         } else if (username.equals("admin")) {
-                            System.out.print("INGRESE CONTRASEÑA O PRESIONE 0 PARA FINALIZAR: ");
+                            System.out.print("INGRESE SU CONTRASEÑA O PRESIONE 0 PARA FINALIZAR: ");
                             String pass = scan.nextLine();
                             if (pass.equals("admin")) {
                                 opcionMenu = 1;
                             } else if (pass.equals("0")) {
                                 cont = false;
                             } else {
-                                System.out.println("EL NOMBRE Y CONTRASEÑA NO COINCIDEN. POR FAVOR VUELVA A INTENTARLO.");
+                                System.out.println("⚠ El nombre de usuario y la contraseña no coinciden ⚠");
                             }
                         } else if (username.equals("0")) {
                             cont = false;
                         } else {
-                            System.out.println("EL NOMBRE DE USUARIO NO EXISTE. POR FAVOR VUELVA A INTENTARLO.");
+                            System.out.println("⚠ El usuario no existe ⚠");
                             cont = false;
                         }
 
@@ -94,6 +92,7 @@ public class Main {
                                 case 1:
                                     boolean cAdmin = true;
                                     while (cAdmin) {
+                                        System.out.println("\n- - - - - MENÚ ADMINISTRADOR - - - - -");
                                         System.out.println("1. Gestionar vuelos");
                                         System.out.println("2. Gestionar aviones");
                                         System.out.println("3. Gestionar aeropuertos");
@@ -109,7 +108,7 @@ public class Main {
                                                 scan.nextLine();
                                                 opcionValida = true;
                                             } catch (InputMismatchException e) {
-                                                System.out.println("Por favor, ingrese un numero valido.");
+                                                System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                 scan.nextLine();
                                             }
                                         }
@@ -118,13 +117,14 @@ public class Main {
                                             case 1:
                                                 boolean cVuelos = true;
                                                 while (cVuelos) {
+                                                    System.out.println("\n- - - - - GESTIONAR VUELOS - - - - -");
                                                     System.out.println("1. Agregar vuelo");
                                                     System.out.println("2. Modificar vuelo");
                                                     System.out.println("3. Eliminar vuelo");
                                                     System.out.println("4. Mostrar lista de vuelos");
-                                                    System.out.println("5. Buscar vuelo por codigo");
+                                                    System.out.println("5. Buscar vuelo por código");
                                                     System.out.println("6. Volver");
-                                                    System.out.println("Seleccione una opción: ");
+                                                    System.out.print("Seleccione una opción: ");
                                                     opcionValida = false;
                                                     int opcionVuelos = 0;
                                                     while (!opcionValida) {
@@ -133,7 +133,7 @@ public class Main {
                                                             scan.nextLine();
                                                             opcionValida = true;
                                                         } catch (InputMismatchException e) {
-                                                            System.out.println("Por favor, ingrese un numero valido.");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             scan.nextLine();
                                                         }
                                                     }
@@ -152,7 +152,7 @@ public class Main {
                                                             aerolinea.mostrarVuelos();
                                                             break;
                                                         case 5:
-                                                            System.out.print("Escribe el codigo del vuelo: ");
+                                                            System.out.print("\nCódigo de vuelo: ");
                                                             String adminBuscarVuelo = scan.nextLine();
 
                                                             try {
@@ -163,7 +163,7 @@ public class Main {
                                                                     System.out.println(adminVueloBuscado.toString());
                                                                     System.out.println("----------------------");
                                                                 } else {
-                                                                    throw new VueloInexistenteException("El vuelo buscado no se encontro.");
+                                                                    throw new VueloInexistenteException("⚠ Vuelo no encontrado ⚠");
                                                                 }
                                                             } catch (VueloInexistenteException e) {
                                                                 System.out.println(e.getMessage());
@@ -174,7 +174,7 @@ public class Main {
                                                             cVuelos = false;
                                                             break;
                                                         default:
-                                                            System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             break;
                                                     }
                                                 }
@@ -186,19 +186,20 @@ public class Main {
                                                 while (cAviones) {
                                                     opcionValida = false;
                                                     while (!opcionValida) {
+                                                        System.out.println("\n- - - - - GESTIONAR AVIONES - - - - -");
                                                         System.out.println("1. Agregar avión");
                                                         System.out.println("2. Modificar avión");
                                                         System.out.println("3. Eliminar avión");
                                                         System.out.println("4. Mostrar lista de aviones");
                                                         System.out.println("5. Volver");
-                                                        System.out.println("Seleccione una opción:");
+                                                        System.out.print("Seleccione una opción: ");
 
                                                         try {
                                                             opcionAviones = scan.nextInt();
                                                             scan.nextLine();
                                                             opcionValida = true;
                                                         } catch (InputMismatchException e) {
-                                                            System.out.println("Por favor, ingrese un numero valido");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             scan.nextLine();
                                                         }
                                                     }
@@ -211,7 +212,7 @@ public class Main {
                                                             aerolinea.modificarAvion();
                                                             break;
                                                         case 3:
-                                                            System.out.print("Ingrese la ID del avion a eliminar: ");
+                                                            System.out.print("\nID del avión a eliminar: ");
                                                             String idEliminar = scan.nextLine();
                                                             aerolinea.eliminarAvion(idEliminar);
                                                             break;
@@ -222,7 +223,7 @@ public class Main {
                                                             cAviones = false;
                                                             break;
                                                         default:
-                                                            System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             break;
                                                     }
                                                 }
@@ -231,12 +232,13 @@ public class Main {
                                             case 3:
                                                 boolean cAeropuertos = true;
                                                 while (cAeropuertos) {
+                                                    System.out.println("\n- - - - - GESTIONAR AEROPUERTOS - - - - -");
                                                     System.out.println("1. Agregar aeropuerto");
                                                     System.out.println("2. Modificar aeropuerto");
                                                     System.out.println("3. Eliminar aeropuerto");
                                                     System.out.println("4. Mostrar lista de aeropuertos");
                                                     System.out.println("5. Volver");
-                                                    System.out.println("Seleccione una opción:");
+                                                    System.out.print("Seleccione una opción: ");
                                                     opcionValida = false;
                                                     int opcionAeropuertos = 0;
                                                     while (!opcionValida) {
@@ -245,7 +247,7 @@ public class Main {
                                                             scan.nextLine();
                                                             opcionValida = true;
                                                         } catch (InputMismatchException e) {
-                                                            System.out.println("Por favor, ingrese un numero valido.");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             scan.nextLine();
                                                         }
 
@@ -259,7 +261,7 @@ public class Main {
                                                             aerolinea.modificarAeropuerto();
                                                             break;
                                                         case 3:
-                                                            System.out.print("Ingrese el código del aeropuerto a eliminar: ");
+                                                            System.out.print("\nCódigo del aeropuerto a eliminar: ");
                                                             String codigoEliminar = scan.nextLine();
                                                             aerolinea.eliminarAeropuerto(codigoEliminar);
 
@@ -271,7 +273,7 @@ public class Main {
                                                             cAeropuertos = false;
                                                             break;
                                                         default:
-                                                            System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             break;
                                                     }
                                                 }
@@ -280,12 +282,13 @@ public class Main {
                                             case 4:
                                                 boolean cClientes = true;
                                                 while (cClientes) {
+                                                    System.out.println("\n- - - - - GESTIONAR CLIENTES - - - - -");
                                                     System.out.println("1. Agregar cliente");
                                                     System.out.println("2. Modificar cliente");
                                                     System.out.println("3. Eliminar cliente");
                                                     System.out.println("4. Mostrar lista de clientes");
                                                     System.out.println("5. Volver");
-                                                    System.out.println("Seleccione una opción:");
+                                                    System.out.print("Seleccione una opción: ");
                                                     opcionValida = false;
                                                     int opcionClientes = 0;
 
@@ -295,14 +298,13 @@ public class Main {
                                                             scan.nextLine();
                                                             opcionValida = true;
                                                         } catch (InputMismatchException e) {
-                                                            System.out.println("Por favor, ingrese un numero valido.");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             scan.nextLine();
                                                         }
                                                     }
 
                                                     switch (opcionClientes) {
                                                         case 1:
-                                                            System.out.println("Agregar cliente");
                                                             Cliente cliente = aerolinea.agregarClientePorTeclado();
                                                             try {
                                                                 aerolinea.existeCliente(cliente);
@@ -312,33 +314,25 @@ public class Main {
                                                             aerolinea.agregarCliente(new Estandar(cliente));
                                                             break;
                                                         case 2:
-                                                            System.out.println("Modificar cliente");
                                                             scan.nextLine();
-                                                            System.out.println("Ingrese el nombre de usuario del cliente a modificar:");
+                                                            System.out.print("\nNombre de usuario del cliente a modificar: ");
                                                             String nombreUsuarioModificar = scan.nextLine();
                                                             aerolinea.modificarCliente(nombreUsuarioModificar);
-
                                                             break;
                                                         case 3:
                                                             scan.nextLine();
-                                                            System.out.println("Eliminar cliente");
-                                                            System.out.println("Ingrese el pasaporte del cliente a eliminar:");
+                                                            System.out.println("\nN° de pasaporte del cliente a eliminar: ");
                                                             String pasaporteEliminar = scan.nextLine();
                                                             aerolinea.eliminarCliente(pasaporteEliminar);
                                                             break;
-
                                                         case 4:
-                                                            System.out.println("Mostrar cliente");
-
                                                             aerolinea.mostrarClientes();
-
                                                             break;
                                                         case 5:
                                                             cClientes = false;
                                                             break;
-
                                                         default:
-                                                            System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                                                            System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                             break;
                                                     }
                                                 }
@@ -351,16 +345,16 @@ public class Main {
                                                 break;
 
                                             default:
-                                                System.out.println("ERROR: OPCIÓN INVÁLIDA");
+                                                System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                 break;
                                         }
                                     }
                                     break;
 
                                 case 2:
-                                    System.out.println("USER");
                                     boolean cUser = true;
                                     while (cUser) {
+                                        System.out.println("\n- - - - - MENÚ USUARIO - - - - -");
                                         System.out.println("1. Buscar Vuelos");
                                         System.out.println("2. Comprar Pasaje");
                                         System.out.println("3. Mis pasajes");
@@ -368,6 +362,7 @@ public class Main {
                                         System.out.println("5. Mi perfil");
                                         System.out.println("6. Socios");
                                         System.out.println("7. Guardar y salir");
+                                        System.out.print("Seleccione una opción: ");
                                         opcionValida = false;
                                         int menuUser = 0;
 
@@ -377,12 +372,10 @@ public class Main {
                                                 scan.nextLine();
                                                 opcionValida = true;
                                             } catch (InputMismatchException e) {
-                                                System.out.println("Por favor, ingrese un numero valido.");
+                                                System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                 scan.nextLine();
                                             }
-
                                         }
-
 
                                         switch (menuUser) {
                                             case 1:
@@ -390,7 +383,7 @@ public class Main {
 
                                                 while (cBuscarVuelos) {
                                                     try {
-                                                        System.out.print("Escriba la ciudad de origen: ");
+                                                        System.out.print("\nCiudad de origen: ");
                                                         String ciudadOrigen = scan.nextLine();
 
                                                         Aeropuerto origen = aerolinea.buscarAeropuertoCiudad(ciudadOrigen);
@@ -401,11 +394,13 @@ public class Main {
                                                             boolean cFiltrarVuelos = true;
                                                             // ya tengo el aeropuerto de origen para realizar todas las busquedas
                                                             while (cFiltrarVuelos) {
+                                                                System.out.println("- - - - - FILTRAR Y ORDENAR - - - - -");
                                                                 System.out.println("1. Filtrar por destino");
                                                                 System.out.println("2. Filtrar por fecha");
                                                                 System.out.println("3. Ordenar por precio");
-                                                                System.out.println("4. Buscar vuelo por codigo");
-                                                                System.out.println("5. Volver atras");
+                                                                System.out.println("4. Buscar vuelo por código");
+                                                                System.out.println("5. Volver atrás");
+                                                                System.out.print("Seleccione una opción: ");
 
                                                                 opcionValida = false;
                                                                 int buscarVueloMenu = 0;
@@ -417,21 +412,21 @@ public class Main {
                                                                         opcionValida = true;
 
                                                                     } catch (InputMismatchException e) {
-                                                                        System.out.println("Por favor, ingrese un numero valido.");
+                                                                        System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                                         scan.nextLine();
                                                                     }
                                                                 }
 
                                                                 switch (buscarVueloMenu) {
                                                                     case 1:
-                                                                        System.out.print("Escriba la ciudad donde quiera viajar: ");
+                                                                        System.out.print("Ciudad de destino: ");
                                                                         String ciudadDestino = scan.nextLine();
 
                                                                         listaMostrarVuelos = aerolinea.obtenerVuelosDestinoOrigen(ciudadDestino, ciudadOrigen);
                                                                         if (listaMostrarVuelos != null) {
                                                                             aerolinea.mostrarVuelosPorLista(listaMostrarVuelos);
                                                                         } else {
-                                                                            System.out.println("No se encontraron vuelos.");
+                                                                            System.out.println("⚠ No se encontraron vuelos que coincidan con la búsqueda ⚠");
                                                                             listaMostrarVuelos = aerolinea.obtenerVuelosOrigen(ciudadOrigen); // se carga de nuevo la lista para que pueda seguir buscando
                                                                         }
 
@@ -439,11 +434,11 @@ public class Main {
 
                                                                     case 2:
                                                                         try {
-                                                                            System.out.print("Escriba la fecha minima (d/m/AAAA): ");
+                                                                            System.out.print("\nFecha temprana (d/m/aaaa): ");
                                                                             String fechaMinima = scan.nextLine();
                                                                             LocalDate fechaMinimaLD = LocalDate.parse(fechaMinima, DateTimeFormatter.ofPattern("d/M/yyyy"));
 
-                                                                            System.out.print("Escriba la fecha maxima (d/m/AAAA): ");
+                                                                            System.out.print("\nFecha tardía (d/m/aaaa): ");
                                                                             String fechaMaxima = scan.nextLine();
                                                                             LocalDate fechaMaximaLD = LocalDate.parse(fechaMaxima, DateTimeFormatter.ofPattern("d/M/yyyy"));
 
@@ -454,24 +449,20 @@ public class Main {
                                                                             aerolinea.mostrarVuelosPorLista(listaMostrarVuelos);
 
                                                                         } catch (DateTimeParseException e) {
-                                                                            System.out.println("El formato de fecha ingresado es inválido.");
+                                                                            System.out.println("⚠ Por favor ingrese una fecha válida ⚠");
                                                                             System.out.println(e.getMessage());
                                                                         }
 
                                                                         break;
 
                                                                     case 3:
-                                                                        System.out.println("3. Ordenar por precio");
-                                                                        TreeSet<Vuelo> setMostrarVuelos = new TreeSet<Vuelo>(listaMostrarVuelos); // lo paso a un treeset para que lo ordene
-
-                                                                        listaMostrarVuelos = new LinkedList<Vuelo>(setMostrarVuelos); // lo paso a la lista de nuevo para que si sigue filtrando ya queden ordenados
-
+                                                                        TreeSet<Vuelo> setMostrarVuelos = new TreeSet<Vuelo>(listaMostrarVuelos); // pasamos a un treeSet para que lo ordene
+                                                                        listaMostrarVuelos = new LinkedList<Vuelo>(setMostrarVuelos); // de nuevo a la lista para que si sigue filtrando ya queden ordenados
                                                                         aerolinea.mostrarVuelosPorLista(listaMostrarVuelos);
-
                                                                         break;
 
                                                                     case 4:
-                                                                        System.out.print("Escriba el codigo del vuelo buscado: ");
+                                                                        System.out.print("\nCódigo de vuelo: ");
                                                                         String codigoVueloBuscado = scan.nextLine();
 
                                                                         try {
@@ -481,7 +472,7 @@ public class Main {
                                                                                 System.out.println(vueloBuscadoPorCodigo.toString());
                                                                                 System.out.println("-------------------");
                                                                             } else {
-                                                                                throw new VueloInexistenteException("El codigo del vuelo ingresado no corresponde a ningun vuelo cargado.");
+                                                                                throw new VueloInexistenteException("⚠ Vuelo no encontrado ⚠");
                                                                             }
                                                                         } catch (VueloInexistenteException e) {
                                                                             System.out.println(e.getMessage());
@@ -497,47 +488,41 @@ public class Main {
                                                             }
 
                                                         } else {
-                                                            throw new AeropuertoInexistenteException("El aeropuerto de origen ingresado no se encontro.");
+                                                            throw new AeropuertoInexistenteException("⚠ Aeropuerto no encontrado ⚠");
                                                         }
                                                     } catch (AeropuertoInexistenteException e) {
                                                         System.out.println(e.getMessage());
                                                     }
-
                                                 }
                                                 break;
 
                                             case 2:
                                                 aerolinea.comprarPasaje(usuario);
-
                                                 aerolinea.cargarJson("Aerolinea.json");
-
                                                 break;
 
                                             case 3:
-                                                System.out.println("------------------- Mis Pasajes -------------------");
-
+                                                System.out.println("\n- - - - - MIS PASAJES - - - - -");
                                                 usuario.mostrarPasajes();
 
                                                 break;
 
                                             case 4:
-                                                System.out.println("------------------- Ver estado de vuelo -------------------");
-
-                                                System.out.print("Escribe el codigo del vuelo: ");
+                                                System.out.println("\n- - - - - VER ESTADO DE VUELO - - - - -");
+                                                System.out.print("Código de vuelo: ");
                                                 String codigoVueloVerEstado = scan.nextLine();
 
                                                 try {
                                                     Vuelo vueloVerEstado = aerolinea.buscarVuelo(codigoVueloVerEstado);
                                                     if (vueloVerEstado != null) {
                                                         System.out.println(vueloVerEstado.toStringCorto());
-                                                        System.out.println("ESTADO: " + vueloVerEstado.getEstadoVuelo());
+                                                        System.out.println("Estado = " + vueloVerEstado.getEstadoVuelo());
                                                     } else {
-                                                        throw new VueloInexistenteException("El vuelo buscado no se encontro.");
+                                                        throw new VueloInexistenteException("⚠ Vuelo no encontrado ⚠");
                                                     }
                                                 } catch (VueloInexistenteException e) {
                                                     System.out.println(e.getMessage());
                                                 }
-
                                                 break;
 
                                             case 5:
@@ -549,7 +534,6 @@ public class Main {
                                                     cUser = false;
                                                     opcionMenu = 0;
                                                 }
-
                                                 break;
 
                                             case 6:
@@ -564,14 +548,13 @@ public class Main {
                                                 break;
 
                                             default:
-                                                System.out.println("Ingrese una opcion valida");
+                                                System.out.println("⚠ Por favor ingrese una opción válida ⚠");
                                                 break;
                                         }
                                     }
-
                                     break;
                                 case 3:
-                                    System.out.println("Gracias vuelva prontos");
+                                    System.out.println("\nGRACIAS POR CONFIAR EN " + aerolinea.getNombre().toUpperCase() + ". VUELVA PRONTO.\n");
                                     cont = false;
                                     break;
                             }
