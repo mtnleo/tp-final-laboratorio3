@@ -314,13 +314,11 @@ public class Main {
                                                             aerolinea.agregarCliente(new Estandar(cliente));
                                                             break;
                                                         case 2:
-                                                            scan.nextLine();
                                                             System.out.print("\nNombre de usuario del cliente a modificar: ");
                                                             String nombreUsuarioModificar = scan.nextLine();
                                                             aerolinea.modificarCliente(nombreUsuarioModificar);
                                                             break;
                                                         case 3:
-                                                            scan.nextLine();
                                                             System.out.println("\nN° de pasaporte del cliente a eliminar: ");
                                                             String pasaporteEliminar = scan.nextLine();
                                                             aerolinea.eliminarCliente(pasaporteEliminar);
