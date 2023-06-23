@@ -41,7 +41,7 @@ public class Platinum extends Cliente implements Socio {
         System.out.println("---------- SOCIO -----------");
         System.out.println("Nivel: Platinum");
         System.out.println("Descuento en pasajes: " + porcentajeDescuento + "%");
-        System.out.println("Felicitaciones! Estas en el nivel mas alto de todos");
+        System.out.println("Millas hasta el proximo nivel: " + (10000 - getMillas()));
     }
 
     @Override
