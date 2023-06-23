@@ -1068,12 +1068,24 @@ public void modificarAvion() {
             System.out.println("Clase: Black");
         }
 
-        System.out.println("1. Cambiar contraseña");
-        System.out.println("2. Eliminar mi cuenta");
-        System.out.println("3. Volver");
-        System.out.print("Ingrese una opción: ");
-        int opcion = scan.nextInt();
-        scan.nextLine();
+
+        boolean valido = false;
+        int opcion = 0;
+
+        while (!valido) {
+            try {
+                System.out.println("1. Cambiar contraseña");
+                System.out.println("2. Eliminar mi cuenta");
+                System.out.println("3. Volver");
+                System.out.print("Ingrese una opción: ");
+                opcion = scan.nextInt();
+                scan.nextLine();
+                valido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese una opción válida.");
+                scan.nextLine();
+            }
+        }
 
         switch (opcion) {
             case 1:

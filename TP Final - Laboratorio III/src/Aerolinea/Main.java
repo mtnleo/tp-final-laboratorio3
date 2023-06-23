@@ -352,20 +352,20 @@ public class Main {
                                 case 2:
                                     boolean cUser = true;
                                     while (cUser) {
-                                        System.out.println("\n- - - - - MENÚ USUARIO - - - - -");
-                                        System.out.println("1. Buscar Vuelos");
-                                        System.out.println("2. Comprar Pasaje");
-                                        System.out.println("3. Mis pasajes");
-                                        System.out.println("4. Ver estado de vuelo");
-                                        System.out.println("5. Mi perfil");
-                                        System.out.println("6. Socios");
-                                        System.out.println("7. Guardar y salir");
-                                        System.out.print("Seleccione una opción: ");
                                         opcionValida = false;
                                         int menuUser = 0;
 
                                         while (!opcionValida) {
                                             try {
+                                                System.out.println("\n- - - - - MENÚ USUARIO - - - - -");
+                                                System.out.println("1. Buscar Vuelos");
+                                                System.out.println("2. Comprar Pasaje");
+                                                System.out.println("3. Mis pasajes");
+                                                System.out.println("4. Ver estado de vuelo");
+                                                System.out.println("5. Mi perfil");
+                                                System.out.println("6. Socios");
+                                                System.out.println("7. Guardar y salir");
+                                                System.out.print("Seleccione una opción: ");
                                                 menuUser = scan.nextInt();
                                                 scan.nextLine();
                                                 opcionValida = true;
@@ -392,19 +392,20 @@ public class Main {
                                                             boolean cFiltrarVuelos = true;
                                                             // ya tengo el aeropuerto de origen para realizar todas las busquedas
                                                             while (cFiltrarVuelos) {
-                                                                System.out.println("- - - - - FILTRAR Y ORDENAR - - - - -");
-                                                                System.out.println("1. Filtrar por destino");
-                                                                System.out.println("2. Filtrar por fecha");
-                                                                System.out.println("3. Ordenar por precio");
-                                                                System.out.println("4. Buscar vuelo por código");
-                                                                System.out.println("5. Volver atrás");
-                                                                System.out.print("Seleccione una opción: ");
+
 
                                                                 opcionValida = false;
                                                                 int buscarVueloMenu = 0;
 
                                                                 while (!opcionValida) {
                                                                     try {
+                                                                        System.out.println("- - - - - FILTRAR Y ORDENAR - - - - -");
+                                                                        System.out.println("1. Filtrar por destino");
+                                                                        System.out.println("2. Filtrar por fecha");
+                                                                        System.out.println("3. Ordenar por precio");
+                                                                        System.out.println("4. Buscar vuelo por código");
+                                                                        System.out.println("5. Volver atrás");
+                                                                        System.out.print("Seleccione una opción: ");
                                                                         buscarVueloMenu = scan.nextInt();
                                                                         scan.nextLine();
                                                                         opcionValida = true;
