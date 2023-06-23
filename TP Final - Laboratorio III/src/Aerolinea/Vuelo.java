@@ -92,8 +92,6 @@ public class Vuelo implements Comparable<Vuelo> {
         this.pasajesVendidos = pasajesVendidos;
     }
 
-
-
     ////////////////////////////////////////////
     // METODOS ---------------------------------
     ////////////////////////////////////////////
@@ -166,7 +164,6 @@ public class Vuelo implements Comparable<Vuelo> {
     ////////////////////////////////////////////
     /// GETTERS & SETTERS ----------------------
     ////////////////////////////////////////////
-
 
     public int getPasajesVendidos() {
         return pasajesVendidos;

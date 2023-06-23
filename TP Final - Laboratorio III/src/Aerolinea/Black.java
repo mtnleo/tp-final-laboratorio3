@@ -33,13 +33,6 @@ public class Black extends Cliente implements Socio {
         this.porcentajeDescuento = 30;
     }
 
-
-    ////////////////////////////////////////////
-    // GETTERS AND SETTERS ---------------------
-    ////////////////////////////////////////////
-
-
-
     ////////////////////////////////////////////
     // METODOS ----------------------------
     ////////////////////////////////////////////
@@ -56,5 +49,4 @@ public class Black extends Cliente implements Socio {
     public double calcularPrecioDescuento(double precioOriginal) {
         return precioOriginal - precioOriginal * (porcentajeDescuento / 100.0);
     }
-
 }

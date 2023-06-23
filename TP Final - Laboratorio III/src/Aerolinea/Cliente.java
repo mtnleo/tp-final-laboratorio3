@@ -108,7 +108,7 @@ public class Cliente {
     }
 
     ////////////////////////////////////////////
-    // METODOS ----------------------------
+    // MÉTODOS ----------------------------
     ////////////////////////////////////////////
 
     public void agregarPasajeCliente(Pasaje pasaje) {
@@ -150,7 +150,7 @@ public class Cliente {
 
     public void mostrarInterfazSocio() {
         if (this instanceof Estandar) {
-            System.out.println("Todavia no es socio.\nSiga sumando millas para acceder a descuentos exclusivos!");
+            System.out.println("Todavia no es socix.\nSiga sumando millas para acceder a descuentos exclusivos.");
             System.out.println("Millas hasta el proximo nivel: " + (2500 - millas));
         }
         else if (this instanceof Gold) {

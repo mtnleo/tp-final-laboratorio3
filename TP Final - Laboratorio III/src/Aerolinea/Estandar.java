@@ -5,11 +5,6 @@ import java.util.LinkedList;
 public class Estandar extends Cliente {
 
     ////////////////////////////////////////////
-    // ATRIBUTOS ----------------------------
-    ////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////
     // CONSTRUCTORES ----------------------------
     ////////////////////////////////////////////
 
@@ -28,15 +23,4 @@ public class Estandar extends Cliente {
     public Estandar(String nombre, String apellido, String pasaporte, LinkedList<Pasaje> pasajes) {
         super(nombre, apellido, pasaporte, pasajes);
     }
-
-
-    ////////////////////////////////////////////
-    // GETTERS AND SETTERS ---------------------
-    ////////////////////////////////////////////
-
-
-
-    ////////////////////////////////////////////
-    // METODOS ----------------------------
-    ////////////////////////////////////////////
 }
