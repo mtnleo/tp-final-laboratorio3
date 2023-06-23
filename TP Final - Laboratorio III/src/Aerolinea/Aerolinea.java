@@ -709,6 +709,7 @@ public void modificarAvion() {
 
     public void mostrarClientes() {
         for (Cliente cliente : clientes) {
+            System.out.println("-----------------------");
             System.out.println(cliente.toString());
         }
     }

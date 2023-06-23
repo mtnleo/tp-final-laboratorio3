@@ -117,12 +117,12 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", pasaporte='" + pasaporte + '\'' +
-                ", pasajes=" + pasajes +
-                '}';
+        return
+                "Nombre = " + nombre +
+                "\nApellido = " + apellido +
+                "\nPasaporte = " + pasaporte +
+                "\nMillas = " + millas +
+                "\nCantidad de Pasajes = " + pasajes.size();
     }
 
     public void mostrarPasajes() {
